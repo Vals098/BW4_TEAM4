@@ -8,5 +8,13 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("RIVENDITORE")
 public class RivenditoreAutorizzato extends PuntoVendita {
 
+    protected RivenditoreAutorizzato(){
+    }
+
+    public RivenditoreAutorizzato(String codicePuntoVendita, String luogo,int numeroTitoliDiViaggio, boolean funzionante){
+        super(codicePuntoVendita,luogo, numeroTitoliDiViaggio)
+    }
+
+    
 
 }
