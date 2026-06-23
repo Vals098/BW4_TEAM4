@@ -15,9 +15,9 @@ public class Biglietto extends TitoloDiViaggio{
     @Column(name = "data_e_ora")
     private LocalDateTime dataEOra;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_mezzo")
-//    private Mezzo mezzo;
+    @ManyToOne
+    @JoinColumn(name = "id_mezzo")
+    private Mezzo mezzo;
 
     protected Biglietto(){}
 
@@ -34,9 +34,9 @@ public class Biglietto extends TitoloDiViaggio{
         return dataEOra;
     }
 
-//    public Mezzo getMezzo() {
-//        return mezzo;
-//    }
+    public Mezzo getMezzo() {
+        return mezzo;
+    }
 
     public void setObliterato(boolean obliterato) {
         this.obliterato = obliterato;
@@ -46,9 +46,9 @@ public class Biglietto extends TitoloDiViaggio{
         this.dataEOra = dataEOra;
     }
 
-//    public void setMezzo(Mezzo mezzo) {
-//        this.mezzo = mezzo;
-//    }
+    public void setMezzo(Mezzo mezzo) {
+        this.mezzo = mezzo;
+    }
 
     @Override
     public String toString() {
