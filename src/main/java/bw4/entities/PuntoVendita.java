@@ -2,6 +2,7 @@ package bw4.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,8 +25,8 @@ public abstract class PuntoVendita {
     @Column(name = "numero_titoli_di_viaggio")
     private int numeroTitoliDiViaggio;
 
-//    @OneToMany(mappedBy = "puntoVendita")
-//    private List<TitoloDiViaggio> titoliDiViaggio;
+    @OneToMany(mappedBy = "puntoVendita")
+    private List<TitoloDiViaggio> titoliDiViaggio;
 
     protected PuntoVendita() {
     }
@@ -50,5 +51,17 @@ public abstract class PuntoVendita {
 
     public int getNumeroTitoliDiViaggio() {
         return numeroTitoliDiViaggio;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PuntoVendita{" +
+                "idPuntoVendita=" + idPuntoVendita +
+                ", codicePuntoVendita='" + codicePuntoVendita + '\'' +
+                ", luogo='" + luogo + '\'' +
+                ", numeroTitoliDiViaggio=" + numeroTitoliDiViaggio +
+                ", titoliDiViaggio=" + titoliDiViaggio +
+                '}';
     }
 }
