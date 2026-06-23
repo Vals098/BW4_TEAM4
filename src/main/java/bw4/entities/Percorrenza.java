@@ -1,4 +1,4 @@
-package valeriafarinosi.entities;
+package bw4.entities;
 
 import jakarta.persistence.*;
 
