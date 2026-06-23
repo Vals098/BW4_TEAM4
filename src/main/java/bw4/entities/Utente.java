@@ -21,7 +21,7 @@ public class Utente {
     private String dataDiNascita;
 
 
-    // Relazione bidirezionale
+    // Relazione
     @OneToOne(mappedBy = "idUtente", cascade = CascadeType.ALL)
     private Tessera tessera;
 
@@ -34,7 +34,6 @@ public class Utente {
     }
 
 //    getter
-
     public long getIdUtente() {
         return idUtente;
     }

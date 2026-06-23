@@ -20,8 +20,9 @@ public class Tessera {
     @Column(name = "data_di_scadenza", nullable = false)
     private LocalDate dataDiScadenza;
 
+//    Relazione
     @OneToOne
-    @JoinColumn(name = "id_utente",nullable = false,unique = true)
+    @JoinColumn(name = "id_utente",nullable = false, unique = true)
     private Utente idUtente;
 
     public Tessera() {}
@@ -33,6 +34,8 @@ public class Tessera {
         this.dataDiScadenza = dataDiScadenza;
         this.idUtente = utente;
     }
+
+//    Getter
 
     public UUID getIdTessera() {
         return idTessera;
