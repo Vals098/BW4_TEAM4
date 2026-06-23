@@ -5,12 +5,12 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 @Entity
-@Table(name = "manutenzioni")
+@Table(name = "manutenzione")
 public class Manutenzione {
     //ATTRIBUTI
     @Id
     @GeneratedValue
-    @Column(name = "id_manutenzione", unique = true, nullable = false)
+    @Column(name = "id_manutenzione")
     private UUID idManutenzione;
 
     @Column(name = "data_inizio", nullable = false)
