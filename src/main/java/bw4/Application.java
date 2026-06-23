@@ -21,9 +21,11 @@ public class Application {
         PuntoVenditaDAO pvd = new PuntoVenditaDAO(em);
 
 //        DATI
-        PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Bosco Fatato");
-        PuntoVendita puntoVendita2 = new DistributoreAutomatico("5KS89", "Foresta Incantata", false);
+        PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Bosco Fatato");
+        PuntoVendita puntoVendita2 = new DistributoreAutomatico("5KS89", "Biglietteria Ali Spiegate","Foresta Incantata", false);
 
+//        pvd.savePuntoVendita(puntoVendita1);
+//        pvd.savePuntoVendita(puntoVendita2);
 
 
     }
