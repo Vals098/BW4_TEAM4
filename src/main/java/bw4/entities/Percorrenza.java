@@ -3,6 +3,7 @@ package bw4.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -67,5 +68,16 @@ public class Percorrenza {
 
     public int getNumeroPercorrenza() {
         return numeroPercorrenza;
+    }
+
+    @Override
+    public String toString() {
+        return "Percorrenza{" +
+                "idPercorrenza=" + idPercorrenza +
+                ", idTratta=" + (tratta != null ? tratta.getIdTratta() : null) +
+                ", idMezzo=" + (mezzo != null ? mezzo.getIdMezzo() : null) +
+                ", tempoEffettivo=" + tempoEffettivo +
+                ", numeroPercorrenza=" + numeroPercorrenza +
+                '}';
     }
 }
