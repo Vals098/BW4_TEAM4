@@ -10,6 +10,10 @@ target/
 .idea/compiler.xml
 .idea/libraries/
 .idea/workspace.xml
+<<<<<<< HEAD
+.idea
+=======
+>>>>>>> develop
 *.iws
 *.iml
 *.ipr
