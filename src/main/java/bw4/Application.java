@@ -1,4 +1,4 @@
-package valeriafarinosi;
+package bw4;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
