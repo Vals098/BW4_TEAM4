@@ -15,8 +15,8 @@ public class DistributoreAutomatico extends PuntoVendita {
     protected DistributoreAutomatico(){
     }
 
-    public DistributoreAutomatico(String codicePuntoVendita, String luogo,int numeroTitoliDiViaggio, boolean funzionante){
-        super(codicePuntoVendita,luogo, numeroTitoliDiViaggio)
+    public DistributoreAutomatico(String codicePuntoVendita, String luogo, boolean funzionante){
+        super(codicePuntoVendita,luogo);
         this.funzionante = funzionante;
     }
 
