@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3efd6b4-1be0-44db-afcb-df0a32427164" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/bw4/entities/Mezzo.java" afterDir="false" />
+    <list default="true" id="691b8bff-0578-489e-84f0-7b5b96f7e2b5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/bw4/dao/PercorrenzaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bw4/dao/TrattaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,25 +24,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2,
-  &quot;fromUser&quot;: false
-}</component>
-  <component name="ProjectId" id="3FX3pJpDY6G2lLul9vycijgAimJ" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="3FXiBPj8XkVfPYPnA4HiF1vnU7B" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "feature__nicolò",
     "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -51,11 +53,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b3efd6b4-1be0-44db-afcb-df0a32427164" name="Changes" comment="" />
-      <created>1782207770205</created>
+      <changelist id="691b8bff-0578-489e-84f0-7b5b96f7e2b5" name="Changes" comment="" />
+      <created>1782227680236</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1782207770205</updated>
+      <updated>1782227680236</updated>
     </task>
     <servers />
   </component>
