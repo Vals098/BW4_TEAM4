@@ -10,7 +10,7 @@ import java.util.UUID;
 @Table(name = "titolo_di_viaggio")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_titolo_di_viaggio")
-public class TitoloDiViaggio {
+public abstract class TitoloDiViaggio {
 
     @Id
     @GeneratedValue
