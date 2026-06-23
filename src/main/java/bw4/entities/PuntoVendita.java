@@ -54,7 +54,6 @@ public abstract class PuntoVendita {
                 "idPuntoVendita=" + idPuntoVendita +
                 ", codicePuntoVendita='" + codicePuntoVendita + '\'' +
                 ", luogo='" + luogo + '\'' +
-                ", numeroTitoliDiViaggio=" + numeroTitoliDiViaggio +
                 ", titoliDiViaggio=" + titoliDiViaggio +
                 '}';
     }
