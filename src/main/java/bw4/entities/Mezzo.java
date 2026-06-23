@@ -70,15 +70,16 @@ public class Mezzo {
 
     //TOSTRING
 
+
     @Override
     public String toString() {
         return "Mezzo{" +
-                "id_mezzo=" + idMezzo +
+                "idMezzo=" + getIdMezzo() +
                 ", capienza=" + getCapienza() +
                 ", statoMezzo=" + getStatoMezzo() +
                 ", tipoMezzo=" + getTipoMezzo() +
                 ", nomeMezzo='" + getNomeMezzo() + '\'' +
-                ", idMezzo=" + getIdMezzo() +
                 '}';
     }
 }
+
