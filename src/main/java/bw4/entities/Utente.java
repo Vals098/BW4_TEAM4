@@ -3,11 +3,13 @@ package bw4.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "utenti")
-public class Users {
+public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+
+
+    @Column(name = "id_utente")
+    private long idUtente;
 
     @Column(nullable = false)
     private String nome;
@@ -20,19 +22,21 @@ public class Users {
 
 
     // Relazione bidirezionale
-    @OneToOne(mappedBy = "id_utente", cascade = CascadeType.ALL)
-    private Cards cards;
+    @OneToOne(mappedBy = "idUtente", cascade = CascadeType.ALL)
+    private Tessera tessera;
 
-    public Users() {
+    public Utente() {
     }
 
-    public Users(String nome, String cognome) {
+    public Utente(String nome, String cognome) {
         this.nome = nome;
         this.cognome = cognome;
     }
 
-    public long getId() {
-        return id;
+//    getter
+
+    public long getIdUtente() {
+        return idUtente;
     }
 
     public String getNome() {
@@ -47,18 +51,18 @@ public class Users {
         return dataDiNascita;
     }
 
-    public Cards getCards() {
-        return cards;
+    public Tessera getTessera() {
+        return tessera;
     }
 
     @Override
     public String toString() {
-        return "Users{" +
-                "id=" + id +
+        return "Utente{" +
+                "id=" + idUtente +
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", dataDiNascita='" + dataDiNascita + '\'' +
-                ", cards=" + cards +
+                ", cards=" + tessera +
                 '}';
     }
 }
