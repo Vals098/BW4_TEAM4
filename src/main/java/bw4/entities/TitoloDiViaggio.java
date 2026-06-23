@@ -1,8 +1,6 @@
 package bw4.entities;
 
-
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -30,9 +28,7 @@ public abstract class TitoloDiViaggio {
     @JoinColumn(name = "id_punto_vendita")
     private PuntoVendita puntoVendita;
 
-
-    protected TitoloDiViaggio() {
-    }
+    protected TitoloDiViaggio() {}
 
     public TitoloDiViaggio(String codiceTitoloDiViaggio, LocalDate dataEmissione, LocalDate dataScadenza) {
         this.codiceTitoloDiViaggio = codiceTitoloDiViaggio;
@@ -40,24 +36,25 @@ public abstract class TitoloDiViaggio {
         this.dataScadenza = dataScadenza;
     }
 
-    public UUID getIdTitoloDiViaggio() {
-        return idTitoloDiViaggio;
-    }
+    // GETTER
+    public UUID getIdTitoloDiViaggio() { return idTitoloDiViaggio; }
+    public String getCodiceTitoloDiViaggio() { return codiceTitoloDiViaggio; }
+    public LocalDate getDataEmissione() { return dataEmissione; }
+    public LocalDate getDataScadenza() { return dataScadenza; }
+    public PuntoVendita getPuntoVendita() { return puntoVendita; }
 
-    public String getCodiceTitoloDiViaggio() {
-        return codiceTitoloDiViaggio;
+    // SETTER
+    public void setCodiceTitoloDiViaggio(String codiceTitoloDiViaggio) {
+        this.codiceTitoloDiViaggio = codiceTitoloDiViaggio;
     }
-
-    public LocalDate getDataEmissione() {
-        return dataEmissione;
+    public void setDataEmissione(LocalDate dataEmissione) {
+        this.dataEmissione = dataEmissione;
     }
-
-    public LocalDate getDataScadenza() {
-        return dataScadenza;
+    public void setDataScadenza(LocalDate dataScadenza) {
+        this.dataScadenza = dataScadenza;
     }
-
-    public PuntoVendita getPuntoVendita() {
-        return puntoVendita;
+    public void setPuntoVendita(PuntoVendita puntoVendita) {
+        this.puntoVendita = puntoVendita;
     }
 
     @Override
