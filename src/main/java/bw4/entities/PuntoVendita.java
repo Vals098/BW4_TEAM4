@@ -19,6 +19,9 @@ public abstract class PuntoVendita {
     @Column(name = "codice_punto_vendita", unique = true, nullable = false)
     private String codicePuntoVendita;
 
+    @Column(name = "nome_punto_vendita", nullable = false)
+    private String nomePuntoVendita;
+
     @Column(name = "luogo", nullable = false)
     private String luogo;
 
@@ -28,8 +31,9 @@ public abstract class PuntoVendita {
     protected PuntoVendita() {
     }
 
-    public PuntoVendita(String codicePuntoVendita, String luogo) {
+    public PuntoVendita(String codicePuntoVendita, String nomePuntoVendita, String luogo) {
         this.codicePuntoVendita = codicePuntoVendita;
+        this.nomePuntoVendita = nomePuntoVendita;
         this.luogo = luogo;
     }
 
@@ -42,17 +46,20 @@ public abstract class PuntoVendita {
         return codicePuntoVendita;
     }
 
+    public String getNomePuntoVendita(){
+        return nomePuntoVendita;
+    }
+
     public String getLuogo() {
         return luogo;
     }
-
-
 
     @Override
     public String toString() {
         return "PuntoVendita{" +
                 "idPuntoVendita=" + idPuntoVendita +
                 ", codicePuntoVendita='" + codicePuntoVendita + '\'' +
+                ", nomePuntoVendita='" + nomePuntoVendita + '\'' +
                 ", luogo='" + luogo + '\'' +
                 ", titoliDiViaggio=" + titoliDiViaggio +
                 '}';
