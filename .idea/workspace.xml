@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8db77743-ba37-47f9-82f2-78b67fd74b11" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/bw4/entities/Abbonamento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bw4/entities/Biglietto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bw4/entities/TitoloDiViaggio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bw4/enums/TipoAbbonamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bw4/entities/PuntoVendita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bw4/entities/PuntoVendita.java" afterDir="false" />
+    <list default="true" id="b3efd6b4-1be0-44db-afcb-df0a32427164" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/bw4/entities/Mezzo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,69 +20,43 @@
       </list>
     </option>
   </component>
-  <component name="FormatOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="OptimizeOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8,
+  &quot;associatedIndex&quot;: 2,
   &quot;fromUser&quot;: false
 }</component>
-  <component name="ProjectId" id="3FU7RX7mGt3A5xOooBNpAzIXKt9" />
+  <component name="ProjectId" id="3FX3pJpDY6G2lLul9vycijgAimJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Application.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "G:/Saverio Personale/Repository Github app/BW4_TEAM4/src/main/java/bw4/assets",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "vue.rearranger.settings.migration": "true"
+    "kotlin-language-version-configured": "true"
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\Saverio Personale\Repository Github app\BW4_TEAM4\src\main\java\bw4\assets" />
-      <recent name="G:\Saverio Personale\Repository Github app\BW4_TEAM4\src\main\java\valeriafarinosi\assets" />
-    </key>
-  </component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
-        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8db77743-ba37-47f9-82f2-78b67fd74b11" name="Changes" comment="" />
-      <created>1782117785765</created>
+      <changelist id="b3efd6b4-1be0-44db-afcb-df0a32427164" name="Changes" comment="" />
+      <created>1782207770205</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1782117785765</updated>
-      <workItem from="1782117786738" duration="1046000" />
-      <workItem from="1782197949558" duration="1068000" />
+      <updated>1782207770205</updated>
     </task>
     <servers />
   </component>
