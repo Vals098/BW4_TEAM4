@@ -5,6 +5,16 @@
     <persistence-unit name="BW4_TEAM4">
         <class>bw4.entities.Tessera</class>
         <class>bw4.entities.Utente</class>
+        <class>bw4.entities.Mezzo</class>
+        <class>bw4.entities.Manutenzione</class>
+        <class>bw4.entities.TitoloDiViaggio</class>
+        <class>bw4.entities.DistributoreAutomatico</class>
+        <class>bw4.entities.RivenditoreAutorizzato</class>
+        <class>bw4.entities.PuntoVendita</class>
+        <class>bw4.entities.Abbonamento</class>
+        <class>bw4.entities.Biglietto</class>
+        <class>bw4.entities.Percorrenza</class>
+        <class>bw4.entities.Tratta</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/BW4_TEAM4"/>
             <property name="jakarta.persistence.jdbc.user" value="postgres"/>

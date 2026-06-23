@@ -13,8 +13,8 @@ public class Mezzo {
     //ATTRIBUTI
     @Id
     @GeneratedValue
-    @Column(nullable = false, unique = true)
-    private UUID id_mezzo;
+    @Column(name = "id_mezzo", nullable = false, unique = true)
+    private UUID idMezzo;
 
     @Column(nullable = false)
     private int capienza;
@@ -54,7 +54,7 @@ public class Mezzo {
     }
 
     //GETTER E SETTER
-    public UUID getIdMezzo() { return id_mezzo; }
+    public UUID getIdMezzo() { return idMezzo; }
 
     public int getCapienza() { return capienza; }
 
@@ -70,15 +70,16 @@ public class Mezzo {
 
     //TOSTRING
 
+
     @Override
     public String toString() {
         return "Mezzo{" +
-                "id_mezzo=" + id_mezzo +
+                "idMezzo=" + getIdMezzo() +
                 ", capienza=" + getCapienza() +
                 ", statoMezzo=" + getStatoMezzo() +
                 ", tipoMezzo=" + getTipoMezzo() +
                 ", nomeMezzo='" + getNomeMezzo() + '\'' +
-                ", idMezzo=" + getIdMezzo() +
                 '}';
     }
 }
+
