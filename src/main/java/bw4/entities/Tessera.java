@@ -11,7 +11,7 @@ public class Tessera {
     @Column(name = "id_tessera")
     private UUID idTessera;
 
-    @Column(name = "numero_tessera", nullable = false )
+    @Column(name = "numero_tessera", nullable = false, unique = true )
     private int numeroTessera;
 
     @Column(name = "data_di_emissione", nullable = false)
@@ -22,7 +22,7 @@ public class Tessera {
 
 //    Relazione
     @OneToOne
-    @JoinColumn(name = "id_utente",nullable = false, unique = true)
+    @JoinColumn(name = "id_utente",nullable = false)
     private Utente idUtente;
 
     public Tessera() {}
