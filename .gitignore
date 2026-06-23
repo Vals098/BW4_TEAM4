@@ -10,7 +10,10 @@ target/
 .idea/compiler.xml
 .idea/libraries/
 .idea/workspace.xml
+<<<<<<< HEAD
 .idea
+=======
+>>>>>>> develop
 *.iws
 *.iml
 *.ipr
@@ -38,4 +41,7 @@ build/
 .vscode/
 
 ### Mac OS ###
-.DS_Store
+.DS_Store.idea/
+/.idea
+/.idea
+.idea/workspace.xml
