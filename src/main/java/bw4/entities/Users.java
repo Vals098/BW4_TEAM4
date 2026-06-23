@@ -50,6 +50,17 @@ public class Users {
     public Cards getCards() {
         return cards;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dataDiNascita='" + dataDiNascita + '\'' +
+                ", cards=" + cards +
+                '}';
+    }
 }
 
 
