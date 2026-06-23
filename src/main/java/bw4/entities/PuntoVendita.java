@@ -16,14 +16,11 @@ public abstract class PuntoVendita {
     @Column(name = "id_punto_vendita")
     private UUID idPuntoVendita;
 
-    @Column(name = "codice_punto_vendita", unique = true)
+    @Column(name = "codice_punto_vendita", unique = true, nullable = false)
     private String codicePuntoVendita;
 
-    @Column(name = "luogo")
+    @Column(name = "luogo", nullable = false)
     private String luogo;
-
-    @Column(name = "numero_titoli_di_viaggio")
-    private int numeroTitoliDiViaggio;
 
     @OneToMany(mappedBy = "puntoVendita")
     private List<TitoloDiViaggio> titoliDiViaggio;
@@ -31,11 +28,11 @@ public abstract class PuntoVendita {
     protected PuntoVendita() {
     }
 
-    public PuntoVendita(String codicePuntoVendita, String luogo, int numeroTitoliDiViaggio) {
+    public PuntoVendita(String codicePuntoVendita, String luogo) {
         this.codicePuntoVendita = codicePuntoVendita;
         this.luogo = luogo;
-        this.numeroTitoliDiViaggio = numeroTitoliDiViaggio;
     }
+
 
     public UUID getIdPuntoVendita() {
         return idPuntoVendita;
@@ -49,9 +46,6 @@ public abstract class PuntoVendita {
         return luogo;
     }
 
-    public int getNumeroTitoliDiViaggio() {
-        return numeroTitoliDiViaggio;
-    }
 
 
     @Override
@@ -60,7 +54,6 @@ public abstract class PuntoVendita {
                 "idPuntoVendita=" + idPuntoVendita +
                 ", codicePuntoVendita='" + codicePuntoVendita + '\'' +
                 ", luogo='" + luogo + '\'' +
-                ", numeroTitoliDiViaggio=" + numeroTitoliDiViaggio +
                 ", titoliDiViaggio=" + titoliDiViaggio +
                 '}';
     }
