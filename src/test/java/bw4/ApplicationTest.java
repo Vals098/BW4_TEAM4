@@ -1,4 +1,4 @@
-package valeriafarinosi;
+package bw4;
 
 import org.junit.jupiter.api.Test;
 
