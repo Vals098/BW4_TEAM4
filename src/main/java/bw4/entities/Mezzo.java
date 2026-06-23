@@ -7,13 +7,13 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "mezzi" )
+@Table(name = "mezzo" )
 public class Mezzo {
 
     //ATTRIBUTI
     @Id
     @GeneratedValue
-    @Column(name = "id_mezzo", nullable = false, unique = true)
+    @Column(name = "id_mezzo")
     private UUID idMezzo;
 
     @Column(nullable = false)

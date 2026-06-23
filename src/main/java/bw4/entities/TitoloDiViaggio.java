@@ -15,10 +15,10 @@ public abstract class TitoloDiViaggio {
     @Column(name = "id_titolo_di_viaggio")
     private UUID idTitoloDiViaggio;
 
-    @Column(name = "codice_titolo_di_viaggio", unique = true)
+    @Column(name = "codice_titolo_di_viaggio", unique = true, nullable = false)
     private String codiceTitoloDiViaggio;
 
-    @Column(name = "data_emissione")
+    @Column(name = "data_emissione", nullable = false)
     private LocalDate dataEmissione;
 
     @Column(name = "data_scadenza")

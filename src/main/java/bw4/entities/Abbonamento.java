@@ -4,13 +4,14 @@ import bw4.enums.TipoAbbonamento;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+
 @Entity
 @Table(name = "abbonamento")
 @PrimaryKeyJoinColumn(name = "id_titolo_di_viaggio")
 @DiscriminatorValue("ABBONAMENTO")
 public class Abbonamento extends TitoloDiViaggio {
 
-    @Column(name = "tipo_abbonamento")
+    @Column(name = "tipo_abbonamento", nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoAbbonamento tipoAbbonamento;
 
@@ -38,6 +39,7 @@ public class Abbonamento extends TitoloDiViaggio {
     public void setTessera(Tessera tessera) {
         this.tessera = tessera;
     }
+
 
     @Override
     public String toString() {
