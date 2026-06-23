@@ -12,7 +12,7 @@ public class RivenditoreAutorizzato extends PuntoVendita {
     }
 
     public RivenditoreAutorizzato(String codicePuntoVendita, String luogo,int numeroTitoliDiViaggio, boolean funzionante){
-        super(codicePuntoVendita,luogo, numeroTitoliDiViaggio)
+        super(codicePuntoVendita,luogo, numeroTitoliDiViaggio);
     }
 
     

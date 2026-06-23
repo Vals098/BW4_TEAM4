@@ -16,7 +16,7 @@ public class DistributoreAutomatico extends PuntoVendita {
     }
 
     public DistributoreAutomatico(String codicePuntoVendita, String luogo,int numeroTitoliDiViaggio, boolean funzionante){
-        super(codicePuntoVendita,luogo, numeroTitoliDiViaggio)
+        super(codicePuntoVendita,luogo, numeroTitoliDiViaggio);
         this.funzionante = funzionante;
     }
 
