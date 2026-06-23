@@ -2,6 +2,7 @@ package bw4.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,26 +16,27 @@ public abstract class PuntoVendita {
     @Column(name = "id_punto_vendita")
     private UUID idPuntoVendita;
 
-    @Column(name = "codice_punto_vendita", unique = true)
+    @Column(name = "codice_punto_vendita", unique = true, nullable = false)
     private String codicePuntoVendita;
 
-    @Column(name = "luogo")
+    @Column(name = "nome_punto_vendita", nullable = false)
+    private String nomePuntoVendita;
+
+    @Column(name = "luogo", nullable = false)
     private String luogo;
 
-    @Column(name = "numero_titoli_di_viaggio")
-    private int numeroTitoliDiViaggio;
-
-//    @OneToMany(mappedBy = "puntoVendita")
-//    private List<TitoloDiViaggio> titoliDiViaggio;
+    @OneToMany(mappedBy = "puntoVendita")
+    private List<TitoloDiViaggio> titoliDiViaggio;
 
     protected PuntoVendita() {
     }
 
-    public PuntoVendita(String codicePuntoVendita, String luogo, int numeroTitoliDiViaggio) {
+    public PuntoVendita(String codicePuntoVendita, String nomePuntoVendita, String luogo) {
         this.codicePuntoVendita = codicePuntoVendita;
+        this.nomePuntoVendita = nomePuntoVendita;
         this.luogo = luogo;
-        this.numeroTitoliDiViaggio = numeroTitoliDiViaggio;
     }
+
 
     public UUID getIdPuntoVendita() {
         return idPuntoVendita;
@@ -44,11 +46,22 @@ public abstract class PuntoVendita {
         return codicePuntoVendita;
     }
 
+    public String getNomePuntoVendita(){
+        return nomePuntoVendita;
+    }
+
     public String getLuogo() {
         return luogo;
     }
 
-    public int getNumeroTitoliDiViaggio() {
-        return numeroTitoliDiViaggio;
+    @Override
+    public String toString() {
+        return "PuntoVendita{" +
+                "idPuntoVendita=" + idPuntoVendita +
+                ", codicePuntoVendita='" + codicePuntoVendita + '\'' +
+                ", nomePuntoVendita='" + nomePuntoVendita + '\'' +
+                ", luogo='" + luogo + '\'' +
+                ", titoliDiViaggio=" + titoliDiViaggio +
+                '}';
     }
 }

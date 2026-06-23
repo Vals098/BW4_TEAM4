@@ -12,4 +12,26 @@ public class DistributoreAutomatico extends PuntoVendita {
     @Column(name = "funzionante")
     private boolean funzionante;
 
+    protected DistributoreAutomatico(){
+    }
+
+    public DistributoreAutomatico(String codicePuntoVendita, String luogo, boolean funzionante){
+        super(codicePuntoVendita,luogo);
+        this.funzionante = funzionante;
+    }
+
+    public boolean isFunzionante() {
+        return funzionante;
+    }
+
+    public void setFunzionante(boolean funzionante) {
+        this.funzionante = funzionante;
+    }
+
+    @Override
+    public String toString() {
+        return "DistributoreAutomatico{" +
+                "funzionante=" + funzionante +
+                '}';
+    }
 }
