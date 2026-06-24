@@ -2,14 +2,19 @@ package bw4.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
 @Entity
 public class Utente {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
+    @GeneratedValue
     @Column(name = "id_utente")
-    private long idUtente;
+    private UUID idUtente;
+
+    @Column(name = "codice_utente", nullable = false, unique = true)
+    private String codiceUtente;
 
     @Column(nullable = false)
     private String nome;
@@ -17,24 +22,36 @@ public class Utente {
     @Column(nullable = false)
     private String cognome;
 
-    @Column(name = ("data_di_nascita"), nullable = false, length = 10)
-    private String dataDiNascita;
+    @Column(name = ("data_di_nascita"), nullable = false)
+    private LocalDate dataDiNascita;
+
+    @Column(name = "luogo_di_nascita")
+    private String luogoDiNascita;
+
+    @Column(name = "mestiere")
+    private String mestiere;
 
 
     // Relazione
-    @OneToOne(mappedBy = "idUtente", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "utente", cascade = CascadeType.ALL)
     private Tessera tessera;
 
     public Utente() {
     }
 
-    public Utente(String nome, String cognome) {
+    public Utente(String codiceUtente, String nome, String cognome, LocalDate dataDiNascita, String luogoDiNascita, String mestiere) {
+        this.codiceUtente = codiceUtente;
         this.nome = nome;
         this.cognome = cognome;
+        this.dataDiNascita = dataDiNascita;
+        this.luogoDiNascita = luogoDiNascita;
+        this.mestiere = mestiere;
     }
 
 //    getter
-    public long getIdUtente() {
+
+
+    public UUID getIdUtente() {
         return idUtente;
     }
 
@@ -46,8 +63,16 @@ public class Utente {
         return cognome;
     }
 
-    public String getDataDiNascita() {
+    public LocalDate getDataDiNascita() {
         return dataDiNascita;
+    }
+
+    public String getLuogoDiNascita() {
+        return luogoDiNascita;
+    }
+
+    public String getMestiere() {
+        return mestiere;
     }
 
     public Tessera getTessera() {

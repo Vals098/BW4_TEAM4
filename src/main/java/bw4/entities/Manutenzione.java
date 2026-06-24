@@ -26,6 +26,7 @@ public class Manutenzione {
     @Column(nullable = false)
     private String causa;
 
+
     //COSTRUTTORE VUOTO
 
     protected Manutenzione(){}
