@@ -68,6 +68,10 @@ public class Mezzo {
         this.statoMezzo = statoMezzo;
     }
 
+    public void setTipoMezzo(TipoMezzo tipoMezzo) {
+        this.tipoMezzo = tipoMezzo;
+    }
+
     //TOSTRING
 
 
