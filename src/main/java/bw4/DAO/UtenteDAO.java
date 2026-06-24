@@ -64,7 +64,7 @@ public Utente findByCodiceUtente(String codiceUtente){
         Utente found = query.getSingleResult();
 
         if(found == null){
-            throw new UtenteNonTrovatoException("L'utente " + codiceUtente + " non fa parte del Fantabosco!");
+            throw new UtenteNonTrovatoException("Accipigna!! L'utente con codic " + codiceUtente + " non fa parte del Fantabosco!");
         }
 
         return found;
