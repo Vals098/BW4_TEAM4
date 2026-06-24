@@ -75,30 +75,30 @@ public class Application {
 
 
                 // METODO SAVE
-                 pvd.save(puntoVendita1);
-                 pvd.save(puntoVendita2);
-                 pvd.save(puntoVendita3);
-                 pvd.save(puntoVendita4);
-                 pvd.save(puntoVendita5);
-                 pvd.save(puntoVendita6);
-                 pvd.save(puntoVendita7);
-                 pvd.save(puntoVendita8);
-                 pvd.save(puntoVendita9);
-                 pvd.save(puntoVendita10);
-                 md.saveMezzo(mezzo1);
+//                 pvd.save(puntoVendita1);
+//                 pvd.save(puntoVendita2);
+//                 pvd.save(puntoVendita3);
+//                 pvd.save(puntoVendita4);
+//                 pvd.save(puntoVendita5);
+//                 pvd.save(puntoVendita6);
+//                 pvd.save(puntoVendita7);
+//                 pvd.save(puntoVendita8);
+//                 pvd.save(puntoVendita9);
+//                 pvd.save(puntoVendita10);
+//                 md.saveMezzo(mezzo1);
 
-            ud.save(utente1);
-            ud.save(utente2);
-            ud.save(utente3);
-            ud.save(utente4);
-            ud.save(utente5);
-            ud.save(utente6);
-            ud.save(utente7);
-            ud.save(utente8);
+//            ud.save(utente1);
+//            ud.save(utente2);
+//            ud.save(utente3);
+//            ud.save(utente4);
+//            ud.save(utente5);
+//            ud.save(utente6);
+//            ud.save(utente7);
+//            ud.save(utente8);
 
 
-//            FINDBYCODICEUTENTE
-//            try{
+
+
 //                Utente utente1FromDB = ud.findByCodiceUtente("MICOT");
 //                Utente utente2FromDB = ud.findByCodiceUtente("LULU");
 //                Utente utente3FromDB = ud.findByCodiceUtente("STRVAR");
@@ -108,9 +108,6 @@ public class Application {
 //                Utente utente7FromDB = ud.findByCodiceUtente("REGGAR");
 //                Utente utente8FromDB = ud.findByCodiceUtente("CUZIB");
 //
-//
-//                System.out.println("Fantavoloso utente trovato!");
-//                System.out.println(utente1FromDB.getNome() + " " + utente1FromDB.getCognome());
 //
 //                tessera1.setUtente(utente1FromDB);
 //                tessera2.setUtente(utente2FromDB);
@@ -130,10 +127,7 @@ public class Application {
 //                tesseraDAO.save(tessera6);
 //                tesseraDAO.save(tessera7);
 //                tesseraDAO.save(tessera8);
-//
-//            } catch (UtenteNonTrovatoException e){
-//                System.out.println(e.getMessage());
-//            }
+
 
 
 

@@ -53,6 +53,7 @@ public class UtenteDAO {
 //        }
 //    }
 
+//    FIND BY CODICE UTENTE (Vale)
 public Utente findByCodiceUtente(String codiceUtente){
         TypedQuery<Utente> query = em.createQuery(
                 "SELECT u FROM Utente u WHERE codiceUtente = :codiceUtente",
@@ -68,6 +69,10 @@ public Utente findByCodiceUtente(String codiceUtente){
 
         return found;
 }
+
+//in main
+// System.out.println("Fantavoloso utente trovato!");
+// System.out.println(utente1FromDB.getNome() + " " + utente1FromDB.getCognome());
 
 
 
