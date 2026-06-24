@@ -61,11 +61,8 @@ public class TesseraDAO {
         TypedQuery<Tessera> query = em.createQuery(
                 "SELECT t FROM Tessera t WHERE t.numeroTessera = :numeroTessera",
                 Tessera.class);
-
         query.setParameter("numeroTessera", numeroTessera);
-
         Tessera tessera = query.getSingleResult();
-
         if(tessera.getDataDiScadenza().isBefore(LocalDate.now())){
              System.out.println("Per le verruche della mia bisnonna! Tessera scaduta!");
              return false;
