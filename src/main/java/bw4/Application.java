@@ -1,16 +1,11 @@
 package bw4;
 
-import bw4.DAO.MezzoDAO;
-import bw4.DAO.PuntoVenditaDAO;
-import bw4.DAO.PercorrenzaDAO;
-import bw4.DAO.TrattaDAO;
+import bw4.DAO.*;
 import bw4.entities.DistributoreAutomatico;
 import bw4.entities.Mezzo;
 import bw4.entities.PuntoVendita;
 import bw4.entities.RivenditoreAutorizzato;
 import bw4.enums.StatoMezzo;
-import bw4.DAO.TitoloDiViaggioDAO;
-import bw4.DAO.BigliettoDAO;
 //import bw4.DAO.AbbonamentoDAO;
 import bw4.entities.*;
 import bw4.enums.TipoMezzo;
@@ -18,6 +13,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -38,6 +34,7 @@ public class Application {
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
                 TitoloDiViaggioDAO tvd = new TitoloDiViaggioDAO(em);
                 BigliettoDAO bd = new BigliettoDAO(em);
+                ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
                 // AbbonamentoDAO ad = new AbbonamentoDAO(em);
 
                 // DATI
@@ -119,6 +116,13 @@ public class Application {
                 Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
                                 LocalTime.of(0, 10));
 
+                //IN MANUTENZIONE
+                Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
+                Mezzo antrochioscoDalDB = md.findMezzoByName("Antrochiosco");
+                Manutenzione manutenzioneReggiatana = new Manutenzione(LocalDate.of(2026,6,24), reggiatanaDalDB, "Problemi al motore");
+                Manutenzione manutenzioneAntrochiosco = new Manutenzione(LocalDate.of(2026,5,10), antrochioscoDalDB, "Perdita olio");
+
+
                 // METODO SAVE
 
                 // PUNTO VENDITA
@@ -177,6 +181,14 @@ public class Application {
                 // td.save(tanaDelLupoToCittaLaggiu);
                 // td.save(tanaDelLupoToReggiaDiReQuercia);
 
+                //IN MANUTENZIONE
+//                manutenzioneDAO.save(manutenzioneReggiatana);
+//                manutenzioneDAO.save(manutenzioneAntrochiosco);
+
+
+
+                //METODI
+
                 // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
                 // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
                 // TipoMezzo.TRAM);
@@ -189,11 +201,19 @@ public class Application {
                 // md.findMezzoByNameAndChangeStatus("Antrochiosco",
                 // StatoMezzo.IN_MANUTENZIONE);
 
+                //METODO TROVA MANUTENZIONE IN CORSO
+                Manutenzione manutenzioneInCorso1 = manutenzioneDAO.findManutenzioneInCorsoByName("Antrochiosco");
+
+                //METODO SET DATA FINE ALLA MANUTENZIONE IN CORSO
+                manutenzioneDAO.setDataFineManutenzione(manutenzioneInCorso1, LocalDate.of(2026,6,10));
+
+
                 // METODO ELIMINA TRATTA
                 Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
                 // td.save(eliminabile);
                 // System.out.println(td.findById("48e48cee-d0bc-4c93-973a-d9a82a20e585"));
                 // td.deleteById("48e48cee-d0bc-4c93-973a-d9a82a20e585");
+
 
                 // Test
                 List<TitoloDiViaggio> risultati = tvd.findAll();
