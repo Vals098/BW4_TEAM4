@@ -10,39 +10,39 @@ import java.util.UUID;
 
 public class PercorrenzaDAO {
 
-private final EntityManager em;
+    private final EntityManager em;
 
-public PercorrenzaDAO(EntityManager em) {
-        this.em = em;
-}
+    public PercorrenzaDAO(EntityManager em) {
+            this.em = em;
+    }
 
-public void save(Percorrenza percorrenza){
-    EntityTransaction transaction = em.getTransaction();
-    transaction.begin();
-    em.persist(percorrenza);
-    transaction.commit();
-    System.out.println("La percorrenza " + percorrenza + " è stata salvata!");
-}
+    public void save(Percorrenza percorrenza){
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(percorrenza);
+        transaction.commit();
+        System.out.println("La percorrenza " + percorrenza + " è stata salvata!");
+    }
 
-public Percorrenza findById(UUID idPercorrenza){
-    return  em.find(Percorrenza.class, idPercorrenza);
-}
+    public Percorrenza findById(String idPercorrenza){
+        return  em.find(Percorrenza.class, UUID.fromString(idPercorrenza));
+    }
 
-public void deleteById(UUID idPercorrenza) {
-    Percorrenza percorrenza = findById(idPercorrenza);
-    EntityTransaction transaction = em.getTransaction();
-    transaction.begin();
-    em.remove(percorrenza);
-    transaction.commit();
-    System.out.println("La percorrenza " + percorrenza + " è stata eliminata!");
-}
+    public void deleteById(String idPercorrenza) {
+        Percorrenza percorrenza = findById(idPercorrenza);
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.remove(percorrenza);
+        transaction.commit();
+        System.out.println("La percorrenza " + percorrenza + " è stata eliminata!");
+    }
 
-    public Double calcolaTempoMedioPercorrenza(UUID idTratta, UUID idMezzo){
+    public Double calcolaTempoMedioPercorrenza(String idTratta, String idMezzo){
         List<LocalTime> tempi = em.createQuery(
                         "SELECT p.tempoEffettivo FROM Percorrenza p WHERE p.tratta.idTratta = :idTratta AND p.mezzo.idMezzo = :idMezzo AND p.tempoEffettivo IS NOT NULL",
                         LocalTime.class)
-                .setParameter("idTratta", idTratta)
-                .setParameter("idMezzo", idMezzo)
+                .setParameter("idTratta", UUID.fromString(idTratta))
+                .setParameter("idMezzo", UUID.fromString(idMezzo))
                 .getResultList();
 
         if(tempi.isEmpty()){
@@ -54,5 +54,28 @@ public void deleteById(UUID idPercorrenza) {
         double mediaSecondi = sommaSecondi / tempi.size();
 
         return mediaSecondi / 60;
+    }
+
+    public Long numeroPercorrenzePerMezzoETratta(String idTratta, String idMezzo) {
+        return em.createQuery(
+                        "SELECT COUNT(p) FROM Percorrenza p WHERE p.tratta.idTratta = :idTratta AND p.mezzo.idMezzo = :idMezzo AND p.tempoEffettivo IS NOT NULL",
+                        Long.class)
+                .setParameter("idTratta", UUID.fromString(idTratta))
+                .setParameter("idMezzo", UUID.fromString(idMezzo))
+                .getSingleResult();
+    }
+
+    public void aggiornaTempoEffettivo(String idPercorrenza, LocalTime tempoEffettivo) {
+        Percorrenza percorrenza = findById(idPercorrenza);
+
+        if (percorrenza.getTempoEffettivo() == null) {
+            EntityTransaction transaction = em.getTransaction();
+            transaction.begin();
+            percorrenza.setTempoEffettivo(tempoEffettivo);
+            transaction.commit();
+            System.out.println("Tempo effettivo aggiornato con successo per la percorrenza: " + idPercorrenza);
+        } else {
+            System.out.println("Alla percorrenza con ID: " + idPercorrenza + "è già stato assegnato un tempo effettivo!");
+        }
     }
 }

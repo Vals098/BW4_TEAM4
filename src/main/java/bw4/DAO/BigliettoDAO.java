@@ -1,36 +1,7 @@
-package bw4.DAO;
-
-import bw4.entities.Biglietto;
-import bw4.entities.Mezzo;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.UUID;
-
 public class BigliettoDAO {
     private final EntityManager em;
 
-    public BigliettoDAO(EntityManager em) {
-        this.em = em;
-    }
-
-    public void save(Biglietto biglietto) {
-        EntityTransaction transaction = em.getTransaction();
-        try {
-            transaction.begin();
-            em.persist(biglietto);
-            transaction.commit();
-            System.out.println("Biglietto salvato: " + biglietto.getCodiceTitoloDiViaggio());
-        } catch (Exception e) {
-            if (transaction.isActive()) transaction.rollback();
-            System.err.println("Errore: " + e.getMessage());
-        }
-    }
-
-    public Biglietto findById(UUID id) {
-        return em.find(Biglietto.class, id);
-    }
+    public BigliettoDAO(EntityManager em) { this.em = em; }
 
     public void obliteraBiglietto(UUID bigliettoId, Mezzo mezzo) {
         EntityTransaction transaction = em.getTransaction();
@@ -55,26 +26,6 @@ public class BigliettoDAO {
             if (transaction.isActive()) transaction.rollback();
             System.err.println("Errore: " + e.getMessage());
         }
-    }
-
-    public long countBigliettiVenduti(LocalDate da, LocalDate a) {
-        return em.createQuery(
-                        "SELECT COUNT(b) FROM Biglietto b " +
-                                "WHERE b.dataEmissione BETWEEN :da AND :a", Long.class)
-                .setParameter("da", da)
-                .setParameter("a", a)
-                .getSingleResult();
-    }
-
-    public long countBigliettiPerPuntoVendita(UUID puntoVenditaId, LocalDate da, LocalDate a) {
-        return em.createQuery(
-                        "SELECT COUNT(b) FROM Biglietto b " +
-                                "WHERE b.puntoVendita.idPuntoVendita = :puntoId " +
-                                "AND b.dataEmissione BETWEEN :da AND :a", Long.class)
-                .setParameter("puntoId", puntoVenditaId)
-                .setParameter("da", da)
-                .setParameter("a", a)
-                .getSingleResult();
     }
 
     public long countObliterazioniPerMezzo(UUID mezzoId, LocalDateTime da, LocalDateTime a) {

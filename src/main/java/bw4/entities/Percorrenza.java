@@ -28,20 +28,16 @@ public class Percorrenza {
     @Column(name = "tempo_effettivo")
     private LocalTime tempoEffettivo;
 
-    @Column(name = "numero_percorrenza")
-    private int numeroPercorrenza;
-
     //Costruttori
 
     public Percorrenza() {
     }
 
-    public Percorrenza(Tratta tratta, Mezzo mezzo, LocalTime tempoEffettivo, int numeroPercorrenza) {
+    public Percorrenza(Tratta tratta, Mezzo mezzo) {
         this.idPercorrenza = UUID.randomUUID();
         this.tratta = tratta;
         this.mezzo = mezzo;
-        this.tempoEffettivo = tempoEffettivo;
-        this.numeroPercorrenza = numeroPercorrenza;
+        this.tempoEffettivo = null;
     }
 
     //Getter e Setter
@@ -66,10 +62,6 @@ public class Percorrenza {
         this.tempoEffettivo = tempoEffettivo;
     }
 
-    public int getNumeroPercorrenza() {
-        return numeroPercorrenza;
-    }
-
     @Override
     public String toString() {
         return "Percorrenza{" +
@@ -77,7 +69,6 @@ public class Percorrenza {
                 ", idTratta=" + (tratta != null ? tratta.getIdTratta() : null) +
                 ", idMezzo=" + (mezzo != null ? mezzo.getIdMezzo() : null) +
                 ", tempoEffettivo=" + tempoEffettivo +
-                ", numeroPercorrenza=" + numeroPercorrenza +
                 '}';
     }
 }
