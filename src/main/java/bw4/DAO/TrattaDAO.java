@@ -1,4 +1,4 @@
-package bw4.dao;
+package bw4.DAO;
 
 import bw4.entities.Tratta;
 import jakarta.persistence.EntityManager;
@@ -21,12 +21,26 @@ public class TrattaDAO {
         System.out.println("La tratta "+ tratta +" è stata salvata!");
     }
 
+    public Tratta findById(UUID idTratta) {
+        return em.find(Tratta.class,idTratta);
+    }
+
     public Tratta findById(String idTratta) {
         return em.find(Tratta.class,UUID.fromString(idTratta));
     }
 
+
+    public void deleteById(UUID idTratta) {
+        Tratta tratta = findById(idTratta);
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.remove(tratta);
+        transaction.commit();
+        System.out.println("La tratta "+ tratta +" è stata eliminata!");
+    }
+
     public void deleteById(String idTratta) {
-        Tratta tratta = em.find(Tratta.class, UUID.fromString(idTratta));
+        Tratta tratta = findById(idTratta);
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(tratta);
