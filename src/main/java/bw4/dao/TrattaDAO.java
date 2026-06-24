@@ -21,12 +21,12 @@ public class TrattaDAO {
         System.out.println("La tratta "+ tratta +" è stata salvata!");
     }
 
-    public Tratta findById(UUID idTratta) {
-        return em.find(Tratta.class, idTratta);
+    public Tratta findById(String idTratta) {
+        return em.find(Tratta.class,UUID.fromString(idTratta));
     }
 
-    public void deleteById(UUID idTratta) {
-        Tratta tratta = em.find(Tratta.class, idTratta);
+    public void deleteById(String idTratta) {
+        Tratta tratta = em.find(Tratta.class, UUID.fromString(idTratta));
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(tratta);
