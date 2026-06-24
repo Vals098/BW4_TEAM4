@@ -4,12 +4,11 @@ import bw4.DAO.MezzoDAO;
 import bw4.DAO.PuntoVenditaDAO;
 import bw4.DAO.PercorrenzaDAO;
 import bw4.DAO.TrattaDAO;
-import bw4.entities.DistributoreAutomatico;
-import bw4.entities.Mezzo;
-import bw4.entities.PuntoVendita;
-import bw4.entities.RivenditoreAutorizzato;
+import bw4.DAO.TitoloDiViaggioDAO;
+import bw4.DAO.BigliettoDAO;
+//import bw4.DAO.AbbonamentoDAO;
+import bw4.entities.*;
 import bw4.enums.TipoMezzo;
-import bw4.entities.Tratta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -32,6 +31,11 @@ public class Application {
                 MezzoDAO md = new MezzoDAO(em);
                 TrattaDAO td = new TrattaDAO(em);
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
+                TitoloDiViaggioDAO tvd = new TitoloDiViaggioDAO(em);
+                BigliettoDAO bd = new BigliettoDAO(em);
+                //AbbonamentoDAO ad = new AbbonamentoDAO(em);
+
+
 
                 // DATI
 
@@ -195,6 +199,12 @@ public class Application {
 
 
 
+
+                //Test
+                List<TitoloDiViaggio> risultati = tvd.findAll();
+                for (TitoloDiViaggio t : risultati) {
+                    System.out.println(t);
+                }
 
         }
 }
