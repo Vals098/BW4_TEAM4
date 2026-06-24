@@ -40,20 +40,20 @@ public class Application {
 
                // DATI
                 PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Castello dei fiori");
-                PuntoVendita puntoVendita2 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Città Laggiù");
-                PuntoVendita puntoVendita3 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Chiosco");
-                PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Reggia di Re Quercia");
-                PuntoVendita puntoVendita5 = new DistributoreAutomatico("5KS89", "Antro della Strega",
+                PuntoVendita puntoVendita2 = new RivenditoreAutorizzato("KUDFG", "Arriverai cantando", "Città Laggiù");
+                PuntoVendita puntoVendita3 = new RivenditoreAutorizzato("HF98S", "Strabiliante magia", "Chiosco");
+                PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("36ITI", "Ghiande in giro", "Reggia di Re Quercia");
+                PuntoVendita puntoVendita5 = new DistributoreAutomatico("249OI", "Viaggi Stregoneschi",
                                 "Antro della Strega", false);
-                PuntoVendita puntoVendita6 = new DistributoreAutomatico("5KS89", "Città Laggiù",
+                PuntoVendita puntoVendita6 = new DistributoreAutomatico("9DF6K", "Qui e La",
                                 "Città Laggiù", true);
-                PuntoVendita puntoVendita7 = new DistributoreAutomatico("5KS89", "Chiosco",
+                PuntoVendita puntoVendita7 = new DistributoreAutomatico("09S89", "Fantavigliosa avventura",
                                 "Chiosco", true);
-                PuntoVendita puntoVendita8 = new DistributoreAutomatico("5KS89", "Tana del Lupo",
+                PuntoVendita puntoVendita8 = new DistributoreAutomatico("9LDW0", "La tana di Lucio",
                                 "Tana del Lupo", false);
-                PuntoVendita puntoVendita9 = new DistributoreAutomatico("5KS89", "Tana del Lupo",
+                PuntoVendita puntoVendita9 = new DistributoreAutomatico("SPN45", "Tabacchi Sua Maesta",
                                 "Reggia di Re Quercia", false);
-                PuntoVendita puntoVendita10 = new DistributoreAutomatico("5KS89", "Tana del Lupo",
+                PuntoVendita puntoVendita10 = new DistributoreAutomatico("09WDD", "Viaggi Fatati",
                                 "Castello dei fiori", false);
 
 
