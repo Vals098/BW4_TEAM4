@@ -4,6 +4,20 @@ import bw4.DAO.*;
 import bw4.entities.*;
 import bw4.enums.TipoMezzo;
 import bw4.exceptions.UtenteNonTrovatoException;
+import bw4.DAO.MezzoDAO;
+import bw4.DAO.PuntoVenditaDAO;
+import bw4.DAO.PercorrenzaDAO;
+import bw4.DAO.TrattaDAO;
+import bw4.entities.DistributoreAutomatico;
+import bw4.entities.Mezzo;
+import bw4.entities.PuntoVendita;
+import bw4.entities.RivenditoreAutorizzato;
+import bw4.enums.StatoMezzo;
+import bw4.DAO.TitoloDiViaggioDAO;
+import bw4.DAO.BigliettoDAO;
+//import bw4.DAO.AbbonamentoDAO;
+import bw4.entities.*;
+import bw4.enums.TipoMezzo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -13,7 +27,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.LocalTime;
 import java.util.UUID;
-
 
 public class Application {
 
@@ -31,14 +44,43 @@ public class Application {
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
                 UtenteDAO ud = new UtenteDAO(em);
                 TesseraDAO tesseraDAO = new TesseraDAO(em);
+                TitoloDiViaggioDAO tvd = new TitoloDiViaggioDAO(em);
+                BigliettoDAO bd = new BigliettoDAO(em);
+                // AbbonamentoDAO ad = new AbbonamentoDAO(em);
 
+                // DATI
 
+                // MEZZI
 
-               // DATI
-                PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Castello dei fiori");
+                Mezzo mezzoAntroChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Antrochiosco");
+                Mezzo mezzoAntroCittaLaggiu = new Mezzo(TipoMezzo.TRAM, "Antrocitta");
+                Mezzo mezzoAntroReggia = new Mezzo(TipoMezzo.AUTOBUS, "Antroreggia");
+                Mezzo mezzoAntroTana = new Mezzo(TipoMezzo.AUTOBUS, "Antrotana");
+                Mezzo mezzoChioscoAntro = new Mezzo(TipoMezzo.AUTOBUS, "Chioscantro");
+                Mezzo mezzoChioscoCittaLaggiu = new Mezzo(TipoMezzo.TRAM, "Chioscocitta");
+                Mezzo mezzoChioscoReggia = new Mezzo(TipoMezzo.AUTOBUS, "Chioscoreggia");
+                Mezzo mezzoChioscoTana = new Mezzo(TipoMezzo.AUTOBUS, "Chioscotana");
+                Mezzo mezzoCittaLaggiuAntro = new Mezzo(TipoMezzo.TRAM, "Cittantro");
+                Mezzo mezzoCittaLaggiuChiosco = new Mezzo(TipoMezzo.TRAM, "Cittachiosco");
+                Mezzo mezzoCittaLaggiuReggia = new Mezzo(TipoMezzo.TRAM, "Cittareggia");
+                Mezzo mezzocittaLaggiuTana = new Mezzo(TipoMezzo.TRAM, "Cittatana");
+                Mezzo mezzoReggiaAntro = new Mezzo(TipoMezzo.AUTOBUS, "Reggiantro");
+                Mezzo mezzoReggiaChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Reggiachiosco");
+                Mezzo mezzoReggiaCittaLaggiu = new Mezzo(TipoMezzo.TRAM, "Reggiacitta");
+                Mezzo mezzoReggiaTana = new Mezzo(TipoMezzo.AUTOBUS, "Reggiatana");
+                Mezzo mezzoTanaAntro = new Mezzo(TipoMezzo.AUTOBUS, "Tanantro");
+                Mezzo mezzoTanaChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Tanachiosco");
+                Mezzo mezzoTanaCittalaggiu = new Mezzo(TipoMezzo.TRAM, "Tanacitta");
+                Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "Tanareggia");
+
+                // PUNTI VENDITA
+
+                PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate",
+                                "Castello dei fiori");
                 PuntoVendita puntoVendita2 = new RivenditoreAutorizzato("KUDFG", "Arriverai cantando", "Città Laggiù");
                 PuntoVendita puntoVendita3 = new RivenditoreAutorizzato("HF98S", "Strabiliante magia", "Chiosco");
-                PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("36ITI", "Ghiande in giro", "Reggia di Re Quercia");
+                PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("36ITI", "Ghiande in giro",
+                                "Reggia di Re Quercia");
                 PuntoVendita puntoVendita5 = new DistributoreAutomatico("249OI", "Viaggi Stregoneschi",
                                 "Antro della Strega", false);
                 PuntoVendita puntoVendita6 = new DistributoreAutomatico("9DF6K", "Qui e La",
@@ -136,6 +178,7 @@ public class Application {
                 // TipoMezzo.TRAM);
 
                 // TRATTE
+
                 Tratta antroDellaStregaToChiosco = new Tratta("Antro della Strega", "Chiosco", LocalTime.of(0, 20));
                 Tratta antroDellaStregaToCittaLaggiu = new Tratta("Antro della Strega", "Città Laggiù",
                                 LocalTime.of(1, 30));
@@ -166,30 +209,88 @@ public class Application {
                 Tratta tanaDelLupoToCittaLaggiu = new Tratta("Tana del Lupo", "Città Laggiù", LocalTime.of(2, 0));
                 Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
                                 LocalTime.of(0, 10));
+
+                // METODO SAVE
+
+                // PUNTO VENDITA
+                // pvd.save(puntoVendita1);
+                // pvd.save(puntoVendita2);
+                // pvd.save(puntoVendita3);
+                // pvd.save(puntoVendita4);
+                // pvd.save(puntoVendita5);
+                // pvd.save(puntoVendita6);
+                // pvd.save(puntoVendita7);
+                // pvd.save(puntoVendita8);
+                // pvd.save(puntoVendita9);
+                // pvd.save(puntoVendita10);
+
+                // MEZZO
+                // md.saveMezzo(mezzoAntroChiosco);
+                // md.saveMezzo(mezzoAntroCittaLaggiu);
+                // md.saveMezzo(mezzoAntroReggia);
+                // md.saveMezzo(mezzoAntroTana);
+                // md.saveMezzo(mezzoChioscoAntro);
+                // md.saveMezzo(mezzoChioscoCittaLaggiu);
+                // md.saveMezzo(mezzoChioscoReggia);
+                // md.saveMezzo(mezzoChioscoTana );
+                // md.saveMezzo(mezzoCittaLaggiuAntro);
+                // md.saveMezzo(mezzoCittaLaggiuChiosco);
+                // md.saveMezzo(mezzoCittaLaggiuReggia);
+                // md.saveMezzo(mezzocittaLaggiuTana);
+                // md.saveMezzo(mezzoReggiaAntro);
+                // md.saveMezzo(mezzoReggiaChiosco );
+                // md.saveMezzo(mezzoReggiaCittaLaggiu);
+                // md.saveMezzo(mezzoReggiaTana);
+                // md.saveMezzo(mezzoTanaAntro);
+                // md.saveMezzo(mezzoTanaChiosco );
+                // md.saveMezzo(mezzoTanaCittalaggiu);
+                // md.saveMezzo(mezzoTanaReggia);
+
+                // TRATTA
+                // td.save(antroDellaStregaToChiosco);
+                // td.save(antroDellaStregaToCittaLaggiu);
+                // td.save(antroDellaStregaToReggiaDiReQuercia);
+                // td.save(antroDellaStregaToTanaDelLupo);
+                // td.save(chioscoToAntroDellaStrega);
+                // td.save(chioscoToCittaLaggiu);
+                // td.save(chioscoToReggiaDiReQuercia);
+                // td.save(chioscoToTanaDelLupo);
+                // td.save(cittaLaggiuToAntroDellaStrega);
+                // td.save(cittaLaggiuToChiosco);
+                // td.save(cittaLaggiuToReggiaDiReQuercia);
+                // td.save(cittaLaggiuToTanaDelLupo);
+                // td.save(reggiaDiReQuerciaToAntroDellaStrega);
+                // td.save(reggiaDiReQuerciaToChiosco);
+                // td.save(reggiaDiReQuerciaToCittaLaggiu);
+                // td.save(reggiaDiReQuerciaToTanaDelLupo);
+                // td.save(tanaDelLupoToAntroDellaStrega);
+                // td.save(tanaDelLupoToChiosco);
+                // td.save(tanaDelLupoToCittaLaggiu);
+                // td.save(tanaDelLupoToReggiaDiReQuercia);
+
+                // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
+                // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
+                // TipoMezzo.TRAM);
+
+                // METODO TROVA MEZZO BY NAME
+                // md.findMezzoByName("Reggiatana");
+
+                // METODO RICERCA MEZZO PER NOME E CAMBIA STATO DEL MEZZO
+                // md.findMezzoByNameAndChangeStatus("Reggiatana", StatoMezzo.IN_MANUTENZIONE);
+                // md.findMezzoByNameAndChangeStatus("Antrochiosco",
+                // StatoMezzo.IN_MANUTENZIONE);
+
+                // METODO ELIMINA TRATTA
                 Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
-//                 td.save(antroDellaStregaToChiosco);
-//                 td.save(antroDellaStregaToCittaLaggiu);
-//                 td.save(antroDellaStregaToReggiaDiReQuercia);
-//                 td.save(antroDellaStregaToTanaDelLupo);
-//                 td.save(chioscoToAntroDellaStrega);
-//                 td.save(chioscoToCittaLaggiu);
-//                 td.save(chioscoToReggiaDiReQuercia);
-//                 td.save(chioscoToTanaDelLupo);
-//                 td.save(cittaLaggiuToAntroDellaStrega);
-//                 td.save(cittaLaggiuToChiosco);
-//                 td.save(cittaLaggiuToReggiaDiReQuercia);
-//                 td.save(cittaLaggiuToTanaDelLupo);
-//                 td.save(reggiaDiReQuerciaToAntroDellaStrega);
-//                 td.save(reggiaDiReQuerciaToChiosco);
-//                 td.save(reggiaDiReQuerciaToCittaLaggiu);
-//                 td.save(reggiaDiReQuerciaToTanaDelLupo);
-//                 td.save(tanaDelLupoToAntroDellaStrega);
-//                 td.save(tanaDelLupoToChiosco);
-//                 td.save(tanaDelLupoToCittaLaggiu);
-//                 td.save(tanaDelLupoToReggiaDiReQuercia);
-//                 td.save(eliminabile);
+                // td.save(eliminabile);
                 // System.out.println(td.findById("48e48cee-d0bc-4c93-973a-d9a82a20e585"));
                 // td.deleteById("48e48cee-d0bc-4c93-973a-d9a82a20e585");
+
+                // Test
+                List<TitoloDiViaggio> risultati = tvd.findAll();
+                for (TitoloDiViaggio t : risultati) {
+                        System.out.println(t);
+                }
 
         }
 }

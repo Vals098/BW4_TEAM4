@@ -28,4 +28,7 @@ public class ManutenzioneDAO {
         System.out.println("manutenzione" +nuovaManutenzione + "aggiunta con successo!");
     }
 
+    //METODO LISTA MEZZI IN MANUTENZIONE
+
+
     }

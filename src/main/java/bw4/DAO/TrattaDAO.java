@@ -29,6 +29,15 @@ public class TrattaDAO {
         return em.find(Tratta.class,UUID.fromString(idTratta));
     }
 
+    public Tratta findByZonaPertenzaECapolinea(String zonaPertenza, String capolinea) {
+        return em.createQuery(
+                "SELECT t FROM Tratta t WHERE t.zonaPartenza = :zonaPartenza AND t.capolinea = :capolinea", Tratta.class
+        )
+                .setParameter("zonaPartenza", zonaPertenza)
+                .setParameter("capolinea", capolinea)
+                .getSingleResult();
+    }
+
 
     public void deleteById(UUID idTratta) {
         Tratta tratta = findById(idTratta);
