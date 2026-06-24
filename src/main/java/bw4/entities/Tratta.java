@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -64,5 +65,15 @@ public class Tratta {
 
     public List<Percorrenza> getPercorrenze() {
         return percorrenze;
+    }
+
+    @Override
+    public String toString() {
+        return "Tratta{" +
+                "idTratta=" + idTratta +
+                ", zonaPartenza='" + zonaPartenza + '\'' +
+                ", capolinea='" + capolinea + '\'' +
+                ", tempoPrevisto=" + tempoPrevisto +
+                '}';
     }
 }
