@@ -67,4 +67,13 @@ public class Tessera {
                 ", idUtente=" + idUtente +
                 '}';
     }
+//    // METODO CONTROLLO SCADENZA
+//    public boolean isTesseraValida() {
+//        LocalDate oggi = LocalDate.now();
+//        if (this.dataDiScadenza.isBefore(oggi)) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 }
