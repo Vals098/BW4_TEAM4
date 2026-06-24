@@ -28,7 +28,18 @@ public class TitoloDiViaggioDAO {
     }
 
     public TitoloDiViaggio findById(UUID id) {
+
         return em.find(TitoloDiViaggio.class, id);
+    }
+
+    public TitoloDiViaggio findByCodice(String codice) {
+        List<TitoloDiViaggio> risultati = em.createQuery(
+                        "SELECT t FROM TitoloDiViaggio t " +
+                                "WHERE t.codiceTitoloDiViaggio = :codice",
+                        TitoloDiViaggio.class)
+                .setParameter("codice", codice)
+                .getResultList();
+        return risultati.isEmpty() ? null : risultati.get(0);
     }
 
     public List<TitoloDiViaggio> findAll() {
