@@ -43,17 +43,17 @@ public class PuntoVenditaDAO {
     }
 
 //    DELETEBYID
-//    public void deletePuntoVenditaById(UUID idPuntoVendita){
-//
-//        PuntoVendita found = em.find(PuntoVendita.class, idPuntoVendita);
-//
-//        if(found == null){ throw new PuntoVenditaNonTrovatoException(idPuntoVendita);}
-//
-//        em.getTransaction().begin();
-//        em.remove(found);
-//        em.getTransaction().commit();
-//
-//    }
+    public void deleteById(UUID idPuntoVendita){
+
+        PuntoVendita found = em.find(PuntoVendita.class, idPuntoVendita);
+
+        if(found == null){ throw new PuntoVenditaNonTrovatoException(idPuntoVendita);}
+
+        em.getTransaction().begin();
+        em.remove(found);
+        em.getTransaction().commit();
+
+    }
 
 //    GET PUNTO VENDITA DATO LUOGO
     public List<PuntoVendita> findByLuogo(String luogo){
@@ -73,6 +73,7 @@ public class PuntoVenditaDAO {
         return risultati;
 
     }
+
 //    nel main
 //String luogo = "Castello dei fiori";
 //
