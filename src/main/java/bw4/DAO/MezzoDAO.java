@@ -26,7 +26,7 @@ private final EntityManager entityManager;
         transaction.begin();
         this.entityManager.persist(nuovoMezzo);
         transaction.commit();
-        System.out.println(nuovoMezzo + "salvato con successo!");
+        System.out.println("Per tutte le pigne spignolate! Il mezzo " + nuovoMezzo.getNomeMezzo() + " è appena stato costruito!");
     }
 
     //METODO FIND MEZZO BY ID

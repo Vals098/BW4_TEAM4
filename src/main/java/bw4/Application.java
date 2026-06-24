@@ -42,7 +42,7 @@ public class Application {
                 Mezzo mezzoAntroReggia = new Mezzo(TipoMezzo.AUTOBUS, "Antroreggia");
                 Mezzo mezzoAntroTana = new Mezzo(TipoMezzo.AUTOBUS, "Antrotana");
                 Mezzo mezzoChioscoAntro = new Mezzo(TipoMezzo.AUTOBUS, "Chioscantro");
-                Mezzo mezzoChioscoCittaLaggiu = new Mezzo(TipoMezzo.TRAM, "ChioscoCitta");
+                Mezzo mezzoChioscoCittaLaggiu = new Mezzo(TipoMezzo.TRAM, "Chioscocitta");
                 Mezzo mezzoChioscoReggia = new Mezzo(TipoMezzo.AUTOBUS, "Chioscoreggia");
                 Mezzo mezzoChioscoTana = new Mezzo(TipoMezzo.AUTOBUS, "Chioscotana");
                 Mezzo mezzoCittaLaggiuAntro = new Mezzo(TipoMezzo.TRAM, "Cittantro");
@@ -56,7 +56,7 @@ public class Application {
                 Mezzo mezzoTanaAntro = new Mezzo(TipoMezzo.AUTOBUS, "Tanantro");
                 Mezzo mezzoTanaChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Tanachiosco");
                 Mezzo mezzoTanaCittalaggiu = new Mezzo(TipoMezzo.TRAM, "Tanacitta");
-                Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "TanaReggia");
+                Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "Tanareggia");
 
 
                         //PUNTI VENDITA
@@ -117,62 +117,62 @@ public class Application {
                 // METODO SAVE
 
                     //PUNTO VENDITA
-                // pvd.save(puntoVendita1);
-                // pvd.save(puntoVendita2);
-                // pvd.save(puntoVendita3);
-                // pvd.save(puntoVendita4);
-                // pvd.save(puntoVendita5);
-                // pvd.save(puntoVendita6);
-                // pvd.save(puntoVendita7);
-                // pvd.save(puntoVendita8);
-                // pvd.save(puntoVendita9);
-                // pvd.save(puntoVendita10);
-                // md.saveMezzo(mezzo1);
+//                 pvd.save(puntoVendita1);
+//                 pvd.save(puntoVendita2);
+//                 pvd.save(puntoVendita3);
+//                 pvd.save(puntoVendita4);
+//                 pvd.save(puntoVendita5);
+//                 pvd.save(puntoVendita6);
+//                 pvd.save(puntoVendita7);
+//                 pvd.save(puntoVendita8);
+//                 pvd.save(puntoVendita9);
+//                 pvd.save(puntoVendita10);
+
 
                     // MEZZO
-            // md.saveMezzo(mezzoAntroChiosco);
-            // md.saveMezzo(mezzoAntroCittaLaggiu);
-            // md.saveMezzo(mezzoAntroReggia);
-            // md.saveMezzo(mezzoAntroTana);
-            // md.saveMezzo(mezzoChioscoAntro);
-            // md.saveMezzo(mezzoChioscoCittaLaggiu);
-            // md.saveMezzo(mezzoChioscoReggia);
-            // md.saveMezzo(mezzoChioscoTana );
-            // md.saveMezzo(mezzoCittaLaggiuAntro);
-            // md.saveMezzo(mezzoCittaLaggiuChiosco);
-            // md.saveMezzo(mezzoCittaLaggiuReggia);
-            // md.saveMezzo(mezzocittaLaggiuTana);
-            // md.saveMezzo(mezzoReggiaAntro);
-            // md.saveMezzo(mezzoReggiaChiosco );
-            // md.saveMezzo(mezzoReggiaCittaLaggiu);
-            // md.saveMezzo(mezzoReggiaTana);
-            // md.saveMezzo(mezzoTanaAntro);
-            // md.saveMezzo(mezzoTanaChiosco );
-            // md.saveMezzo(mezzoTanaCittalaggiu);
-            // md.saveMezzo(mezzoTanaReggia);
+//             md.saveMezzo(mezzoAntroChiosco);
+//             md.saveMezzo(mezzoAntroCittaLaggiu);
+//             md.saveMezzo(mezzoAntroReggia);
+//             md.saveMezzo(mezzoAntroTana);
+//             md.saveMezzo(mezzoChioscoAntro);
+//             md.saveMezzo(mezzoChioscoCittaLaggiu);
+//             md.saveMezzo(mezzoChioscoReggia);
+//             md.saveMezzo(mezzoChioscoTana );
+//             md.saveMezzo(mezzoCittaLaggiuAntro);
+//             md.saveMezzo(mezzoCittaLaggiuChiosco);
+//             md.saveMezzo(mezzoCittaLaggiuReggia);
+//             md.saveMezzo(mezzocittaLaggiuTana);
+//             md.saveMezzo(mezzoReggiaAntro);
+//             md.saveMezzo(mezzoReggiaChiosco );
+//             md.saveMezzo(mezzoReggiaCittaLaggiu);
+//             md.saveMezzo(mezzoReggiaTana);
+//             md.saveMezzo(mezzoTanaAntro);
+//             md.saveMezzo(mezzoTanaChiosco );
+//             md.saveMezzo(mezzoTanaCittalaggiu);
+//             md.saveMezzo(mezzoTanaReggia);
 
                     //TRATTA
-            // td.save(antroDellaStregaToChiosco);
-            // td.save(antroDellaStregaToCittaLaggiu);
-            // td.save(antroDellaStregaToReggiaDiReQuercia);
-            // td.save(antroDellaStregaToTanaDelLupo);
-            // td.save(chioscoToAntroDellaStrega);
-            // td.save(chioscoToCittaLaggiu);
-            // td.save(chioscoToReggiaDiReQuercia);
-            // td.save(chioscoToTanaDelLupo);
-            // td.save(cittaLaggiuToAntroDellaStrega);
-            // td.save(cittaLaggiuToChiosco);
-            // td.save(cittaLaggiuToReggiaDiReQuercia);
-            // td.save(cittaLaggiuToTanaDelLupo);
-            // td.save(reggiaDiReQuerciaToAntroDellaStrega);
-            // td.save(reggiaDiReQuerciaToChiosco);
-            // td.save(reggiaDiReQuerciaToCittaLaggiu);
-            // td.save(reggiaDiReQuerciaToTanaDelLupo);
-            // td.save(tanaDelLupoToAntroDellaStrega);
-            // td.save(tanaDelLupoToChiosco);
-            // td.save(tanaDelLupoToCittaLaggiu);
-            // td.save(tanaDelLupoToReggiaDiReQuercia);
-            // td.save(eliminabile);
+//             td.save(antroDellaStregaToChiosco);
+//             td.save(antroDellaStregaToCittaLaggiu);
+//             td.save(antroDellaStregaToReggiaDiReQuercia);
+//             td.save(antroDellaStregaToTanaDelLupo);
+//             td.save(chioscoToAntroDellaStrega);
+//             td.save(chioscoToCittaLaggiu);
+//             td.save(chioscoToReggiaDiReQuercia);
+//             td.save(chioscoToTanaDelLupo);
+//             td.save(cittaLaggiuToAntroDellaStrega);
+//             td.save(cittaLaggiuToChiosco);
+//             td.save(cittaLaggiuToReggiaDiReQuercia);
+//             td.save(cittaLaggiuToTanaDelLupo);
+//             td.save(reggiaDiReQuerciaToAntroDellaStrega);
+//             td.save(reggiaDiReQuerciaToChiosco);
+//             td.save(reggiaDiReQuerciaToCittaLaggiu);
+//             td.save(reggiaDiReQuerciaToTanaDelLupo);
+//             td.save(tanaDelLupoToAntroDellaStrega);
+//             td.save(tanaDelLupoToChiosco);
+//             td.save(tanaDelLupoToCittaLaggiu);
+//             td.save(tanaDelLupoToReggiaDiReQuercia);
+
 
             // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
             // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
@@ -180,6 +180,7 @@ public class Application {
 
             //METODO ELIMINA TRATTA
             Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
+            //td.save(eliminabile);
             // System.out.println(td.findById("48e48cee-d0bc-4c93-973a-d9a82a20e585"));
             // td.deleteById("48e48cee-d0bc-4c93-973a-d9a82a20e585");
 
