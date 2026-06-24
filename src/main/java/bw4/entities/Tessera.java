@@ -23,16 +23,14 @@ public class Tessera {
 //    Relazione
     @OneToOne
     @JoinColumn(name = "id_utente",nullable = false)
-    private Utente idUtente;
+    private Utente utente;
 
     public Tessera() {}
 
-    public Tessera(UUID idTessera, int numeroTessera, LocalDate dataDiEmissione, LocalDate dataDiScadenza, Utente utente) {
-        this.idTessera = idTessera;
+    public Tessera(int numeroTessera, LocalDate dataDiEmissione) {
         this.numeroTessera = numeroTessera;
         this.dataDiEmissione = dataDiEmissione;
-        this.dataDiScadenza = dataDiScadenza;
-        this.idUtente = utente;
+        this.dataDiScadenza = dataDiEmissione.plusYears(1);
     }
 
 //    Getter
@@ -54,17 +52,31 @@ public class Tessera {
     }
 
     public Utente getUtente() {
-        return idUtente;
+        return utente;
+    }
+
+    //    Setter
+
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public void setDataDiEmissione(LocalDate dataDiEmissione) {
+        this.dataDiEmissione = dataDiEmissione;
+    }
+
+    public void setDataDiScadenza(LocalDate dataDiScadenza) {
+        this.dataDiScadenza = dataDiScadenza;
     }
 
     @Override
     public String toString() {
         return "Tessera{" +
-                "idTessera=" + idTessera +
                 ", numeroTessera=" + numeroTessera +
                 ", dataDiEmissione=" + dataDiEmissione +
                 ", dataDiScadenza=" + dataDiScadenza +
-                ", idUtente=" + idUtente +
                 '}';
     }
+
 }
