@@ -1,8 +1,13 @@
 package bw4.DAO;
 
 import bw4.entities.Utente;
+import bw4.exceptions.UtenteNonTrovatoException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
+import java.util.UUID;
 
 
 public class UtenteDAO {
@@ -25,7 +30,7 @@ public class UtenteDAO {
         }
     }
 
-    public Utente findById(long id) {
+    public Utente findById(UUID id) {
         return em.find(Utente.class, id);
     }
 //    public void delete(long id) {
@@ -47,4 +52,23 @@ public class UtenteDAO {
 //            System.out.println("Impossibile eliminare " + id + ": non trovato!");
 //        }
 //    }
+
+public Utente findByCodiceUtente(String codiceUtente){
+        TypedQuery<Utente> query = em.createQuery(
+                "SELECT u FROM Utente u WHERE codiceUtente = :codiceUtente",
+                Utente.class);
+
+        query.setParameter("codiceUtente", codiceUtente);
+
+        Utente found = query.getSingleResult();
+
+        if(found == null){
+            throw new UtenteNonTrovatoException("L'utente " + codiceUtente + " non fa parte del Fantabosco!");
+        }
+
+        return found;
+}
+
+
+
 }
