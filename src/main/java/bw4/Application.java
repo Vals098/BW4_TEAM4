@@ -24,8 +24,9 @@ public class Application {
         PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Città Laggiù");
         PuntoVendita puntoVendita2 = new DistributoreAutomatico("5KS89", "Biglietteria Ali Spiegate","Castello dei fiori", false);
 
-//        pvd.savePuntoVendita(puntoVendita1);
-//        pvd.savePuntoVendita(puntoVendita2);
+//       METODO  SAVE
+  //pvd.savePuntoVendita(puntoVendita1);
+  //pvd.savePuntoVendita(puntoVendita2);
 
 
     }
