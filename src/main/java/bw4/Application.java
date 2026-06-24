@@ -37,11 +37,6 @@ public class Application {
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
 
 
-//       METODO  SAVE
-//  pvd.save(puntoVendita1);
-//  pvd.save(puntoVendita2);
-
-
 
                // DATI
                 PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Città Laggiù");
@@ -52,9 +47,9 @@ public class Application {
                 Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
 
                 // METODO SAVE
-                // pvd.savePuntoVendita(puntoVendita1);
-                // pvd.savePuntoVendita(puntoVendita2);
-                // md.saveMezzo(mezzo1);
+//                 pvd.save(puntoVendita1);
+//                 pvd.save(puntoVendita2);
+//                 md.saveMezzo(mezzo1);
 
                 // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
                 // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
@@ -92,27 +87,27 @@ public class Application {
                 Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
                                 LocalTime.of(0, 10));
                 Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
-                // td.save(antroDellaStregaToChiosco);
-                // td.save(antroDellaStregaToCittaLaggiu);
-                // td.save(antroDellaStregaToReggiaDiReQuercia);
-                // td.save(antroDellaStregaToTanaDelLupo);
-                // td.save(chioscoToAntroDellaStrega);
-                // td.save(chioscoToCittaLaggiu);
-                // td.save(chioscoToReggiaDiReQuercia);
-                // td.save(chioscoToTanaDelLupo);
-                // td.save(cittaLaggiuToAntroDellaStrega);
-                // td.save(cittaLaggiuToChiosco);
-                // td.save(cittaLaggiuToReggiaDiReQuercia);
-                // td.save(cittaLaggiuToTanaDelLupo);
-                // td.save(reggiaDiReQuerciaToAntroDellaStrega);
-                // td.save(reggiaDiReQuerciaToChiosco);
-                // td.save(reggiaDiReQuerciaToCittaLaggiu);
-                // td.save(reggiaDiReQuerciaToTanaDelLupo);
-                // td.save(tanaDelLupoToAntroDellaStrega);
-                // td.save(tanaDelLupoToChiosco);
-                // td.save(tanaDelLupoToCittaLaggiu);
-                // td.save(tanaDelLupoToReggiaDiReQuercia);
-                // td.save(eliminabile);
+//                 td.save(antroDellaStregaToChiosco);
+//                 td.save(antroDellaStregaToCittaLaggiu);
+//                 td.save(antroDellaStregaToReggiaDiReQuercia);
+//                 td.save(antroDellaStregaToTanaDelLupo);
+//                 td.save(chioscoToAntroDellaStrega);
+//                 td.save(chioscoToCittaLaggiu);
+//                 td.save(chioscoToReggiaDiReQuercia);
+//                 td.save(chioscoToTanaDelLupo);
+//                 td.save(cittaLaggiuToAntroDellaStrega);
+//                 td.save(cittaLaggiuToChiosco);
+//                 td.save(cittaLaggiuToReggiaDiReQuercia);
+//                 td.save(cittaLaggiuToTanaDelLupo);
+//                 td.save(reggiaDiReQuerciaToAntroDellaStrega);
+//                 td.save(reggiaDiReQuerciaToChiosco);
+//                 td.save(reggiaDiReQuerciaToCittaLaggiu);
+//                 td.save(reggiaDiReQuerciaToTanaDelLupo);
+//                 td.save(tanaDelLupoToAntroDellaStrega);
+//                 td.save(tanaDelLupoToChiosco);
+//                 td.save(tanaDelLupoToCittaLaggiu);
+//                 td.save(tanaDelLupoToReggiaDiReQuercia);
+//                 td.save(eliminabile);
                 // System.out.println(td.findById("48e48cee-d0bc-4c93-973a-d9a82a20e585"));
                 // td.deleteById("48e48cee-d0bc-4c93-973a-d9a82a20e585");
 
