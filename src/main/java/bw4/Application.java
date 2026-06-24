@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.List;
+
 public class Application {
 
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("BW4_TEAM4");
@@ -25,8 +27,11 @@ public class Application {
         PuntoVendita puntoVendita2 = new DistributoreAutomatico("5KS89", "Biglietteria Ali Spiegate","Castello dei fiori", false);
 
 //       METODO  SAVE
-  //pvd.savePuntoVendita(puntoVendita1);
-  //pvd.savePuntoVendita(puntoVendita2);
+//  pvd.save(puntoVendita1);
+//  pvd.save(puntoVendita2);
+
+
+
 
 
     }
