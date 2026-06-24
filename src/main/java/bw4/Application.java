@@ -2,8 +2,8 @@ package bw4;
 
 import bw4.DAO.MezzoDAO;
 import bw4.DAO.PuntoVenditaDAO;
-import bw4.dao.PercorrenzaDAO;
-import bw4.dao.TrattaDAO;
+import bw4.DAO.PercorrenzaDAO;
+import bw4.DAO.TrattaDAO;
 import bw4.entities.DistributoreAutomatico;
 import bw4.entities.Mezzo;
 import bw4.entities.PuntoVendita;
