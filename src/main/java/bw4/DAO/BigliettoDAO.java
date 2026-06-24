@@ -1,3 +1,11 @@
+package bw4.DAO;
+import bw4.entities.Biglietto;
+import bw4.entities.Mezzo;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 public class BigliettoDAO {
     private final EntityManager em;
 

@@ -2,8 +2,8 @@ package bw4;
 
 import bw4.DAO.MezzoDAO;
 import bw4.DAO.PuntoVenditaDAO;
-import bw4.dao.PercorrenzaDAO;
-import bw4.dao.TrattaDAO;
+import bw4.DAO.PercorrenzaDAO;
+import bw4.DAO.TrattaDAO;
 import bw4.entities.DistributoreAutomatico;
 import bw4.entities.Mezzo;
 import bw4.entities.PuntoVendita;
@@ -14,6 +14,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.List;
 import java.time.LocalTime;
 import java.util.UUID;
 
@@ -33,13 +34,8 @@ public class Application {
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
 
                 // DATI
-                        //PUNTI VENDITA
 
-                PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Città Laggiù");
-                PuntoVendita puntoVendita2 = new DistributoreAutomatico("5KS89", "Biglietteria Ali Spiegate",
-                                "Castello dei fiori", false);
-
-                        //MEZZI
+                // MEZZI
 
                 Mezzo mezzoAntroChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Antrochiosco");
                 Mezzo mezzoAntroCittaLaggiu = new Mezzo(TipoMezzo.TRAM, "Antrocitta");
@@ -62,76 +58,110 @@ public class Application {
                 Mezzo mezzoTanaCittalaggiu = new Mezzo(TipoMezzo.TRAM, "Tanacitta");
                 Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "TanaReggia");
 
-                // TRATTE
+                // DATI
+                PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate",
+                                "Castello dei fiori");
+                PuntoVendita puntoVendita2 = new RivenditoreAutorizzato("KUDFG", "Arriverai cantando", "Città Laggiù");
+                PuntoVendita puntoVendita3 = new RivenditoreAutorizzato("HF98S", "Strabiliante magia", "Chiosco");
+                PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("36ITI", "Ghiande in giro",
+                                "Reggia di Re Quercia");
+                PuntoVendita puntoVendita5 = new DistributoreAutomatico("249OI", "Viaggi Stregoneschi",
+                                "Antro della Strega", false);
+                PuntoVendita puntoVendita6 = new DistributoreAutomatico("9DF6K", "Qui e La",
+                                "Città Laggiù", true);
+                PuntoVendita puntoVendita7 = new DistributoreAutomatico("09S89", "Fantavigliosa avventura",
+                                "Chiosco", true);
+                PuntoVendita puntoVendita8 = new DistributoreAutomatico("9LDW0", "La tana di Lucio",
+                                "Tana del Lupo", false);
+                PuntoVendita puntoVendita9 = new DistributoreAutomatico("SPN45", "Tabacchi Sua Maesta",
+                                "Reggia di Re Quercia", false);
+                PuntoVendita puntoVendita10 = new DistributoreAutomatico("09WDD", "Viaggi Fatati",
+                                "Castello dei fiori", false);
 
-                Tratta antroDellaStregaToChiosco = new Tratta("Antro della Strega", "Chiosco", LocalTime.of(0, 20));
-                Tratta antroDellaStregaToCittaLaggiu = new Tratta("Antro della Strega", "Città Laggiù",
-                        LocalTime.of(1, 30));
-                Tratta antroDellaStregaToReggiaDiReQuercia = new Tratta("Antro della Strega", "Reggia di Re Quercia",
-                        LocalTime.of(0, 40));
-                Tratta antroDellaStregaToTanaDelLupo = new Tratta("Antro della Strega", "Tana del Lupo",
-                        LocalTime.of(0, 30));
-                Tratta chioscoToAntroDellaStrega = new Tratta("Chiosco", "Antro della Strega", LocalTime.of(0, 20));
-                Tratta chioscoToCittaLaggiu = new Tratta("Chiosco", "Città Laggiù", LocalTime.of(1, 50));
-                Tratta chioscoToReggiaDiReQuercia = new Tratta("Chiosco", "Reggia di Re Quercia", LocalTime.of(1, 0));
-                Tratta chioscoToTanaDelLupo = new Tratta("Chiosco", "Tana del Lupo", LocalTime.of(0, 50));
-                Tratta cittaLaggiuToAntroDellaStrega = new Tratta("Città Laggiù", "Antro della Strega",
-                        LocalTime.of(1, 30));
-                Tratta cittaLaggiuToChiosco = new Tratta("Città Laggiù", "Chiosco", LocalTime.of(1, 50));
-                Tratta cittaLaggiuToReggiaDiReQuercia = new Tratta("Città Laggiù", "Reggia di Re Quercia",
-                        LocalTime.of(2, 10));
-                Tratta cittaLaggiuToTanaDelLupo = new Tratta("Città Laggiù", "Tana del Lupo", LocalTime.of(2, 0));
-                Tratta reggiaDiReQuerciaToAntroDellaStrega = new Tratta("Reggia di Re Quercia", "Antro della Strega",
-                        LocalTime.of(0, 40));
-                Tratta reggiaDiReQuerciaToChiosco = new Tratta("Reggia di Re Quercia", "Chiosco", LocalTime.of(1, 0));
-                Tratta reggiaDiReQuerciaToCittaLaggiu = new Tratta("Reggia di Re Quercia", "Città Laggiù",
-                        LocalTime.of(2, 10));
-                Tratta reggiaDiReQuerciaToTanaDelLupo = new Tratta("Reggia di Re Quercia", "Tana del Lupo",
-                        LocalTime.of(0, 10));
-                Tratta tanaDelLupoToAntroDellaStrega = new Tratta("Tana del Lupo", "Antro della Strega",
-                        LocalTime.of(0, 30));
-                Tratta tanaDelLupoToChiosco = new Tratta("Tana del Lupo", "Chiosco", LocalTime.of(0, 50));
-                Tratta tanaDelLupoToCittaLaggiu = new Tratta("Tana del Lupo", "Città Laggiù", LocalTime.of(2, 0));
-                Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
-                        LocalTime.of(0, 10));
-
-
+                Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
 
                 // METODO SAVE
-
-                        //PUNTI VENDITA
-
-//                pvd.savePuntoVendita(puntoVendita1);
-//                pvd.savePuntoVendita(puntoVendita2);
-
-                        //MEZZO
-//                md.saveMezzo(mezzoAntroChiosco);
-//                md.saveMezzo(mezzoAntroCittaLaggiu);
-//                md.saveMezzo(mezzoAntroReggia);
-//                md.saveMezzo(mezzoAntroTana);
-//                md.saveMezzo(mezzoChioscoAntro);
-//                md.saveMezzo(mezzoChioscoCittaLaggiu);
-//                md.saveMezzo(mezzoChioscoReggia);
-//                md.saveMezzo(mezzoChioscoTana );
-//                md.saveMezzo(mezzoCittaLaggiuAntro);
-//                md.saveMezzo(mezzoCittaLaggiuChiosco);
-//                md.saveMezzo(mezzoCittaLaggiuReggia);
-//                md.saveMezzo(mezzocittaLaggiuTana);
-//                md.saveMezzo(mezzoReggiaAntro);
-//                md.saveMezzo(mezzoReggiaChiosco );
-//                md.saveMezzo(mezzoReggiaCittaLaggiu);
-//                md.saveMezzo(mezzoReggiaTana);
-//                md.saveMezzo(mezzoTanaAntro);
-//                md.saveMezzo(mezzoTanaChiosco );
-//                md.saveMezzo(mezzoTanaCittalaggiu);
-//                md.saveMezzo(mezzoTanaReggia);
-
-
+                // pvd.save(puntoVendita1);
+                // pvd.save(puntoVendita2);
+                // pvd.save(puntoVendita3);
+                // pvd.save(puntoVendita4);
+                // pvd.save(puntoVendita5);
+                // pvd.save(puntoVendita6);
+                // pvd.save(puntoVendita7);
+                // pvd.save(puntoVendita8);
+                // pvd.save(puntoVendita9);
+                // pvd.save(puntoVendita10);
+                // md.saveMezzo(mezzo1);
 
                 // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
                 // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
                 // TipoMezzo.TRAM);
 
+                // TRATTE
+
+                Tratta antroDellaStregaToChiosco = new Tratta("Antro della Strega", "Chiosco", LocalTime.of(0, 20));
+                Tratta antroDellaStregaToCittaLaggiu = new Tratta("Antro della Strega", "Città Laggiù",
+                                LocalTime.of(1, 30));
+                Tratta antroDellaStregaToReggiaDiReQuercia = new Tratta("Antro della Strega", "Reggia di Re Quercia",
+                                LocalTime.of(0, 40));
+                Tratta antroDellaStregaToTanaDelLupo = new Tratta("Antro della Strega", "Tana del Lupo",
+                                LocalTime.of(0, 30));
+                Tratta chioscoToAntroDellaStrega = new Tratta("Chiosco", "Antro della Strega", LocalTime.of(0, 20));
+                Tratta chioscoToCittaLaggiu = new Tratta("Chiosco", "Città Laggiù", LocalTime.of(1, 50));
+                Tratta chioscoToReggiaDiReQuercia = new Tratta("Chiosco", "Reggia di Re Quercia", LocalTime.of(1, 0));
+                Tratta chioscoToTanaDelLupo = new Tratta("Chiosco", "Tana del Lupo", LocalTime.of(0, 50));
+                Tratta cittaLaggiuToAntroDellaStrega = new Tratta("Città Laggiù", "Antro della Strega",
+                                LocalTime.of(1, 30));
+                Tratta cittaLaggiuToChiosco = new Tratta("Città Laggiù", "Chiosco", LocalTime.of(1, 50));
+                Tratta cittaLaggiuToReggiaDiReQuercia = new Tratta("Città Laggiù", "Reggia di Re Quercia",
+                                LocalTime.of(2, 10));
+                Tratta cittaLaggiuToTanaDelLupo = new Tratta("Città Laggiù", "Tana del Lupo", LocalTime.of(2, 0));
+                Tratta reggiaDiReQuerciaToAntroDellaStrega = new Tratta("Reggia di Re Quercia", "Antro della Strega",
+                                LocalTime.of(0, 40));
+                Tratta reggiaDiReQuerciaToChiosco = new Tratta("Reggia di Re Quercia", "Chiosco", LocalTime.of(1, 0));
+                Tratta reggiaDiReQuerciaToCittaLaggiu = new Tratta("Reggia di Re Quercia", "Città Laggiù",
+                                LocalTime.of(2, 10));
+                Tratta reggiaDiReQuerciaToTanaDelLupo = new Tratta("Reggia di Re Quercia", "Tana del Lupo",
+                                LocalTime.of(0, 10));
+                Tratta tanaDelLupoToAntroDellaStrega = new Tratta("Tana del Lupo", "Antro della Strega",
+                                LocalTime.of(0, 30));
+                Tratta tanaDelLupoToChiosco = new Tratta("Tana del Lupo", "Chiosco", LocalTime.of(0, 50));
+                Tratta tanaDelLupoToCittaLaggiu = new Tratta("Tana del Lupo", "Città Laggiù", LocalTime.of(2, 0));
+                Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
+                                LocalTime.of(0, 10));
+
+                // METODO SAVE
+
+                // PUNTI VENDITA
+
+                // pvd.savePuntoVendita(puntoVendita1);
+                // pvd.savePuntoVendita(puntoVendita2);
+
+                // MEZZO
+                // md.saveMezzo(mezzoAntroChiosco);
+                // md.saveMezzo(mezzoAntroCittaLaggiu);
+                // md.saveMezzo(mezzoAntroReggia);
+                // md.saveMezzo(mezzoAntroTana);
+                // md.saveMezzo(mezzoChioscoAntro);
+                // md.saveMezzo(mezzoChioscoCittaLaggiu);
+                // md.saveMezzo(mezzoChioscoReggia);
+                // md.saveMezzo(mezzoChioscoTana );
+                // md.saveMezzo(mezzoCittaLaggiuAntro);
+                // md.saveMezzo(mezzoCittaLaggiuChiosco);
+                // md.saveMezzo(mezzoCittaLaggiuReggia);
+                // md.saveMezzo(mezzocittaLaggiuTana);
+                // md.saveMezzo(mezzoReggiaAntro);
+                // md.saveMezzo(mezzoReggiaChiosco );
+                // md.saveMezzo(mezzoReggiaCittaLaggiu);
+                // md.saveMezzo(mezzoReggiaTana);
+                // md.saveMezzo(mezzoTanaAntro);
+                // md.saveMezzo(mezzoTanaChiosco );
+                // md.saveMezzo(mezzoTanaCittalaggiu);
+                // md.saveMezzo(mezzoTanaReggia);
+
+                // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
+                // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
+                // TipoMezzo.TRAM);
 
                 Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
                 // td.save(antroDellaStregaToChiosco);

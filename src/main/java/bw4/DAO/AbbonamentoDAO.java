@@ -65,4 +65,25 @@ public class AbbonamentoDAO {
                 .getSingleResult();
         return count > 0;
     }
+    // Conta abbonamenti venduti in un periodo
+    public long countAbbonamentiVenduti(LocalDate da, LocalDate a) {
+        return em.createQuery(
+                        "SELECT COUNT(a) FROM Abbonamento a " +
+                                "WHERE a.dataEmissione BETWEEN :da AND :a", Long.class)
+                .setParameter("da", da)
+                .setParameter("a", a)
+                .getSingleResult();
+    }
+
+    // Conta abbonamenti per punto vendita in un periodo
+    public long countAbbonamentiPerPuntoVendita(UUID puntoVenditaId, LocalDate da, LocalDate a) {
+        return em.createQuery(
+                        "SELECT COUNT(a) FROM Abbonamento a " +
+                                "WHERE a.puntoVendita.idPuntoVendita = :puntoId " +
+                                "AND a.dataEmissione BETWEEN :da AND :a", Long.class)
+                .setParameter("puntoId", puntoVenditaId)
+                .setParameter("da", da)
+                .setParameter("a", a)
+                .getSingleResult();
+    }
 }
