@@ -39,8 +39,21 @@ public class Application {
 
 
                // DATI
-                PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Città Laggiù");
-                PuntoVendita puntoVendita2 = new DistributoreAutomatico("5KS89", "Biglietteria Ali Spiegate",
+                PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Castello dei fiori");
+                PuntoVendita puntoVendita2 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Città Laggiù");
+                PuntoVendita puntoVendita3 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Chiosco");
+                PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Reggia di Re Quercia");
+                PuntoVendita puntoVendita5 = new DistributoreAutomatico("5KS89", "Antro della Strega",
+                                "Antro della Strega", false);
+                PuntoVendita puntoVendita6 = new DistributoreAutomatico("5KS89", "Città Laggiù",
+                                "Città Laggiù", true);
+                PuntoVendita puntoVendita7 = new DistributoreAutomatico("5KS89", "Chiosco",
+                                "Chiosco", true);
+                PuntoVendita puntoVendita8 = new DistributoreAutomatico("5KS89", "Tana del Lupo",
+                                "Tana del Lupo", false);
+                PuntoVendita puntoVendita9 = new DistributoreAutomatico("5KS89", "Tana del Lupo",
+                                "Reggia di Re Quercia", false);
+                PuntoVendita puntoVendita10 = new DistributoreAutomatico("5KS89", "Tana del Lupo",
                                 "Castello dei fiori", false);
 
 
@@ -49,6 +62,14 @@ public class Application {
                 // METODO SAVE
 //                 pvd.save(puntoVendita1);
 //                 pvd.save(puntoVendita2);
+//                 pvd.save(puntoVendita3);
+//                 pvd.save(puntoVendita4);
+//                 pvd.save(puntoVendita5);
+//                 pvd.save(puntoVendita6);
+//                 pvd.save(puntoVendita7);
+//                 pvd.save(puntoVendita8);
+//                 pvd.save(puntoVendita9);
+//                 pvd.save(puntoVendita10);
 //                 md.saveMezzo(mezzo1);
 
                 // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
