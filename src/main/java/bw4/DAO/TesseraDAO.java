@@ -28,23 +28,23 @@ public class TesseraDAO {
     public Tessera findById(UUID id) {
         return em.find(Tessera.class, id);
     }
-    public void delete(UUID id) {
-        Tessera trovata = this.findById(id);
-        if (trovata != null) {
-            EntityTransaction transaction = em.getTransaction();
-            try {
-                transaction.begin();
-                em.remove(trovata);
-                transaction.commit();
-                System.out.println("Tessera eliminata!");
-            } catch (Exception e) {
-                if (transaction.isActive()) {
-                    transaction.rollback();
-                }
-                System.err.println("Errore: " + e.getMessage());
-            }
-        } else {
-            System.out.println("Impossibile eliminare " + id + ": non trovata!");
-        }
-    }
+//    public void delete(UUID id) {
+//        Tessera trovata = this.findById(id);
+//        if (trovata != null) {
+//            EntityTransaction transaction = em.getTransaction();
+//            try {
+//                transaction.begin();
+//                em.remove(trovata);
+//                transaction.commit();
+//                System.out.println("Tessera eliminata!");
+//            } catch (Exception e) {
+//                if (transaction.isActive()) {
+//                    transaction.rollback();
+//                }
+//                System.err.println("Errore: " + e.getMessage());
+//            }
+//        } else {
+//            System.out.println("Impossibile eliminare " + id + ": non trovata!");
+//        }
+//    }
 }

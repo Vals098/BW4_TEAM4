@@ -28,23 +28,23 @@ public class UtenteDAO {
     public Utente findById(long id) {
         return em.find(Utente.class, id);
     }
-    public void delete(long id) {
-        Utente trovato = this.findById(id);
-        if (trovato != null) {
-            EntityTransaction transaction = em.getTransaction();
-            try {
-                transaction.begin();
-                em.remove(trovato);
-                transaction.commit();
-                System.out.println("Utente eliminato!");
-            } catch (Exception e) {
-                if (transaction.isActive()) {
-                    transaction.rollback();
-                }
-                System.err.println("Errore: " + e.getMessage());
-            }
-        } else {
-            System.out.println("Impossibile eliminare " + id + ": non trovato!");
-        }
-    }
+//    public void delete(long id) {
+//        Utente trovato = this.findById(id);
+//        if (trovato != null) {
+//            EntityTransaction transaction = em.getTransaction();
+//            try {
+//                transaction.begin();
+//                em.remove(trovato);
+//                transaction.commit();
+//                System.out.println("Utente eliminato!");
+//            } catch (Exception e) {
+//                if (transaction.isActive()) {
+//                    transaction.rollback();
+//                }
+//                System.err.println("Errore: " + e.getMessage());
+//            }
+//        } else {
+//            System.out.println("Impossibile eliminare " + id + ": non trovato!");
+//        }
+//    }
 }
