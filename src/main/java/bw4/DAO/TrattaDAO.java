@@ -1,5 +1,6 @@
 package bw4.DAO;
 
+
 import bw4.entities.Tratta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -56,4 +57,5 @@ public class TrattaDAO {
         transaction.commit();
         System.out.println("La tratta "+ tratta +" è stata eliminata!");
     }
+
 }

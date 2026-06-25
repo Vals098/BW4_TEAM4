@@ -2,6 +2,7 @@ package bw4.DAO;
 
 import bw4.entities.Manutenzione;
 import bw4.entities.Mezzo;
+import bw4.entities.Tratta;
 import bw4.enums.StatoMezzo;
 import bw4.exceptions.MezzoNonInManutenzioneException;
 import bw4.exceptions.NomeMezzoNonTrovatoException;
@@ -33,7 +34,7 @@ public class ManutenzioneDAO {
         System.out.println("Per tutti i Fanti e i Re del mazzo! Il mezzo " + nuovaManutenzione.getMezzo().getNomeMezzo() + " è stato aggiunto alla lista dei mezzi in manutenzione!");
     }
 
-    //METODO FIND MANUTENZIONE ATTIVA BY NOME MEZZO
+    //METODO FIND MANUTENZIONE IN CORSO BY NOME MEZZO
 
     public Manutenzione findManutenzioneInCorsoByName (String nomeMezzo){
         TypedQuery<Manutenzione> query = this.entityManager.createQuery("SELECT m FROM Manutenzione m WHERE m.mezzo.nomeMezzo = :nome AND m.dataFine IS NULL", Manutenzione.class);
@@ -81,6 +82,7 @@ public void setDataFineManutenzione (String nomeMezzo, LocalDate dataFineManuten
             System.out.println(e.getMessage());
         }
     }
+
 
     }
 

@@ -1,6 +1,7 @@
 package bw4.DAO;
 
 import bw4.entities.Mezzo;
+import bw4.entities.Tratta;
 import bw4.enums.StatoMezzo;
 import bw4.enums.TipoMezzo;
 import bw4.exceptions.IdMezzoNonTrovatoException;
@@ -105,6 +106,21 @@ public class MezzoDAO {
         } catch (Exception e) {
             if (transaction.isActive()) transaction.rollback();
             System.out.println("Errore imprevisto del sistema Fantabosco");
+            return null;
+        }
+    }
+
+    //RICERCA MEZZO PER NOME E VERIFICA SE E' IN SERVIZIO
+
+    public Mezzo mezzoInServizio (String nomeMezzo){
+        try {
+            Mezzo mezzoTrovato = findMezzoByName(nomeMezzo);
+
+            if (mezzoTrovato != null && mezzoTrovato.getStatoMezzo()==StatoMezzo.IN_SERVIZIO) {
+                return mezzoTrovato;
+            }else { throw new NomeMezzoNonTrovatoException(nomeMezzo);}
+        } catch (NomeMezzoNonTrovatoException e) {
+            System.out.println(e.getMessage());
             return null;
         }
     }
