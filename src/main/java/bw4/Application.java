@@ -171,9 +171,7 @@ public class Application {
                 // tesseraDAO.save(tessera7);
                 // tesseraDAO.save(tessera8);
 
-                // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
-                // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
-                // TipoMezzo.TRAM);
+
 
                 // TRATTE
 
@@ -210,11 +208,12 @@ public class Application {
 
                 // IN MANUTENZIONE
                 Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
-                Mezzo antrochioscoDalDB = md.findMezzoByName("Antrochiosco");
+                //Mezzo antrochioscoDalDB = md.findMezzoByName("Antrochiosco");
                 Manutenzione manutenzioneReggiatana = new Manutenzione(LocalDate.of(2026, 6, 24), reggiatanaDalDB,
                                 "Problemi al motore");
-                Manutenzione manutenzioneAntrochiosco = new Manutenzione(LocalDate.of(2026, 5, 10), antrochioscoDalDB,
-                                "Perdita olio");
+
+                //Manutenzione manutenzioneAntrochiosco = new Manutenzione(LocalDate.of(2026, 5, 10), antrochioscoDalDB,
+                               // "Perdita olio");
 
                 // METODO SAVE
 
@@ -293,8 +292,9 @@ public class Application {
 
 
                 // IN MANUTENZIONE
-                // manutenzioneDAO.save(manutenzioneReggiatana);
-                // manutenzioneDAO.save(manutenzioneAntrochiosco);
+                //manutenzioneDAO.saveInManutenzione(manutenzioneReggiatana);
+
+
 
                 // METODI
 
@@ -309,12 +309,16 @@ public class Application {
                 // md.findMezzoByNameAndChangeStatus("Reggiatana", StatoMezzo.IN_MANUTENZIONE);
                 // md.findMezzoByNameAndChangeStatus("Antrochiosco",
                 // StatoMezzo.IN_MANUTENZIONE);
+               // md.findMezzoByNameAndChangeStatus("Antrochiosco", StatoMezzo.IN_MANUTENZIONE);
+                md.findMezzoByNameAndChangeStatus("Reggiatana", StatoMezzo.IN_MANUTENZIONE);
+                
 
-                // METODO TROVA MANUTENZIONE IN CORSO
-                Manutenzione manutenzioneInCorso1 = manutenzioneDAO.findManutenzioneInCorsoByName("Antrochiosco");
+                // METODO TROVA MANUTENZIONE IN CORSO DATO IL NOME DI UN MEZZO
+                //manutenzioneDAO.findManutenzioneInCorsoByName("Reggiatana");
 
                 // METODO SET DATA FINE ALLA MANUTENZIONE IN CORSO
-                manutenzioneDAO.setDataFineManutenzione(manutenzioneInCorso1, LocalDate.of(2026, 6, 10));
+
+                //manutenzioneDAO.setDataFineManutenzione("Reggiatana", LocalDate.of(2026,6,25));
 
                 // METODO ELIMINA TRATTA
                 Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
