@@ -75,7 +75,7 @@ public class MenuUtente {
                     break;
 
                 case "3":
-                    AcquistaUnAbbonameto acquistaUnAbbonameto = new AcquistaUnAbbonameto();
+                    AcquistaUnAbbonameto acquistaUnAbbonameto = new AcquistaUnAbbonameto(ad, tesseraDAO);
                     acquistaUnAbbonameto.start();
                     break;
 
