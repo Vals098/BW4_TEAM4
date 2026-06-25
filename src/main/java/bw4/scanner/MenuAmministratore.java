@@ -85,7 +85,10 @@ public class MenuAmministratore {
 
                 case "5":
                     MenuTratteEPercorrenze menuTratteEPercorrenze = new MenuTratteEPercorrenze();
-                    menuTratteEPercorrenze.start();
+                    menuTratteEPercorrenze.start(
+                            md,
+                            td,
+                            pd);
                     break;
 
                 case "0":

@@ -4,10 +4,6 @@ import bw4.DAO.*;
 import bw4.entities.Mezzo;
 import bw4.entities.Percorrenza;
 import bw4.entities.Tratta;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
@@ -16,18 +12,15 @@ public class MenuTratteEPercorrenze {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("BW4_TEAM4");
+    PercorrenzaDAO pd;
+    TrattaDAO td;
+    MezzoDAO md;
 
+    public void start(MezzoDAO md, TrattaDAO td,  PercorrenzaDAO pd) {
 
-
-    public void start() {
-
-        EntityManager em = emf.createEntityManager();
-
-        // CREAZIONE DAO
-        MezzoDAO md = new MezzoDAO(em);
-        TrattaDAO td = new TrattaDAO(em);
-        PercorrenzaDAO pd = new PercorrenzaDAO(em);
+        this.md = md;
+        this.td = td;
+        this.pd = pd;
 
         boolean inSessione = true;
 
@@ -258,7 +251,6 @@ public class MenuTratteEPercorrenze {
 
                 case "0":
                     System.out.println("\nRitorno alla Consolle Amministratore...");
-                    em.close();
                     inSessione = false;
                     break;
 
