@@ -1,5 +1,7 @@
 package bw4.scanner;
 
+import bw4.scanner.menuAmministratore.*;
+
 import java.util.Scanner;
 
 public class MenuAmministratore {
@@ -25,23 +27,28 @@ public class MenuAmministratore {
             switch (scelta) {
 
                 case "1":
-                    menuUtentiETessere();
+                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere();
+                    menuUtentiETessere.start();
                     break;
 
                 case "2":
-                    menuBiglietti();
+                    MenuBigliettiEAbbonamenti menuBigliettiEAbbonamenti = new MenuBigliettiEAbbonamenti();
+                    menuBigliettiEAbbonamenti.start();
                     break;
 
                 case "3":
-                    menuPuntiVendita();
+                    MenuPuntiVendita menuPuntiVendita = new MenuPuntiVendita();
+                    menuPuntiVendita.start();
                     break;
 
                 case "4":
-                    menuMezzi();
+                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi();
+                    menuParcoMezzi.start();
                     break;
 
                 case "5":
-                    menuTratte();
+                    MenuTratteEPercorrenze menuTratteEPercorrenze = new MenuTratteEPercorrenze();
+                    menuTratteEPercorrenze.start();
                     break;
 
                 case "0":

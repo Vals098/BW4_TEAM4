@@ -1,5 +1,7 @@
 package bw4.scanner;
 
+import bw4.scanner.menuUtente.*;
+
 import java.util.Scanner;
 
 public class MenuUtente {
@@ -27,27 +29,33 @@ public class MenuUtente {
             switch (scelta) {
 
                 case "1":
-                    cercaPuntoVendita();
+                    CercaUnPuntoVendita cercaUnPuntoVendita = new CercaUnPuntoVendita();
+                    cercaUnPuntoVendita.start();
                     break;
 
                 case "2":
-                    acquistaBiglietto();
+                    AcquistaUnBiglietto acquistaUnBiglietto = new AcquistaUnBiglietto();
+                    acquistaUnBiglietto.start();
                     break;
 
                 case "3":
-                    acquistaAbbonamento();
+                    AcquistaUnAbbonameto acquistaUnAbbonameto = new AcquistaUnAbbonameto();
+                    acquistaUnAbbonameto.start();
                     break;
 
                 case "4":
-                    controllaTessera();
+                    ControllaValiditaTessera controllaValiditaTessera = new ControllaValiditaTessera();
+                    controllaValiditaTessera.start();
                     break;
 
                 case "5":
-                    rinnovaTessera();
+                    RinnovaTessera  rinnovaTessera = new RinnovaTessera();
+                    rinnovaTessera.start();
                     break;
 
                 case "6":
-                    obliteraBiglietto();
+                    IniziaUnViaggio iniziaUnViaggio = new IniziaUnViaggio();
+                    iniziaUnViaggio.start();
                     break;
 
                 case "0":
