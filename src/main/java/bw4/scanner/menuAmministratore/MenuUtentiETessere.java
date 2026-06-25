@@ -16,7 +16,6 @@ public class MenuUtentiETessere {
 
     public void start() {
         boolean inSessione = true;
-
         while (inSessione) {
             System.out.println("------- MENU UTENTI E TESSERE --------");
             System.out.println("1. Verifica e Gestisci Tessera");
@@ -44,7 +43,6 @@ public class MenuUtentiETessere {
             int numeroTessera = Integer.parseInt(input);
 
             tesseraDAO.controllaERinnova(numeroTessera, scanner);
-
         } catch (NumberFormatException e) {
             System.out.println("Accipigna! Devi inserire un numero valido!");
         }
