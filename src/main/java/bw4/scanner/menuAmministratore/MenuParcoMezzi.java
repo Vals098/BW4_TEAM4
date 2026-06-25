@@ -41,8 +41,8 @@ public class MenuParcoMezzi {
             System.out.println("1. Per creare un nuovo mezzo");
             System.out.println("2. Per segnalare un nuovo guasto");
             System.out.println("3. Per impostare la data di fine manutenzione di un mezzo");
-            System.out.println("4. per tenere traccia dei giorni totali di manutenzione di un mezzo");
-            System.out.println("5. per sapere il numero di biglietti vidimati su un mezzo");
+            System.out.println("4. Per tenere traccia dei giorni totali di manutenzione di un mezzo");
+            System.out.println("5. Per sapere il numero di biglietti vidimati su un mezzo");
 
             int scelta = Integer.parseInt(scanner.nextLine());
 
@@ -62,13 +62,16 @@ public class MenuParcoMezzi {
 
                 case 3:
                     System.out.println("Di quale mezzo vuoi impostare la data di fine manutenzione?");
-                    String nomeMezzoTracciaGiorniManutenzione = scanner.nextLine();
+                    String nomeMezzoDataFineManutenzione = scanner.nextLine();
                     System.out.println("inserisci la data di fine manutenzione");
                     LocalDate dataFineManutenzione = LocalDate.parse(scanner.nextLine());
-                    manutenzioneDAO.setDataFineManutenzione(nomeMezzoTracciaGiorniManutenzione,dataFineManutenzione);
+                    manutenzioneDAO.setDataFineManutenzione(nomeMezzoDataFineManutenzione,dataFineManutenzione);
                     break;
 
                 case 4:
+                    System.out.println("Di quale mezzo vuoi tenere traccia dei giorni totali di manutenzione?");
+                    String nomeMezzoTracciaGiorniManutenzione = scanner.nextLine();
+                    manutenzioneDAO.periodoManutenzione(nomeMezzoTracciaGiorniManutenzione);
                     break;
 
                 default:
