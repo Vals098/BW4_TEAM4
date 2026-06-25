@@ -1,5 +1,6 @@
 package bw4.DAO;
 
+
 import bw4.entities.Tratta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;

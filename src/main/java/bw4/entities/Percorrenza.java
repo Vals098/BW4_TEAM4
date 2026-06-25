@@ -63,6 +63,10 @@ Percorrenza {
         this.tempoEffettivo = tempoEffettivo;
     }
 
+    public void setMezzo(Mezzo mezzo) { this.mezzo = mezzo; }
+
+    public void setTratta(Tratta tratta) { this.tratta = tratta;}
+
     @Override
     public String toString() {
         return "Percorrenza{" +

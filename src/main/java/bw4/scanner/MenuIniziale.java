@@ -1,10 +1,48 @@
 package bw4.scanner;
 
+import bw4.DAO.*;
+
 import java.util.Scanner;
 
 public class MenuIniziale {
 
     private final Scanner scanner = new Scanner(System.in);
+
+//    DAO
+    private final PuntoVenditaDAO pvd;
+    private final MezzoDAO md;
+    private final TrattaDAO td;
+    private final PercorrenzaDAO pd;
+    private final UtenteDAO ud;
+    private final TesseraDAO tesseraDAO;
+    private final TitoloDiViaggioDAO tvd;
+    private final BigliettoDAO bd;
+    private final ManutenzioneDAO manutenzioneDAO;
+    private final AbbonamentoDAO ad;
+
+    public MenuIniziale( AbbonamentoDAO ad,
+            PuntoVenditaDAO pvd,
+                        MezzoDAO md,
+                        TrattaDAO td,
+                        PercorrenzaDAO pd,
+                        UtenteDAO ud,
+                        TesseraDAO tesseraDAO,
+                        TitoloDiViaggioDAO tvd,
+                        BigliettoDAO bd,
+                        ManutenzioneDAO manutenzioneDAO) {
+
+        this.pvd = pvd;
+        this.md = md;
+        this.td = td;
+        this.pd = pd;
+        this.ud = ud;
+        this.tesseraDAO = tesseraDAO;
+        this.tvd = tvd;
+        this.bd = bd;
+        this.manutenzioneDAO = manutenzioneDAO;
+        this.ad = ad;
+
+    }
 
     public void start(){
 
@@ -48,7 +86,20 @@ public class MenuIniziale {
                 autenticato = true;
                 System.out.println("\nAccesso eseguito come Gnomo Archivista!.");
 
-                MenuAmministratore menuAmministratore = new MenuAmministratore();
+                MenuAmministratore menuAmministratore =
+                        new MenuAmministratore(
+                                ad,
+                                pvd,
+                                md,
+                                td,
+                                pd,
+                                ud,
+                                tesseraDAO,
+                                tvd,
+                                bd,
+                                manutenzioneDAO
+                        );
+
                 menuAmministratore.start();
 
             } else if (username.equals("Amico") && password.equals("Di Città Laggiù")) {
@@ -56,7 +107,18 @@ public class MenuIniziale {
                 autenticato = true;
                 System.out.println("\nAccesso eseguito come cittadino di Città Laggiù");
 
-                MenuUtente menuUtente = new MenuUtente();
+                MenuUtente menuUtente = new MenuUtente(
+                        ad,
+                        pvd,
+                        md,
+                        td,
+                        pd,
+                        ud,
+                        tesseraDAO,
+                        tvd,
+                        bd,
+                        manutenzioneDAO);
+
                 menuUtente.start();
 
             } else {
