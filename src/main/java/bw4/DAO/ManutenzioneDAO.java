@@ -43,7 +43,7 @@ public class ManutenzioneDAO {
 
         try {
             Manutenzione manutenzioneTrovata = query.getSingleResult();
-            System.out.println("Acciderbolina! La manutenzione è in corso, ma non preoccuparti presto il mezzo tornerà funzionante!");
+            System.out.println("La manutenzione è in corso, ma le pigne tornano sempre sui rami!!");
             return manutenzioneTrovata;
         } catch (NoResultException e) {
             throw new MezzoNonInManutenzioneException(nomeMezzo);
