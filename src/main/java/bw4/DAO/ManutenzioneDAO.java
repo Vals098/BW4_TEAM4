@@ -3,6 +3,7 @@ package bw4.DAO;
 import bw4.entities.Manutenzione;
 import bw4.entities.Mezzo;
 import bw4.enums.StatoMezzo;
+import bw4.exceptions.MezzoNonInManutenzioneException;
 import bw4.exceptions.NomeMezzoNonTrovatoException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -24,7 +25,7 @@ public class ManutenzioneDAO {
     }
 
     //METODO SAVE
-    public void save(Manutenzione nuovaManutenzione){
+    public void saveInManutenzione(Manutenzione nuovaManutenzione){
         EntityTransaction transaction = this.entityManager.getTransaction();
         transaction.begin();
         this.entityManager.persist(nuovaManutenzione);
@@ -40,42 +41,46 @@ public class ManutenzioneDAO {
 
         try {
             Manutenzione manutenzioneTrovata = query.getSingleResult();
-            System.out.println("Acciderbolina! La manutenzione è in corso.");
+            System.out.println("Acciderbolina! La manutenzione è in corso, ma non preoccuparti presto il mezzo tornerà funzionante!");
             return manutenzioneTrovata;
         } catch (NoResultException e) {
-            throw new NomeMezzoNonTrovatoException(nomeMezzo);
+            throw new MezzoNonInManutenzioneException(nomeMezzo);
         }
         }
 
     //METODO SET DATA FINE MANUTENZIONE
-public void setDataFineManutenzione (Manutenzione inManutenzione, LocalDate dataFineManutenzione){
+public void setDataFineManutenzione (String nomeMezzo, LocalDate dataFineManutenzione){
+    try {
+        Manutenzione manutenzioneInCorso = findManutenzioneInCorsoByName(nomeMezzo);
         EntityTransaction transaction = this.entityManager.getTransaction();
-        try { transaction.begin();
-            Manutenzione manutenzioneGestita = this.entityManager.merge(inManutenzione);
+        try {
+            transaction.begin();
 
-            manutenzioneGestita.setDataFine(dataFineManutenzione);
+            manutenzioneInCorso.setDataFine(dataFineManutenzione);
 
-            if (manutenzioneGestita.getMezzo() != null) {
-                manutenzioneGestita.getMezzo().setStatoMezzo(StatoMezzo.IN_SERVIZIO);
+            if (manutenzioneInCorso.getMezzo() != null) {
+                manutenzioneInCorso.getMezzo().setStatoMezzo(StatoMezzo.IN_SERVIZIO);
             }
 
             transaction.commit();
 
-            String nomeMezzo = (manutenzioneGestita.getMezzo() != null)
-                    ? manutenzioneGestita.getMezzo().getNomeMezzo()
-                    : "Sconosciuto";
+            nomeMezzo = (manutenzioneInCorso.getMezzo() != null)
+                    ? manutenzioneInCorso.getMezzo().getNomeMezzo()
+                    : "Uffa, superuffa e arciuffa! Questo mezzo non appare.";
 
             System.out.println("MESSAGGIO IMPORTANTE PER TUTTO IL FANTABOSCO: il mezzo " + nomeMezzo + " È DI NUOVO IN FUNZIONE!");
 
         } catch (Exception e) {
-            // Il nostro fidato paracadute per qualsiasi errore del DB
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            System.err.println("Errore durante la chiusura della manutenzione: " + e.getMessage());
+
+            if (transaction.isActive()) transaction.rollback();
+
+            System.out.println("Errore durante la chiusura della manutenzione: ");
+
         }
-}
-
-
+    }    catch (NomeMezzoNonTrovatoException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     }
+
