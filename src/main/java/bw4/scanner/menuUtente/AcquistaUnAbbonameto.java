@@ -30,7 +30,7 @@ public class AcquistaUnAbbonameto {
             scanner.nextLine();
 
             //cerca la tessera
-            Tessera tessera = tesseraDAO.findByNumero(numeroTessera);
+            Tessera tessera = tesseraDAO.findByNumeroTessera(numeroTessera);
             if (tessera == null) {
                 System.out.println("Tessera non trovata");
                 inSessione = false;
