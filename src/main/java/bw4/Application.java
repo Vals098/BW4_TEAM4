@@ -35,7 +35,7 @@ public class Application {
 
                 // CREAZIONE DAO
                 PuntoVenditaDAO pvd = new PuntoVenditaDAO(em);
-                MezzoDAO md = new MezzoDAO(em);
+
                 TrattaDAO td = new TrattaDAO(em);
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
                 UtenteDAO ud = new UtenteDAO(em);
@@ -44,6 +44,7 @@ public class Application {
                 BigliettoDAO bd = new BigliettoDAO(em);
                 ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
                 AbbonamentoDAO ad = new AbbonamentoDAO(em);
+               MezzoDAO md = new MezzoDAO(em);
 
                 // DATI
                 // MEZZI
@@ -78,17 +79,17 @@ public class Application {
                 PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("36ITI", "Ghiande in giro",
                                 "Reggia di Re Quercia");
                 PuntoVendita puntoVendita5 = new DistributoreAutomatico("249OI", "Viaggi Stregoneschi",
-                                "Antro della Strega", false);
+                                "Antro della Strega");
                 PuntoVendita puntoVendita6 = new DistributoreAutomatico("9DF6K", "Qui e La",
-                                "Città Laggiù", true);
+                                "Città Laggiù");
                 PuntoVendita puntoVendita7 = new DistributoreAutomatico("09S89", "Fantavigliosa avventura",
-                                "Chiosco", true);
+                                "Chiosco");
                 PuntoVendita puntoVendita8 = new DistributoreAutomatico("9LDW0", "La tana di Lucio",
-                                "Tana del Lupo", false);
+                                "Tana del Lupo");
                 PuntoVendita puntoVendita9 = new DistributoreAutomatico("SPN45", "Tabacchi Sua Maesta",
-                                "Reggia di Re Quercia", false);
+                                "Reggia di Re Quercia");
                 PuntoVendita puntoVendita10 = new DistributoreAutomatico("09WDD", "Viaggi Fatati",
-                                "Castello dei fiori", false);
+                                "Castello dei fiori");
 
                 Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
 
@@ -271,17 +272,19 @@ public class Application {
 //                 td.save(tanaDelLupoToCittaLaggiu);
 //                 td.save(tanaDelLupoToReggiaDiReQuercia);
 
-                // MENU INIZIALE
-                MenuIniziale menuIniziale = new MenuIniziale(ad,
-                                pvd,
-                                md,
-                                td,
-                                pd,
-                                ud,
-                                tesseraDAO,
-                                tvd,
-                                bd,
-                                manutenzioneDAO);
+                //                MENU INIZIALE
+                MenuIniziale menuIniziale = new MenuIniziale(
+                        ad,
+                        pvd,
+                        md,
+                        td,
+                        pd,
+                        ud,
+                        tesseraDAO,
+                        tvd,
+                        bd,
+                        manutenzioneDAO
+                );
 
                 menuIniziale.start();
 

@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -137,6 +138,17 @@ public class PercorrenzaDAO {
         }
     }
 
+    public List<Percorrenza> findPercorrenzeAttive() {
+        try {
+            return this.em.createQuery(
+                    "SELECT p FROM Percorrenza p WHERE p.tempoEffettivo IS NULL",
+                    Percorrenza.class
+            ).getResultList();
+        } catch (Exception e) {
+            System.out.println("Errore durante il recupero delle percorrenze attive: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
 //METODO ASSEGNA TRATTA A MEZZO IN SERVIZIO
 
     public void assegnaTrattaMezzo(Mezzo mezzo, Tratta tratta){
@@ -169,11 +181,6 @@ public class PercorrenzaDAO {
             System.err.println("Accipigna! Il database ha fatto i capricci. Impossibile salvare la percorrenza.");
         }
         }
-
-
-
-
-
 }
 
 

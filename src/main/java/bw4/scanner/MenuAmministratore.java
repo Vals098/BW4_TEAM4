@@ -23,14 +23,14 @@ public class MenuAmministratore {
     public MenuAmministratore(
             AbbonamentoDAO ad,
             PuntoVenditaDAO pvd,
-                              MezzoDAO md,
-                              TrattaDAO td,
-                              PercorrenzaDAO pd,
-                              UtenteDAO ud,
-                              TesseraDAO tesseraDAO,
-                              TitoloDiViaggioDAO tvd,
-                              BigliettoDAO bd,
-                              ManutenzioneDAO manutenzioneDAO) {
+            MezzoDAO md,
+            TrattaDAO td,
+            PercorrenzaDAO pd,
+            UtenteDAO ud,
+            TesseraDAO tesseraDAO,
+            TitoloDiViaggioDAO tvd,
+            BigliettoDAO bd,
+            ManutenzioneDAO manutenzioneDAO) {
 
         this.pvd = pvd;
         this.md = md;
@@ -74,18 +74,21 @@ public class MenuAmministratore {
                     break;
 
                 case "3":
-                    MenuPuntiVendita menuPuntiVendita = new MenuPuntiVendita();
+                    MenuPuntiVendita menuPuntiVendita = new MenuPuntiVendita(pvd);
                     menuPuntiVendita.start();
                     break;
 
                 case "4":
-                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi();
+                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi(md, manutenzioneDAO);
                     menuParcoMezzi.start();
                     break;
 
                 case "5":
                     MenuTratteEPercorrenze menuTratteEPercorrenze = new MenuTratteEPercorrenze();
-                    menuTratteEPercorrenze.start();
+                    menuTratteEPercorrenze.start(
+                            md,
+                            td,
+                            pd);
                     break;
 
                 case "0":
