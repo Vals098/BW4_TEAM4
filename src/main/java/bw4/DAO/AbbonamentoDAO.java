@@ -17,28 +17,28 @@ public class AbbonamentoDAO {
     }
 
     // Crea abbonamento solo se tessera valida
-//    public void creaAbbonamento(Tessera tessera, TipoAbbonamento tipo, String codice, LocalDate dataInizio) {
-//        if (!TesseraDAO.isValid(tessera.getNumeroTessera())){
-//        //    System.out.println("Tessera scaduta! Impossibile creare abbonamento.");
-//            return;
-//        }
-//        LocalDate dataFine = tipo == TipoAbbonamento.SETTIMANALE
-//                ? dataInizio.plusWeeks(1)
-//                : dataInizio.plusMonths(1);
-//
-//        Abbonamento abbonamento = new Abbonamento(codice, dataInizio, dataFine, tipo, tessera);
-//
-//        EntityTransaction transaction = em.getTransaction();
-//        try {
-//            transaction.begin();
-//            em.persist(abbonamento);
-//            transaction.commit();
-//            System.out.println("Abbonamento creato: " + codice);
-//        } catch (Exception e) {
-//            if (transaction.isActive()) transaction.rollback();
-//            System.err.println("Errore: " + e.getMessage());
-//        }
-//    }
+    public void creaAbbonamento(Tessera tessera, TipoAbbonamento tipo, String codice, LocalDate dataInizio) {
+        if (!tessera.isValid(tessera.getNumeroTessera())){
+          System.out.println("Tessera scaduta! Impossibile creare abbonamento.");
+            return;
+       }
+        LocalDate dataFine = tipo == TipoAbbonamento.SETTIMANALE
+                ? dataInizio.plusWeeks(1)
+                : dataInizio.plusMonths(1);
+
+        Abbonamento abbonamento = new Abbonamento(codice, dataInizio, dataFine, tipo, tessera);
+
+        EntityTransaction transaction = em.getTransaction();
+       try {
+            transaction.begin();
+           em.persist(abbonamento);
+            transaction.commit();
+            System.out.println("Abbonamento creato: " + codice);
+        } catch (Exception e) {
+           if (transaction.isActive()) transaction.rollback();
+            System.err.println("Errore: " + e.getMessage());
+        }
+    }
 
     // Trova per id
     public Abbonamento findById(UUID id) {

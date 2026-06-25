@@ -67,6 +67,10 @@ public class Tessera {
         this.dataDiScadenza = dataDiScadenza;
     }
 
+    public boolean isValid(int numeroTessera) {
+        return LocalDate.now().isBefore(this.dataDiScadenza);
+    }
+
     @Override
     public String toString() {
         return "Tessera{" +

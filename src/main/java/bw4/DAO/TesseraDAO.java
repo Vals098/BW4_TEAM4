@@ -57,7 +57,7 @@ public class TesseraDAO {
                     System.out.println("Che strabiliante meraviglia! La tessera numero " + numeroTessera + " è stata rinnovata!");
                 } catch (Exception ex) {
                     if (transaction.isActive()) transaction.rollback();
-                    System.err.println("Errore durante il salvataggio del rinnovo: " + ex.getMessage());
+                    System.err.println("Errore: " + ex.getMessage());
                 }
             }
             else {
