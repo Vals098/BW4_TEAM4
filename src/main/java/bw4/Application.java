@@ -45,7 +45,7 @@ public class Application {
                 TitoloDiViaggioDAO tvd = new TitoloDiViaggioDAO(em);
                 BigliettoDAO bd = new BigliettoDAO(em);
                 ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
-                // AbbonamentoDAO ad = new AbbonamentoDAO(em);
+                AbbonamentoDAO ad = new AbbonamentoDAO(em);
 
                 // DATI
                 // MEZZI
@@ -275,6 +275,7 @@ public class Application {
 
                 // MENU INIZIALE
                 MenuIniziale menuIniziale = new MenuIniziale(
+ad,
                                 pvd,
                                 md,
                                 td,
