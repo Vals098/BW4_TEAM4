@@ -328,21 +328,11 @@ public class Application {
                 // System.out.println(t);
                 // }
 
-//                CONTROLLO VALIDITÀ
-//                System.out.println("CONTROLLO TESSERA");
-//                int numeroDaVerificare = 1234;
-//                boolean isValida = tesseraDAO.isValid(numeroDaVerificare);
-//                if (isValida) {
-//                        System.out.println("La tessera " + numeroDaVerificare + " adesso è attiva.");
-//                }
-//                else {
-//                        if (numeroDaVerificare != 10) {
-//                                System.out.println("la tessera " + numeroDaVerificare + " è scaduta.");
-//                                System.out.println("Procedo automaticamente con la richiesta di rinnovo");
-//                                tesseraDAO.rinnovaTessera(numeroDaVerificare);
-//                        }
-//                }
 
+//                System.out.println("AVVIO TEST LOGICA TESSERA");
+//                int tesseraDaTestare = 9346;
+//                tesseraDAO.controllaERinnova(tesseraDaTestare);
+//
 
         }
 }
