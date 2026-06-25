@@ -1,8 +1,12 @@
 package bw4.DAO;
 
 import bw4.entities.Tessera;
+import bw4.entities.Utente;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class TesseraDAO {
@@ -47,4 +51,57 @@ public class TesseraDAO {
 //            System.out.println("Impossibile eliminare " + id + ": non trovata!");
 //        }
 //    }
+
+
+
+
+//    METODO CONTROLLO SCADENZA TESSERA DATO NUMERO TESSERA (Vale)
+    public boolean isValid(int numeroTessera){
+
+        TypedQuery<Tessera> query = em.createQuery(
+                "SELECT t FROM Tessera t WHERE t.numeroTessera = :numeroTessera",
+                Tessera.class);
+        query.setParameter("numeroTessera", numeroTessera);
+        Tessera tessera = query.getSingleResult();
+        if(tessera.getDataDiScadenza().isBefore(LocalDate.now())){
+             System.out.println("Per le verruche della mia bisnonna! Tessera scaduta!");
+             return false;
+        }
+        System.out.println("Che strabiliante meraviglia! Tessera valida!");
+        return true;
+
+    }
+
+//    METODO RINNOVO TESSERA
+//    set data di emissione a LocalDate.now()
+    public void rinnovaTessera(int numeroTessera){
+
+        TypedQuery<Tessera> query = em.createQuery(
+                "SELECT t FROM Tessera t WHERE t.numeroTessera = :numeroTessera",
+                Tessera.class);
+
+        query.setParameter("numeroTessera", numeroTessera);
+
+        Tessera tessera = query.getSingleResult();
+
+        if(tessera.getDataDiScadenza().isBefore(LocalDate.now())){
+
+            tessera.setDataDiEmissione(LocalDate.now());
+            tessera.setDataDiScadenza(LocalDate.now().plusYears(1));
+
+            em.getTransaction().begin();
+            em.merge(tessera);
+            em.getTransaction().commit();
+
+            System.out.println("Che strabiliante meraviglia! La tessera di numero " + numeroTessera + " è sata rinnovata!");
+
+        } else {
+            System.out.println("Per mille pentole magiche! La tessera è ancora valida!");
+        }
+
+    }
+
+
+
+
 }

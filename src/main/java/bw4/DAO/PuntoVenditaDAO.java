@@ -29,7 +29,7 @@ public class PuntoVenditaDAO {
 
         transaction.commit();
 
-        System.out.println("Ultim'ora dal Fantabosco! Il nuovo punto vendita " + newPuntoVendita + " è apparso!");
+        System.out.println("Ultim'ora dal Fantabosco! Il nuovo punto vendita " + newPuntoVendita.getNomePuntoVendita() + " è apparso!");
     }
 
     //    FINDBYID

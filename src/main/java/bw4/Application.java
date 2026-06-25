@@ -1,11 +1,18 @@
 package bw4;
 
+import bw4.DAO.*;
+import bw4.entities.*;
+import bw4.enums.TipoMezzo;
+import bw4.exceptions.UtenteNonTrovatoException;
 import bw4.DAO.MezzoDAO;
 import bw4.DAO.PuntoVenditaDAO;
 import bw4.DAO.PercorrenzaDAO;
 import bw4.DAO.TrattaDAO;
-import bw4.DAO.TitoloDiViaggioDAO;
-import bw4.DAO.BigliettoDAO;
+import bw4.entities.DistributoreAutomatico;
+import bw4.entities.Mezzo;
+import bw4.entities.PuntoVendita;
+import bw4.entities.RivenditoreAutorizzato;
+import bw4.enums.StatoMezzo;
 //import bw4.DAO.AbbonamentoDAO;
 import bw4.entities.*;
 import bw4.enums.TipoMezzo;
@@ -13,6 +20,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -31,11 +39,12 @@ public class Application {
                 MezzoDAO md = new MezzoDAO(em);
                 TrattaDAO td = new TrattaDAO(em);
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
+                UtenteDAO ud = new UtenteDAO(em);
+                TesseraDAO tesseraDAO = new TesseraDAO(em);
                 TitoloDiViaggioDAO tvd = new TitoloDiViaggioDAO(em);
                 BigliettoDAO bd = new BigliettoDAO(em);
-                //AbbonamentoDAO ad = new AbbonamentoDAO(em);
-
-
+                ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
+                // AbbonamentoDAO ad = new AbbonamentoDAO(em);
 
                 // DATI
 
@@ -46,7 +55,7 @@ public class Application {
                 Mezzo mezzoAntroReggia = new Mezzo(TipoMezzo.AUTOBUS, "Antroreggia");
                 Mezzo mezzoAntroTana = new Mezzo(TipoMezzo.AUTOBUS, "Antrotana");
                 Mezzo mezzoChioscoAntro = new Mezzo(TipoMezzo.AUTOBUS, "Chioscantro");
-                Mezzo mezzoChioscoCittaLaggiu = new Mezzo(TipoMezzo.TRAM, "ChioscoCitta");
+                Mezzo mezzoChioscoCittaLaggiu = new Mezzo(TipoMezzo.TRAM, "Chioscocitta");
                 Mezzo mezzoChioscoReggia = new Mezzo(TipoMezzo.AUTOBUS, "Chioscoreggia");
                 Mezzo mezzoChioscoTana = new Mezzo(TipoMezzo.AUTOBUS, "Chioscotana");
                 Mezzo mezzoCittaLaggiuAntro = new Mezzo(TipoMezzo.TRAM, "Cittantro");
@@ -60,9 +69,10 @@ public class Application {
                 Mezzo mezzoTanaAntro = new Mezzo(TipoMezzo.AUTOBUS, "Tanantro");
                 Mezzo mezzoTanaChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Tanachiosco");
                 Mezzo mezzoTanaCittalaggiu = new Mezzo(TipoMezzo.TRAM, "Tanacitta");
-                Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "TanaReggia");
+                Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "Tanareggia");
 
-                // DATI
+                // PUNTI VENDITA
+
                 PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate",
                                 "Castello dei fiori");
                 PuntoVendita puntoVendita2 = new RivenditoreAutorizzato("KUDFG", "Arriverai cantando", "Città Laggiù");
@@ -84,6 +94,32 @@ public class Application {
 
                 Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
 
+                // utenti e tessere
+                Utente utente1 = new Utente("MICOT", "Milo", "Cotogno", LocalDate.of(1981, 1, 14),
+                                "Regno di Fiabiselva", "Bibitiere e Aggiusta guai");
+                Utente utente2 = new Utente("LULU", "Lupo", "Lucio", LocalDate.of(1956, 1, 16), "Fittaforesta",
+                                "Lupo di Fiaba");
+                Utente utente3 = new Utente("STRVAR", "Strega", "Varana", LocalDate.of(1976, 10, 9), "Stregovia",
+                                "Strega Viola");
+                Utente utente4 = new Utente("FALU", "Fata", "Lina", LocalDate.of(2010, 5, 30), "Regno d'Oltracque",
+                                "Fata Assistente");
+                Utente utente5 = new Utente("GNORO", "Gnomo", "Ronfo", LocalDate.of(2018, 12, 24),
+                                "Villaggio degli Gnomi", "Produrre tappi di sughero");
+                Utente utente6 = new Utente("ORORC", "Orchessa", "Orchidea", LocalDate.of(1945, 3, 31), "Orchiburghia",
+                                "Contadina di cocomeronzoli");
+                Utente utente7 = new Utente("REGGAR", "Reginotta", "Gardenia", LocalDate.of(2000, 3, 31),
+                                "Isola Giardinia", "Regina");
+                Utente utente8 = new Utente("CUZIB", "Cuoco", "Zibibbo", LocalDate.of(1998, 4, 27), "Stregovia",
+                                "Cuoco");
+                Tessera tessera1 = new Tessera(1234, LocalDate.of(2025, 4, 19));
+                Tessera tessera2 = new Tessera(5678, LocalDate.of(2026, 5, 10));
+                Tessera tessera3 = new Tessera(9542, LocalDate.of(2025, 11, 3));
+                Tessera tessera4 = new Tessera(9346, LocalDate.of(2023, 1, 11));
+                Tessera tessera5 = new Tessera(0653, LocalDate.of(2026, 6, 24));
+                Tessera tessera6 = new Tessera(1398, LocalDate.of(2025, 12, 6));
+                Tessera tessera7 = new Tessera(4577, LocalDate.of(2024, 7, 30));
+                Tessera tessera8 = new Tessera(3573, LocalDate.of(2026, 2, 14));
+
                 // METODO SAVE
                 // pvd.save(puntoVendita1);
                 // pvd.save(puntoVendita2);
@@ -96,6 +132,44 @@ public class Application {
                 // pvd.save(puntoVendita9);
                 // pvd.save(puntoVendita10);
                 // md.saveMezzo(mezzo1);
+
+                // ud.save(utente1);
+                // ud.save(utente2);
+                // ud.save(utente3);
+                // ud.save(utente4);
+                // ud.save(utente5);
+                // ud.save(utente6);
+                // ud.save(utente7);
+                // ud.save(utente8);
+
+                // Utente utente1FromDB = ud.findByCodiceUtente("MICOT");
+                // Utente utente2FromDB = ud.findByCodiceUtente("LULU");
+                // Utente utente3FromDB = ud.findByCodiceUtente("STRVAR");
+                // Utente utente4FromDB = ud.findByCodiceUtente("FALU");
+                // Utente utente5FromDB = ud.findByCodiceUtente("GNORO");
+                // Utente utente6FromDB = ud.findByCodiceUtente("ORORC");
+                // Utente utente7FromDB = ud.findByCodiceUtente("REGGAR");
+                // Utente utente8FromDB = ud.findByCodiceUtente("CUZIB");
+                //
+                //
+                // tessera1.setUtente(utente1FromDB);
+                // tessera2.setUtente(utente2FromDB);
+                // tessera3.setUtente(utente3FromDB);
+                // tessera4.setUtente(utente4FromDB);
+                // tessera5.setUtente(utente5FromDB);
+                // tessera6.setUtente(utente6FromDB);
+                // tessera7.setUtente(utente7FromDB);
+                // tessera8.setUtente(utente8FromDB);
+                //
+                //
+                // tesseraDAO.save(tessera1);
+                // tesseraDAO.save(tessera2);
+                // tesseraDAO.save(tessera3);
+                // tesseraDAO.save(tessera4);
+                // tesseraDAO.save(tessera5);
+                // tesseraDAO.save(tessera6);
+                // tesseraDAO.save(tessera7);
+                // tesseraDAO.save(tessera8);
 
                 // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
                 // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
@@ -134,12 +208,27 @@ public class Application {
                 Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
                                 LocalTime.of(0, 10));
 
+                // IN MANUTENZIONE
+                Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
+                Mezzo antrochioscoDalDB = md.findMezzoByName("Antrochiosco");
+                Manutenzione manutenzioneReggiatana = new Manutenzione(LocalDate.of(2026, 6, 24), reggiatanaDalDB,
+                                "Problemi al motore");
+                Manutenzione manutenzioneAntrochiosco = new Manutenzione(LocalDate.of(2026, 5, 10), antrochioscoDalDB,
+                                "Perdita olio");
+
                 // METODO SAVE
 
-                // PUNTI VENDITA
-
-                // pvd.savePuntoVendita(puntoVendita1);
-                // pvd.savePuntoVendita(puntoVendita2);
+                // PUNTO VENDITA
+                // pvd.save(puntoVendita1);
+                // pvd.save(puntoVendita2);
+                // pvd.save(puntoVendita3);
+                // pvd.save(puntoVendita4);
+                // pvd.save(puntoVendita5);
+                // pvd.save(puntoVendita6);
+                // pvd.save(puntoVendita7);
+                // pvd.save(puntoVendita8);
+                // pvd.save(puntoVendita9);
+                // pvd.save(puntoVendita10);
 
                 // MEZZO
                 // md.saveMezzo(mezzoAntroChiosco);
@@ -163,11 +252,7 @@ public class Application {
                 // md.saveMezzo(mezzoTanaCittalaggiu);
                 // md.saveMezzo(mezzoTanaReggia);
 
-                // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
-                // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
-                // TipoMezzo.TRAM);
-
-                Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
+                // TRATTA
                 // td.save(antroDellaStregaToChiosco);
                 // td.save(antroDellaStregaToCittaLaggiu);
                 // td.save(antroDellaStregaToReggiaDiReQuercia);
@@ -188,14 +273,41 @@ public class Application {
                 // td.save(tanaDelLupoToChiosco);
                 // td.save(tanaDelLupoToCittaLaggiu);
                 // td.save(tanaDelLupoToReggiaDiReQuercia);
+
+                // IN MANUTENZIONE
+                // manutenzioneDAO.save(manutenzioneReggiatana);
+                // manutenzioneDAO.save(manutenzioneAntrochiosco);
+
+                // METODI
+
+                // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
+                // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
+                // TipoMezzo.TRAM);
+
+                // METODO TROVA MEZZO BY NAME
+                // md.findMezzoByName("Reggiatana");
+
+                // METODO RICERCA MEZZO PER NOME E CAMBIA STATO DEL MEZZO
+                // md.findMezzoByNameAndChangeStatus("Reggiatana", StatoMezzo.IN_MANUTENZIONE);
+                // md.findMezzoByNameAndChangeStatus("Antrochiosco",
+                // StatoMezzo.IN_MANUTENZIONE);
+
+                // METODO TROVA MANUTENZIONE IN CORSO
+                Manutenzione manutenzioneInCorso1 = manutenzioneDAO.findManutenzioneInCorsoByName("Antrochiosco");
+
+                // METODO SET DATA FINE ALLA MANUTENZIONE IN CORSO
+                manutenzioneDAO.setDataFineManutenzione(manutenzioneInCorso1, LocalDate.of(2026, 6, 10));
+
+                // METODO ELIMINA TRATTA
+                Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
                 // td.save(eliminabile);
                 // System.out.println(td.findById("48e48cee-d0bc-4c93-973a-d9a82a20e585"));
                 // td.deleteById("48e48cee-d0bc-4c93-973a-d9a82a20e585");
 
-                //Test
+                // Test
                 List<TitoloDiViaggio> risultati = tvd.findAll();
                 for (TitoloDiViaggio t : risultati) {
-                    System.out.println(t);
+                        System.out.println(t);
                 }
 
         }

@@ -50,7 +50,7 @@ public class PercorrenzaDAO {
         System.out.println("La percorrenza " + percorrenza + " è stata eliminata!");
     }
 
-    public Double calcolaTempoMedioPercorrenza(UUID idTratta, UUID idMezzo){
+    public LocalTime calcolaTempoMedioPercorrenza(UUID idTratta, UUID idMezzo){
         List<LocalTime> tempi = em.createQuery(
                         "SELECT p.tempoEffettivo FROM Percorrenza p WHERE p.tratta.idTratta = :idTratta AND p.mezzo.idMezzo = :idMezzo AND p.tempoEffettivo IS NOT NULL",
                         LocalTime.class)
@@ -60,16 +60,16 @@ public class PercorrenzaDAO {
 
         if(tempi.isEmpty()){
             System.out.println("Nessuna percorrenza per questo mezzo su questa tratta");
-            return 0.0;
+            return LocalTime.of(0,0);
         }
 
         double sommaSecondi = tempi.stream().mapToDouble(LocalTime::toSecondOfDay).sum();
-        double mediaSecondi = sommaSecondi / tempi.size();
+        long mediaSecondi = (long) (sommaSecondi / tempi.size());
 
-        return mediaSecondi / 60;
+        return LocalTime.ofSecondOfDay(mediaSecondi);
     }
 
-    public Double calcolaTempoMedioPercorrenza(String idTratta, String idMezzo){
+    public LocalTime calcolaTempoMedioPercorrenza(String idTratta, String idMezzo){
         List<LocalTime> tempi = em.createQuery(
                         "SELECT p.tempoEffettivo FROM Percorrenza p WHERE p.tratta.idTratta = :idTratta AND p.mezzo.idMezzo = :idMezzo AND p.tempoEffettivo IS NOT NULL",
                         LocalTime.class)
@@ -79,13 +79,13 @@ public class PercorrenzaDAO {
 
         if(tempi.isEmpty()){
             System.out.println("Nessuna percorrenza per questo mezzo su questa tratta");
-            return 0.0;
+            return LocalTime.of(0,0);
         }
 
         double sommaSecondi = tempi.stream().mapToDouble(LocalTime::toSecondOfDay).sum();
-        double mediaSecondi = sommaSecondi / tempi.size();
+        long mediaSecondi = (long) (sommaSecondi / tempi.size());
 
-        return mediaSecondi / 60;
+        return LocalTime.ofSecondOfDay(mediaSecondi);
     }
 
 
@@ -117,7 +117,7 @@ public class PercorrenzaDAO {
             transaction.commit();
             System.out.println("Tempo effettivo aggiornato con successo per la percorrenza: " + idPercorrenza);
         } else {
-            System.out.println("Alla percorrenza con ID: " + idPercorrenza + "è già stato assegnato un tempo effettivo!");
+            System.out.println("Alla percorrenza con ID: " + idPercorrenza + " è già stato assegnato un tempo effettivo!");
         }
     }
 
@@ -131,7 +131,10 @@ public class PercorrenzaDAO {
             transaction.commit();
             System.out.println("Tempo effettivo aggiornato con successo per la percorrenza: " + idPercorrenza);
         } else {
-            System.out.println("Alla percorrenza con ID: " + idPercorrenza + "è già stato assegnato un tempo effettivo!");
+            System.out.println("Alla percorrenza con ID: " + idPercorrenza + " è già stato assegnato un tempo effettivo!");
         }
     }
+
+
+
 }
