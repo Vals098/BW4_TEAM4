@@ -63,7 +63,6 @@ public Utente findByCodiceUtente(String codiceUtente){
         if(found == null){
             throw new UtenteNonTrovatoException("L'utente " + codiceUtente + " non fa parte del Fantabosco!");
         }
-
         return found;
 }
 
