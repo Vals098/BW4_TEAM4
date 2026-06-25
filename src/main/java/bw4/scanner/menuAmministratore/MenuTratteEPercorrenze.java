@@ -52,7 +52,7 @@ public class MenuTratteEPercorrenze {
                     System.out.println("Tratta salvata con successo! ");
                     break;
                 case "2":
-                    System.out.println("\n--- AVVIO NUOVA PERCORRENZA (SELEZIONE GUIDATA) ---");
+                    System.out.println("\n--- AVVIO NUOVO VIAGGIO ---");
                     List<Tratta> listaTratte = td.findAll();
                     if (listaTratte.isEmpty()) {
                         System.out.println("Accipigna! Non ci sono tratte registrate nel sistema. Creane prima una.");
@@ -72,7 +72,6 @@ public class MenuTratteEPercorrenze {
                         break;
                     }
                     Tratta tSelected = listaTratte.get(indiceTratta);
-
 
                     List<Mezzo> listaMezzi = md.findAllInServizio();
                     if (listaMezzi.isEmpty()) {
@@ -96,19 +95,23 @@ public class MenuTratteEPercorrenze {
 
                     Percorrenza p = new Percorrenza(tSelected, mSelected);
                     pd.save(p);
-                    System.out.println("\nNuova percorrenza avviata con successo! Il mezzo è partito sulla tratta " + tSelected.getZonaPartenza() + " -> " + tSelected.getCapolinea());
+                    System.out.println("\nVado e svengo! Il mezzo è partito sulla tratta " + tSelected.getZonaPartenza() + " -> " + tSelected.getCapolinea());
                     break;
 
                 case "3":
-                    System.out.println("\n--- REGISTRA ARRIVO (SELEZIONE GUIDATA) ---");
+                    System.out.println("\n--- REGISTRA ARRIVO ---");
+
+                    System.out.println("\n==================================================");
+                    System.out.println("Per mille cuscini! Quanto ci mettono questi mezzi?");
+                    System.out.println("==================================================\n");
 
                     List<Percorrenza> attive = pd.findPercorrenzeAttive();
                     if (attive.isEmpty()) {
-                        System.out.println("Al momento non ci sono mezzi in viaggio nel Fantabosco.");
+                        System.out.println("Per tutte le pentole magiche! Al momento non ci sono mezzi in viaggio nel Fantabosco.");
                         break;
                     }
 
-                    System.out.println("Seleziona la corsa arrivata al capolinea:");
+                    System.out.println("Seleziona la corsa:");
                     for (int i = 0; i < attive.size(); i++) {
                         Percorrenza per = attive.get(i);
                         System.out.println((i + 1) + ". Mezzo: [" + per.getMezzo().getNomeMezzo() +
@@ -181,10 +184,6 @@ public class MenuTratteEPercorrenze {
                     }
                     Mezzo mezzoScelto = mezziMedia.get(idxMezzo);
 
-                    System.out.println("\nInterrogazione dell'Archivio per il mezzo "
-                            + mezzoScelto.getNomeMezzo() + " sulla tratta "
-                            + trattaScelta.getZonaPartenza() + " -> " + trattaScelta.getCapolinea() + "...");
-
                     LocalTime tempoMedio = pd.calcolaTempoMedioPercorrenza(trattaScelta.getIdTratta(), mezzoScelto.getIdMezzo());
 
                     if (tempoMedio != null) {
@@ -238,19 +237,20 @@ public class MenuTratteEPercorrenze {
                     }
                     Mezzo mezzoContaScelto = mezziConta.get(idxMezzoConta);
 
-                    System.out.println("\nConteggio delle corse completate nell'Archivio...");
-
                     Long numeroCorse = pd.numeroPercorrenzePerMezzoETratta(trattaContaScelta.getIdTratta(), mezzoContaScelto.getIdMezzo());
 
                     System.out.println("\n=========================================================");
+                    if(numeroCorse==1){ System.out.println("Il mezzo '" + mezzoContaScelto.getNomeMezzo() +
+                            "' ha completato la tratta " + trattaContaScelta.getZonaPartenza() +
+                            " -> " + trattaContaScelta.getCapolinea() + " una sola volta.");}else {
                     System.out.println("Il mezzo '" + mezzoContaScelto.getNomeMezzo() +
                             "' ha completato la tratta " + trattaContaScelta.getZonaPartenza() +
-                            " -> " + trattaContaScelta.getCapolinea() + " per ben " + numeroCorse + " volte.");
-                    System.out.println("\n=========================================================");
+                            " -> " + trattaContaScelta.getCapolinea() + " per ben " + numeroCorse + " volte.");}
+                    System.out.println("=========================================================");
                     break;
 
                 case "0":
-                    System.out.println("\nRitorno alla Consolle Amministratore...");
+                    System.out.println("\nRitorno al Menu Dello Gnomo Archivista...");
                     inSessione = false;
                     break;
 
