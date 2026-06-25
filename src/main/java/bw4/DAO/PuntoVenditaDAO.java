@@ -2,11 +2,13 @@ package bw4.DAO;
 
 import bw4.entities.DistributoreAutomatico;
 import bw4.entities.PuntoVendita;
+import bw4.entities.Tratta;
 import bw4.exceptions.PuntoVenditaNonTrovatoException;
 import bw4.exceptions.TitoloDiViaggioNonTrovatoException;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.SimpleTimeZone;
 import java.util.UUID;
@@ -30,6 +32,16 @@ public class PuntoVenditaDAO {
 
         System.out.println("Ultim'ora dal Fantabosco! Il nuovo punto vendita " + newPuntoVendita.getNomePuntoVendita() + " è apparso!");
     }
+
+//    FIND ALL
+public List<DistributoreAutomatico> findAll() {
+    try {
+        return em.createQuery("FROM DistributoreAutomatico ", DistributoreAutomatico.class).getResultList();
+    } catch (Exception e) {
+        System.out.println("Errore durante il recupero di distributori: " + e.getMessage());
+        return new ArrayList<>();
+    }
+}
 
     //    FINDBYID
     public PuntoVendita findById(UUID idPuntoVendita){
@@ -109,9 +121,6 @@ public class PuntoVenditaDAO {
 
         List<DistributoreAutomatico> risultati = query.getResultList();
 
-        if(risultati.isEmpty()){
-            throw new PuntoVenditaNonTrovatoException("Per la mia corona di ghiande! Nessun distributore guasto nel luogo " + luogo + "!!");
-        }
 
         return risultati;
 

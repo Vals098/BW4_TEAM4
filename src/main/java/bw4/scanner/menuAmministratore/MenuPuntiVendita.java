@@ -5,6 +5,7 @@ import bw4.entities.DistributoreAutomatico;
 import bw4.entities.RivenditoreAutorizzato;
 import bw4.exceptions.PuntoVenditaNonTrovatoException;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuPuntiVendita {
@@ -23,9 +24,14 @@ public class MenuPuntiVendita {
         while (inSessione) {
             System.out.println("\n=== MENU Punti Vendita ===\n");
             System.out.println("1. Crea nuovo Punto Vendita");
+//            implementare lista luoghi
             System.out.println("2. Numero biglietti/abbonamenti dato Punto Vendita");
+//            implementare lista punti vendita
             System.out.println("3. Controllo distributori guasti nella zona");
+//            implementare lista luoghi
             System.out.println("4. Segnalazione distributore guasto");
+//            implementare errore se è già segnato come guasto
+            System.out.println("5. Segnalazione distributore nuovamente in servizio");
             System.out.println("0. Torna al menu amministratore");
 
             String scelta = scanner.nextLine();
@@ -85,9 +91,18 @@ public class MenuPuntiVendita {
                 case "3":
                     System.out.println("Inserisci il magico luogo dove si trova il Punto Vendita:");
                     String luogo = scanner.nextLine();
-                    try{
-                        pvd.findGuastiByLuogo(luogo);
-                    }catch(PuntoVenditaNonTrovatoException e){
+                    try {
+                        pvd.findByLuogo(luogo);
+                        List<DistributoreAutomatico> guasti = pvd.findGuastiByLuogo(luogo);
+
+                        if (guasti.isEmpty()) {
+                            System.out.println("Per la mia corona di ghiande! Nessun distributore guasto nel luogo " + luogo + "!");
+                        } else {
+                            guasti.forEach(d ->
+                                    System.out.println("Distributori Guasti Trovati: " + d.getNomePuntoVendita()));
+                        }
+
+                    } catch (PuntoVenditaNonTrovatoException e) {
                         System.out.println(e.getMessage());
                     }
                     break;
