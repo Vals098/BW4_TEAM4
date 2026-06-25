@@ -9,7 +9,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "percorrenza")
 
-public class Percorrenza {
+public class
+Percorrenza {
 
     //Attributi
 
