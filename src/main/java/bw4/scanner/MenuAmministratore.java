@@ -23,14 +23,14 @@ public class MenuAmministratore {
     public MenuAmministratore(
             AbbonamentoDAO ad,
             PuntoVenditaDAO pvd,
-                              MezzoDAO md,
-                              TrattaDAO td,
-                              PercorrenzaDAO pd,
-                              UtenteDAO ud,
-                              TesseraDAO tesseraDAO,
-                              TitoloDiViaggioDAO tvd,
-                              BigliettoDAO bd,
-                              ManutenzioneDAO manutenzioneDAO) {
+            MezzoDAO md,
+            TrattaDAO td,
+            PercorrenzaDAO pd,
+            UtenteDAO ud,
+            TesseraDAO tesseraDAO,
+            TitoloDiViaggioDAO tvd,
+            BigliettoDAO bd,
+            ManutenzioneDAO manutenzioneDAO) {
 
         this.pvd = pvd;
         this.md = md;
@@ -64,7 +64,7 @@ public class MenuAmministratore {
             switch (scelta) {
 
                 case "1":
-                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere();
+                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere(ud,tesseraDAO);
                     menuUtentiETessere.start();
                     break;
 
