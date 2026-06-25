@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -132,6 +133,18 @@ public class PercorrenzaDAO {
             System.out.println("Tempo effettivo aggiornato con successo per la percorrenza: " + idPercorrenza);
         } else {
             System.out.println("Alla percorrenza con ID: " + idPercorrenza + " è già stato assegnato un tempo effettivo!");
+        }
+    }
+
+    public List<Percorrenza> findPercorrenzeAttive() {
+        try {
+            return this.em.createQuery(
+                    "SELECT p FROM Percorrenza p WHERE p.tempoEffettivo IS NULL",
+                    Percorrenza.class
+            ).getResultList();
+        } catch (Exception e) {
+            System.out.println("Errore durante il recupero delle percorrenze attive: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 
