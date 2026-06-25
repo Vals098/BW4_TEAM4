@@ -61,9 +61,11 @@ public class MenuParcoMezzi {
                     break;
 
                 case 3:
-                    System.out.println("Di quale mezzo vuoi tenere traccia dei giorni di manutenzione?");
+                    System.out.println("Di quale mezzo vuoi impostare la data di fine manutenzione?");
                     String nomeMezzoTracciaGiorniManutenzione = scanner.nextLine();
-                    manutenzioneDAO.periodoManutenzione(nomeMezzoTracciaGiorniManutenzione);
+                    System.out.println("inserisci la data di fine manutenzione");
+                    LocalDate dataFineManutenzione = LocalDate.parse(scanner.nextLine());
+                    manutenzioneDAO.setDataFineManutenzione(nomeMezzoTracciaGiorniManutenzione,dataFineManutenzione);
                     break;
 
                 case 4:
