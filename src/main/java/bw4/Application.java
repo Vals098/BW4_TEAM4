@@ -11,7 +11,11 @@ import bw4.entities.DistributoreAutomatico;
 import bw4.entities.Mezzo;
 import bw4.entities.PuntoVendita;
 import bw4.entities.RivenditoreAutorizzato;
-import bw4.DAO.AbbonamentoDAO;
+import bw4.enums.StatoMezzo;
+//import bw4.DAO.AbbonamentoDAO;
+import bw4.entities.*;
+import bw4.enums.TipoMezzo;
+import bw4.scanner.MenuIniziale;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -42,7 +46,6 @@ public class Application {
                 AbbonamentoDAO ad = new AbbonamentoDAO(em);
 
                 // DATI
-
                 // MEZZI
 
                 Mezzo mezzoAntroChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Antrochiosco");
@@ -166,10 +169,6 @@ public class Application {
 //                 tesseraDAO.save(tessera7);
 //                 tesseraDAO.save(tessera8);
 
-                // METODO MODIFICA IL TIPO DI MEZZO DA BUS A TRAM E VICEVERSA
-                // md.modificaTipoMezzo(UUID.fromString("95c82485-8605-43b4-9e97-efed36a05399"),
-                // TipoMezzo.TRAM);
-
                 // TRATTE
 
                 Tratta antroDellaStregaToChiosco = new Tratta("Antro della Strega", "Chiosco", LocalTime.of(0, 20));
@@ -204,12 +203,15 @@ public class Application {
                                 LocalTime.of(0, 10));
 
                 // IN MANUTENZIONE
-//                Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
-//                Mezzo antrochioscoDalDB = md.findMezzoByName("Antrochiosco");
-//                Manutenzione manutenzioneReggiatana = new Manutenzione(LocalDate.of(2026, 6, 24), reggiatanaDalDB,
-//                                "Problemi al motore");
-//                Manutenzione manutenzioneAntrochiosco = new Manutenzione(LocalDate.of(2026, 5, 10), antrochioscoDalDB,
-//                                "Perdita olio");
+                // Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
+                // Mezzo antrochioscoDalDB = md.findMezzoByName("Antrochiosco");
+                // Manutenzione manutenzioneReggiatana = new Manutenzione(LocalDate.of(2026, 6,
+                // 24), reggiatanaDalDB,
+                // "Problemi al motore");
+
+                // Manutenzione manutenzioneAntrochiosco = new Manutenzione(LocalDate.of(2026,
+                // 5, 10), antrochioscoDalDB,
+                // "Perdita olio");
 
                 // METODO SAVE
 
@@ -269,9 +271,22 @@ public class Application {
 //                 td.save(tanaDelLupoToCittaLaggiu);
 //                 td.save(tanaDelLupoToReggiaDiReQuercia);
 
+                // MENU INIZIALE
+                MenuIniziale menuIniziale = new MenuIniziale(
+                                pvd,
+                                md,
+                                td,
+                                pd,
+                                ud,
+                                tesseraDAO,
+                                tvd,
+                                bd,
+                                manutenzioneDAO);
+
+                menuIniziale.start();
+
                 // IN MANUTENZIONE
-                // manutenzioneDAO.save(manutenzioneReggiatana);
-                // manutenzioneDAO.save(manutenzioneAntrochiosco);
+                // manutenzioneDAO.saveInManutenzione(manutenzioneReggiatana);
 
                 // METODI
 
@@ -286,24 +301,32 @@ public class Application {
                 // md.findMezzoByNameAndChangeStatus("Reggiatana", StatoMezzo.IN_MANUTENZIONE);
                 // md.findMezzoByNameAndChangeStatus("Antrochiosco",
                 // StatoMezzo.IN_MANUTENZIONE);
+                // md.findMezzoByNameAndChangeStatus("Antrochiosco",
+                // StatoMezzo.IN_MANUTENZIONE);
+                // md.findMezzoByNameAndChangeStatus("Reggiatana", StatoMezzo.IN_MANUTENZIONE);
 
-                // METODO TROVA MANUTENZIONE IN CORSO
-//                Manutenzione manutenzioneInCorso1 = manutenzioneDAO.findManutenzioneInCorsoByName("Antrochiosco");
+                // METODO TROVA MANUTENZIONE IN CORSO DATO IL NOME DI UN MEZZO
+                // manutenzioneDAO.findManutenzioneInCorsoByName("Reggiatana");
 
                 // METODO SET DATA FINE ALLA MANUTENZIONE IN CORSO
-//                manutenzioneDAO.setDataFineManutenzione(manutenzioneInCorso1, LocalDate.of(2026, 6, 10));
+
+                // manutenzioneDAO.setDataFineManutenzione("Reggiatana",
+                // LocalDate.of(2026,6,25));
 
                 // METODO ELIMINA TRATTA
-                Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
+                // Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0,
+                // 30));
                 // td.save(eliminabile);
                 // System.out.println(td.findById("48e48cee-d0bc-4c93-973a-d9a82a20e585"));
                 // td.deleteById("48e48cee-d0bc-4c93-973a-d9a82a20e585");
 
+                // ASSEGNAZIONE TRATTA TRAMITE MEZZO IN SERVIZIO
+
                 // Test
-                List<TitoloDiViaggio> risultati = tvd.findAll();
-                for (TitoloDiViaggio t : risultati) {
-                        System.out.println(t);
-                }
+                // List<TitoloDiViaggio> risultati = tvd.findAll();
+                // for (TitoloDiViaggio t : risultati) {
+                // System.out.println(t);
+                // }
 
 //               // CONTROLLO VALIDITÀ
 //                System.out.println("CONTROLLO TESSERA");
