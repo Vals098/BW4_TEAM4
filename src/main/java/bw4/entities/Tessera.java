@@ -11,7 +11,7 @@ public class Tessera {
     @Column(name = "id_tessera")
     private UUID idTessera;
 
-    @Column(name = "numero_tessera", nullable = false, unique = true )
+    @Column(name = "numero_tessera", nullable = false, unique = true)
     private int numeroTessera;
 
     @Column(name = "data_di_emissione", nullable = false)
@@ -20,20 +20,20 @@ public class Tessera {
     @Column(name = "data_di_scadenza", nullable = false)
     private LocalDate dataDiScadenza;
 
-//    Relazione
     @OneToOne
-    @JoinColumn(name = "id_utente",nullable = false)
+    @JoinColumn(name = "id_utente", nullable = false)
     private Utente utente;
 
     public Tessera() {}
 
+    // richiede l'utente obbligatorio per rispettare il nullable = false
     public Tessera(int numeroTessera, LocalDate dataDiEmissione) {
         this.numeroTessera = numeroTessera;
         this.dataDiEmissione = dataDiEmissione;
         this.dataDiScadenza = dataDiEmissione.plusYears(1);
+
     }
 
-//    Getter
 
     public UUID getIdTessera() {
         return idTessera;
@@ -55,9 +55,6 @@ public class Tessera {
         return utente;
     }
 
-    //    Setter
-
-
     public void setUtente(Utente utente) {
         this.utente = utente;
     }
@@ -70,13 +67,16 @@ public class Tessera {
         this.dataDiScadenza = dataDiScadenza;
     }
 
+    public boolean isValid(int numeroTessera) {
+        return LocalDate.now().isBefore(this.dataDiScadenza);
+    }
+
     @Override
     public String toString() {
         return "Tessera{" +
-                ", numeroTessera=" + numeroTessera +
+                "numeroTessera=" + numeroTessera +
                 ", dataDiEmissione=" + dataDiEmissione +
                 ", dataDiScadenza=" + dataDiScadenza +
                 '}';
     }
-
 }

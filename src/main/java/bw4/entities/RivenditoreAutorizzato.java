@@ -15,6 +15,4 @@ public class RivenditoreAutorizzato extends PuntoVendita {
         super(codicePuntoVendita,nomePuntoVendita, luogo);
     }
 
-    
-
 }
