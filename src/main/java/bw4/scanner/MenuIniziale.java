@@ -18,8 +18,10 @@ public class MenuIniziale {
     private final TitoloDiViaggioDAO tvd;
     private final BigliettoDAO bd;
     private final ManutenzioneDAO manutenzioneDAO;
+    private final AbbonamentoDAO ad;
 
-    public MenuIniziale(PuntoVenditaDAO pvd,
+    public MenuIniziale( AbbonamentoDAO ad,
+            PuntoVenditaDAO pvd,
                         MezzoDAO md,
                         TrattaDAO td,
                         PercorrenzaDAO pd,
@@ -38,6 +40,7 @@ public class MenuIniziale {
         this.tvd = tvd;
         this.bd = bd;
         this.manutenzioneDAO = manutenzioneDAO;
+        this.ad = ad;
 
     }
 
@@ -85,6 +88,7 @@ public class MenuIniziale {
 
                 MenuAmministratore menuAmministratore =
                         new MenuAmministratore(
+                                ad,
                                 pvd,
                                 md,
                                 td,
@@ -104,6 +108,7 @@ public class MenuIniziale {
                 System.out.println("\nAccesso eseguito come cittadino di Città Laggiù");
 
                 MenuUtente menuUtente = new MenuUtente(
+                        ad,
                         pvd,
                         md,
                         td,
@@ -113,6 +118,7 @@ public class MenuIniziale {
                         tvd,
                         bd,
                         manutenzioneDAO);
+
                 menuUtente.start();
 
             } else {

@@ -18,8 +18,11 @@ public class MenuAmministratore {
     private final TitoloDiViaggioDAO tvd;
     private final BigliettoDAO bd;
     private final ManutenzioneDAO manutenzioneDAO;
+    private final AbbonamentoDAO ad;
 
-    public MenuAmministratore(PuntoVenditaDAO pvd,
+    public MenuAmministratore(
+            AbbonamentoDAO ad,
+            PuntoVenditaDAO pvd,
                               MezzoDAO md,
                               TrattaDAO td,
                               PercorrenzaDAO pd,
@@ -38,6 +41,7 @@ public class MenuAmministratore {
         this.tvd = tvd;
         this.bd = bd;
         this.manutenzioneDAO = manutenzioneDAO;
+        this.ad = ad;
 
     }
 
