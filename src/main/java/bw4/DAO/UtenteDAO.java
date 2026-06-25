@@ -4,11 +4,10 @@ import bw4.entities.Utente;
 import bw4.exceptions.UtenteNonTrovatoException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
-import java.util.List;
 import java.util.UUID;
-
 
 public class UtenteDAO {
     private final EntityManager em;
@@ -30,46 +29,35 @@ public class UtenteDAO {
         }
     }
 
+
     public Utente findById(UUID id) {
         return em.find(Utente.class, id);
     }
-//    public void delete(long id) {
-//        Utente trovato = this.findById(id);
-//        if (trovato != null) {
-//            EntityTransaction transaction = em.getTransaction();
-//            try {
-//                transaction.begin();
-//                em.remove(trovato);
-//                transaction.commit();
-//                System.out.println("Utente eliminato!");
-//            } catch (Exception e) {
-//                if (transaction.isActive()) {
-//                    transaction.rollback();
-//                }
-//                System.err.println("Errore: " + e.getMessage());
-//            }
-//        } else {
-//            System.out.println("Impossibile eliminare " + id + ": non trovato!");
-//        }
-//    }
 
-//    FIND BY CODICE UTENTE (Vale)
-public Utente findByCodiceUtente(String codiceUtente){
-        TypedQuery<Utente> query = em.createQuery(
-                "SELECT u FROM Utente u WHERE codiceUtente = :codiceUtente",
-                Utente.class);
-        query.setParameter("codiceUtente", codiceUtente);
-        Utente found = query.getSingleResult();
-        if(found == null){
-            throw new UtenteNonTrovatoException("Accipigna!! L'utente con codic " + codiceUtente + " non fa parte del Fantabosco!");
+    // FIND BY CODICE UTENTE
+    public Utente findByCodiceUtente(String codiceUtente) {
+        try {
+            TypedQuery<Utente> query = em.createQuery(
+                    "SELECT u FROM Utente u WHERE u.codiceUtente = :codiceUtente",
+                    Utente.class);
+            query.setParameter("codiceUtente", codiceUtente);
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            throw new UtenteNonTrovatoException("Accipigna!! L'utente con codice: " + codiceUtente + " non fa parte del Fantabosco!");
         }
-        return found;
-}
+    }
 
-//in main
-// System.out.println("Fantavoloso utente trovato!");
-// System.out.println(utente1FromDB.getNome() + " " + utente1FromDB.getCognome());
-
-
-
+    // Dato il numero tessera trova l'utente
+    public Utente findByNumeroTessera(int numeroTessera) {
+        try {
+            TypedQuery<Utente> query = em.createQuery(
+                    "SELECT u FROM Utente u WHERE u.tessera.numeroTessera = :numTessera",
+                    Utente.class);
+            query.setParameter("numTessera", numeroTessera);
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Nessun utente trovato con il numero tessera: " + numeroTessera);
+            return null; // O puoi lanciare un'eccezione personalizzata anche qui
+        }
+    }
 }
