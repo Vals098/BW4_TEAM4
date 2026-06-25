@@ -48,7 +48,6 @@ public class Mezzo {
             this.capienza = 120;
         } else if (tipoMezzo == TipoMezzo.AUTOBUS) {
             this.capienza = 50;
-
         }
 
     }
@@ -74,7 +73,6 @@ public class Mezzo {
 
     //TOSTRING
 
-
     @Override
     public String toString() {
         return "Mezzo{" +
@@ -86,4 +84,5 @@ public class Mezzo {
                 '}';
     }
 }
+
 

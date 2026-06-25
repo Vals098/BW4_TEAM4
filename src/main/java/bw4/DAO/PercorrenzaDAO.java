@@ -1,10 +1,13 @@
 package bw4.DAO;
 
+import bw4.entities.Mezzo;
 import bw4.entities.Percorrenza;
+import bw4.entities.Tratta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -135,6 +138,49 @@ public class PercorrenzaDAO {
         }
     }
 
+    public List<Percorrenza> findPercorrenzeAttive() {
+        try {
+            return this.em.createQuery(
+                    "SELECT p FROM Percorrenza p WHERE p.tempoEffettivo IS NULL",
+                    Percorrenza.class
+            ).getResultList();
+        } catch (Exception e) {
+            System.out.println("Errore durante il recupero delle percorrenze attive: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+//METODO ASSEGNA TRATTA A MEZZO IN SERVIZIO
 
+    public void assegnaTrattaMezzo(Mezzo mezzo, Tratta tratta){
 
+        if (mezzo == null) {
+            System.out.println("Uffa, superuffa! Non posso assegnare la tratta perché il mezzo non è in servizio o non esiste.");
+            return;
+        }
+
+        EntityTransaction transaction = this.em.getTransaction();
+        try {
+            transaction.begin();
+
+            Percorrenza nuovaPercorrenza = new Percorrenza();
+            nuovaPercorrenza.setMezzo(mezzo);
+            nuovaPercorrenza.setTratta(tratta);
+
+            this.em.persist(nuovaPercorrenza);
+
+            transaction.commit();
+
+            System.out.println("MESSAGGIO IMPORTANTE PER TUTTO IL FANTABOSCO: Il mezzo "
+                    + mezzo.getNomeMezzo() + " è partito sulla tratta "
+                    + tratta.getZonaPartenza() + " -> " + tratta.getCapolinea() + "!");
+
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.err.println("Accipigna! Il database ha fatto i capricci. Impossibile salvare la percorrenza.");
+        }
+        }
 }
+
+

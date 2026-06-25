@@ -1,6 +1,7 @@
 package bw4.DAO;
 
 import bw4.entities.Mezzo;
+import bw4.entities.Tratta;
 import bw4.enums.StatoMezzo;
 import bw4.enums.TipoMezzo;
 import bw4.exceptions.IdMezzoNonTrovatoException;
@@ -10,6 +11,9 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class MezzoDAO {
@@ -87,7 +91,7 @@ public class MezzoDAO {
                 mezzoTrovato.setStatoMezzo(statoMezzo);
                 transaction.commit();
                 if(statoMezzo == StatoMezzo.IN_MANUTENZIONE){
-                    System.out.println("MESSAGGIO IMPORTANTE PER TUTTO IL FANTABOSCO: il mezzo " +nomeMezzo + " è in manutenzione!");
+                    System.out.println("Per tutti i Fanti e i Re del mazzo! Il mezzo " + nomeMezzo + " è ora in manutenzione!");
                 } else if (statoMezzo == StatoMezzo.IN_SERVIZIO) {
                     System.out.println("MESSAGGIO IMPORTANTE PER TUTTO IL FANTABOSCO: il mezzo " +nomeMezzo + " è di nuovo in funzione!");
                 }
@@ -106,6 +110,51 @@ public class MezzoDAO {
             if (transaction.isActive()) transaction.rollback();
             System.out.println("Errore imprevisto del sistema Fantabosco");
             return null;
+        }
+    }
+
+    //RICERCA MEZZO PER NOME E VERIFICA SE E' IN SERVIZIO
+
+    public Mezzo mezzoInServizio (String nomeMezzo){
+        try {
+            Mezzo mezzoTrovato = findMezzoByName(nomeMezzo);
+
+            if (mezzoTrovato != null && mezzoTrovato.getStatoMezzo()==StatoMezzo.IN_SERVIZIO) {
+                return mezzoTrovato;
+            }else { throw new NomeMezzoNonTrovatoException(nomeMezzo);}
+        } catch (NomeMezzoNonTrovatoException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+//DATO NOME MEZZO CERCA I BIGLIETTI VIDIMATI
+public long countObliterazioniPerMezzo(String nomeMezzo, LocalDateTime da, LocalDateTime a) {
+        findMezzoByName(nomeMezzo);
+
+    return entityManager.createQuery(
+                    "SELECT COUNT(b) FROM Biglietto b " +
+                            "WHERE b.obliterato = true " +
+                            "AND b.mezzo.nome_mezzo = :nomeMezzo " +
+                            "AND b.dataEOra BETWEEN :da AND :a", Long.class)
+            .setParameter("nomeMezzo", nomeMezzo)
+            .setParameter("da", da)
+            .setParameter("a", a)
+            .getSingleResult();
+}
+
+
+    //RICERCA TUTTI I MEZZI IN SERVIZIO
+
+    public List<Mezzo> findAllInServizio() {
+        try {
+            return this.entityManager.createQuery(
+                    "SELECT m FROM Mezzo m WHERE m.statoMezzo = bw4.enums.StatoMezzo.IN_SERVIZIO",
+                    Mezzo.class
+            ).getResultList();
+        } catch (Exception e) {
+            System.out.println("Errore durante il recupero dei mezzi: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 

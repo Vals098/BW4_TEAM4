@@ -2,6 +2,7 @@ package bw4.DAO;
 
 import bw4.entities.Manutenzione;
 import bw4.entities.Mezzo;
+import bw4.entities.Tratta;
 import bw4.enums.StatoMezzo;
 import bw4.exceptions.MezzoNonInManutenzioneException;
 import bw4.exceptions.NomeMezzoNonTrovatoException;
@@ -11,6 +12,7 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,10 +32,10 @@ public class ManutenzioneDAO {
         transaction.begin();
         this.entityManager.persist(nuovaManutenzione);
         transaction.commit();
-        System.out.println("Per tutti i Fanti e i Re del mazzo! Il mezzo " + nuovaManutenzione.getMezzo().getNomeMezzo() + " è stato aggiunto alla lista dei mezzi in manutenzione!");
+
     }
 
-    //METODO FIND MANUTENZIONE ATTIVA BY NOME MEZZO
+    //METODO FIND MANUTENZIONE IN CORSO BY NOME MEZZO
 
     public Manutenzione findManutenzioneInCorsoByName (String nomeMezzo){
         TypedQuery<Manutenzione> query = this.entityManager.createQuery("SELECT m FROM Manutenzione m WHERE m.mezzo.nomeMezzo = :nome AND m.dataFine IS NULL", Manutenzione.class);
@@ -80,6 +82,21 @@ public void setDataFineManutenzione (String nomeMezzo, LocalDate dataFineManuten
     }    catch (NomeMezzoNonTrovatoException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    //DATO IL NOME DI UN MEZZO, TRACCIA GIORNI MANUTENZIONE
+
+    public long periodoManutenzione(String nomeMezzo){
+     Manutenzione mezzoTrovato = findManutenzioneInCorsoByName(nomeMezzo);
+    LocalDate dataInizio = mezzoTrovato.getDataInizio();
+   LocalDate dataFine = mezzoTrovato.getDataFine();
+
+     long giorniFermo = ChronoUnit.DAYS.between(dataInizio, dataFine);
+
+        System.out.println("Acciderbolina! Il mezzo selezionato " +mezzoTrovato+ " è stato fermo " + giorniFermo + " giorni");
+return giorniFermo;
+
+
     }
 
     }
