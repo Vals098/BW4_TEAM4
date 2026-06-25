@@ -58,11 +58,8 @@ public Utente findByCodiceUtente(String codiceUtente){
         TypedQuery<Utente> query = em.createQuery(
                 "SELECT u FROM Utente u WHERE codiceUtente = :codiceUtente",
                 Utente.class);
-
         query.setParameter("codiceUtente", codiceUtente);
-
         Utente found = query.getSingleResult();
-
         if(found == null){
             throw new UtenteNonTrovatoException("L'utente " + codiceUtente + " non fa parte del Fantabosco!");
         }
