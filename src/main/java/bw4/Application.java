@@ -272,7 +272,7 @@ public class Application {
 //                 td.save(tanaDelLupoToReggiaDiReQuercia);
 
                 // MENU INIZIALE
-                MenuIniziale menuIniziale = new MenuIniziale(
+                MenuIniziale menuIniziale = new MenuIniziale(ad,
                                 pvd,
                                 md,
                                 td,
@@ -328,7 +328,7 @@ public class Application {
                 // System.out.println(t);
                 // }
 
-//               // CONTROLLO VALIDITÀ
+//                CONTROLLO VALIDITÀ
 //                System.out.println("CONTROLLO TESSERA");
 //                int numeroDaVerificare = 1234;
 //                boolean isValida = tesseraDAO.isValid(numeroDaVerificare);
