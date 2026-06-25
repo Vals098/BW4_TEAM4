@@ -207,10 +207,10 @@ public class Application {
                                 LocalTime.of(0, 10));
 
                 // IN MANUTENZIONE
-                Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
+//                Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
                 //Mezzo antrochioscoDalDB = md.findMezzoByName("Antrochiosco");
-                Manutenzione manutenzioneReggiatana = new Manutenzione(LocalDate.of(2026, 6, 24), reggiatanaDalDB,
-                                "Problemi al motore");
+//                Manutenzione manutenzioneReggiatana = new Manutenzione(LocalDate.of(2026, 6, 24), reggiatanaDalDB,
+//                                "Problemi al motore");
 
                 //Manutenzione manutenzioneAntrochiosco = new Manutenzione(LocalDate.of(2026, 5, 10), antrochioscoDalDB,
                                // "Perdita olio");
@@ -310,7 +310,7 @@ public class Application {
                 // md.findMezzoByNameAndChangeStatus("Antrochiosco",
                 // StatoMezzo.IN_MANUTENZIONE);
                // md.findMezzoByNameAndChangeStatus("Antrochiosco", StatoMezzo.IN_MANUTENZIONE);
-                md.findMezzoByNameAndChangeStatus("Reggiatana", StatoMezzo.IN_MANUTENZIONE);
+//                md.findMezzoByNameAndChangeStatus("Reggiatana", StatoMezzo.IN_MANUTENZIONE);
                 
 
                 // METODO TROVA MANUTENZIONE IN CORSO DATO IL NOME DI UN MEZZO
@@ -321,16 +321,16 @@ public class Application {
                 //manutenzioneDAO.setDataFineManutenzione("Reggiatana", LocalDate.of(2026,6,25));
 
                 // METODO ELIMINA TRATTA
-                Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
+//                Tratta eliminabile = new Tratta("Eliminabile", "Eliminabile", LocalTime.of(0, 30));
                 // td.save(eliminabile);
                 // System.out.println(td.findById("48e48cee-d0bc-4c93-973a-d9a82a20e585"));
                 // td.deleteById("48e48cee-d0bc-4c93-973a-d9a82a20e585");
 
                 // Test
-                List<TitoloDiViaggio> risultati = tvd.findAll();
-                for (TitoloDiViaggio t : risultati) {
-                        System.out.println(t);
-                }
+//                List<TitoloDiViaggio> risultati = tvd.findAll();
+//                for (TitoloDiViaggio t : risultati) {
+//                        System.out.println(t);
+//                }
 
         }
 }
