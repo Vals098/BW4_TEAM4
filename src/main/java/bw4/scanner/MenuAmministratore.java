@@ -64,12 +64,12 @@ public class MenuAmministratore {
             switch (scelta) {
 
                 case "1":
-                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere(ud,tesseraDAO);
+                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere( );
                     menuUtentiETessere.start();
                     break;
 
                 case "2":
-                    MenuBigliettiEAbbonamenti menuBigliettiEAbbonamenti = new MenuBigliettiEAbbonamenti();
+                    MenuBigliettiEAbbonamenti menuBigliettiEAbbonamenti = new MenuBigliettiEAbbonamenti(ad, bd, tvd, tesseraDAO);
                     menuBigliettiEAbbonamenti.start();
                     break;
 
