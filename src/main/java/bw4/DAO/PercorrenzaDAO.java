@@ -181,11 +181,6 @@ public class PercorrenzaDAO {
             System.err.println("Accipigna! Il database ha fatto i capricci. Impossibile salvare la percorrenza.");
         }
         }
-
-
-
-
-
 }
 
 

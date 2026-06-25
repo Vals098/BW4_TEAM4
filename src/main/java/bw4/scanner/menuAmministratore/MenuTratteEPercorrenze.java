@@ -253,7 +253,7 @@ public class MenuTratteEPercorrenze {
                     System.out.println("Il mezzo '" + mezzoContaScelto.getNomeMezzo() +
                             "' ha completato la tratta " + trattaContaScelta.getZonaPartenza() +
                             " -> " + trattaContaScelta.getCapolinea() + " per ben " + numeroCorse + " volte.");
-                    System.out.println("=========================================================");
+                    System.out.println("\n=========================================================");
                     break;
 
                 case "0":

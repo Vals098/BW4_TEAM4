@@ -11,6 +11,8 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class MezzoDAO {
@@ -122,6 +124,20 @@ public class MezzoDAO {
         } catch (NomeMezzoNonTrovatoException e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+
+    //RICERCA TUTTI I MEZZI IN SERVIZIO
+
+    public List<Mezzo> findAllInServizio() {
+        try {
+            return this.entityManager.createQuery(
+                    "SELECT m FROM Mezzo m WHERE m.statoMezzo = bw4.enums.StatoMezzo.IN_SERVIZIO",
+                    Mezzo.class
+            ).getResultList();
+        } catch (Exception e) {
+            System.out.println("Errore durante il recupero dei mezzi: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 
