@@ -70,7 +70,7 @@ public class MenuUtente {
                     break;
 
                 case "2":
-                    AcquistaUnBiglietto acquistaUnBiglietto = new AcquistaUnBiglietto();
+                    AcquistaUnBiglietto acquistaUnBiglietto = new AcquistaUnBiglietto(tvd, pvd);
                     acquistaUnBiglietto.start();
                     break;
 
