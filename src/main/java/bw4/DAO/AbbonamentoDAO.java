@@ -18,10 +18,10 @@ public class AbbonamentoDAO {
 
     // Crea abbonamento solo se tessera valida
     public void creaAbbonamento(Tessera tessera, TipoAbbonamento tipo, String codice, LocalDate dataInizio) {
-        if (!tessera.isValid(tessera.getNumeroTessera())){
-          System.out.println("Tessera scaduta! Impossibile creare abbonamento.");
+        if (!tessera.isValid(tessera.getNumeroTessera())) {
+            System.out.println("Tessera scaduta! Impossibile creare abbonamento.");
             return;
-       }
+        }
         LocalDate dataFine = tipo == TipoAbbonamento.SETTIMANALE
                 ? dataInizio.plusWeeks(1)
                 : dataInizio.plusMonths(1);
@@ -29,13 +29,14 @@ public class AbbonamentoDAO {
         Abbonamento abbonamento = new Abbonamento(codice, dataInizio, dataFine, tipo, tessera);
 
         EntityTransaction transaction = em.getTransaction();
-       try {
+        try {
             transaction.begin();
-           em.persist(abbonamento);
+            em.persist(abbonamento);
             transaction.commit();
             System.out.println("Abbonamento creato: " + codice);
         } catch (Exception e) {
-           if (transaction.isActive()) transaction.rollback();
+            if (transaction.isActive())
+                transaction.rollback();
             System.err.println("Errore: " + e.getMessage());
         }
     }
@@ -48,8 +49,8 @@ public class AbbonamentoDAO {
     // Trova tutti gli abbonamenti di una tessera
     public List<Abbonamento> findByTessera(UUID tesseraId) {
         return em.createQuery(
-                        "SELECT a FROM Abbonamento a WHERE a.tessera.idTessera = :tesseraId",
-                        Abbonamento.class)
+                "SELECT a FROM Abbonamento a WHERE a.tessera.idTessera = :tesseraId",
+                Abbonamento.class)
                 .setParameter("tesseraId", tesseraId)
                 .getResultList();
     }
@@ -57,19 +58,22 @@ public class AbbonamentoDAO {
     // Verifica se esiste un abbonamento valido per una tessera
     public boolean hasAbbonamentoValido(UUID tesseraId) {
         long count = em.createQuery(
-                        "SELECT COUNT(a) FROM Abbonamento a " +
-                                "WHERE a.tessera.idTessera = :tesseraId " +
-                                "AND a.dataScadenza >= :oggi", Long.class)
+                "SELECT COUNT(a) FROM Abbonamento a " +
+                        "WHERE a.tessera.idTessera = :tesseraId " +
+                        "AND a.dataScadenza >= :oggi",
+                Long.class)
                 .setParameter("tesseraId", tesseraId)
                 .setParameter("oggi", LocalDate.now())
                 .getSingleResult();
         return count > 0;
     }
+
     // Conta abbonamenti venduti in un periodo
     public long countAbbonamentiVenduti(LocalDate da, LocalDate a) {
         return em.createQuery(
-                        "SELECT COUNT(a) FROM Abbonamento a " +
-                                "WHERE a.dataEmissione BETWEEN :da AND :a", Long.class)
+                "SELECT COUNT(a) FROM Abbonamento a " +
+                        "WHERE a.dataEmissione BETWEEN :da AND :a",
+                Long.class)
                 .setParameter("da", da)
                 .setParameter("a", a)
                 .getSingleResult();
@@ -78,9 +82,10 @@ public class AbbonamentoDAO {
     // Conta abbonamenti per punto vendita in un periodo
     public long countAbbonamentiPerPuntoVendita(UUID puntoVenditaId, LocalDate da, LocalDate a) {
         return em.createQuery(
-                        "SELECT COUNT(a) FROM Abbonamento a " +
-                                "WHERE a.puntoVendita.idPuntoVendita = :puntoId " +
-                                "AND a.dataEmissione BETWEEN :da AND :a", Long.class)
+                "SELECT COUNT(a) FROM Abbonamento a " +
+                        "WHERE a.puntoVendita.idPuntoVendita = :puntoId " +
+                        "AND a.dataEmissione BETWEEN :da AND :a",
+                Long.class)
                 .setParameter("puntoId", puntoVenditaId)
                 .setParameter("da", da)
                 .setParameter("a", a)

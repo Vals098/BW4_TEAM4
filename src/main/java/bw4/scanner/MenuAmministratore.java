@@ -79,13 +79,16 @@ public class MenuAmministratore {
                     break;
 
                 case "4":
-                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi();
+                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi(md, manutenzioneDAO);
                     menuParcoMezzi.start();
                     break;
 
                 case "5":
                     MenuTratteEPercorrenze menuTratteEPercorrenze = new MenuTratteEPercorrenze();
-                    menuTratteEPercorrenze.start();
+                    menuTratteEPercorrenze.start(
+                            md,
+                            td,
+                            pd);
                     break;
 
                 case "0":

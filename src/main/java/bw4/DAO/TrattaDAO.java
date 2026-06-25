@@ -5,6 +5,8 @@ import bw4.entities.Tratta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class TrattaDAO {
@@ -58,4 +60,12 @@ public class TrattaDAO {
         System.out.println("La tratta "+ tratta +" è stata eliminata!");
     }
 
+    public List<Tratta> findAll() {
+        try {
+            return em.createQuery("FROM Tratta", Tratta.class).getResultList();
+        } catch (Exception e) {
+            System.out.println("Errore durante il recupero delle tratte: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
 }

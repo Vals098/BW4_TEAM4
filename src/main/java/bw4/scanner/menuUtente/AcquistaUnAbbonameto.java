@@ -59,14 +59,33 @@ public class AcquistaUnAbbonameto {
             System.out.println(" Confermi l'acquisto? (s/n)");
             String conferma = scanner.nextLine();
             if (!conferma.equalsIgnoreCase("s")) {
+                System.out.println("Acquisto annullato.");
                 inSessione = false;
                 continue;
             }
 
             //crea codice e chiama DAO
             String codice = "ABB-" + numeroTessera + "-" + tipo + "-" + LocalDate.now();
-            abbonamentoDAO.creaAbbonamento(tessera, tipo, codice, LocalDate.now());
-            System.out.println("Abbonamento acquistato con successo!");
+
+            //controlla se tessera valida prima di creare abbonamento
+            if (!tessera.isValid(tessera.getNumeroTessera())) {
+                System.out.println("Tessera scaduta! Non puoi acquistare un abbonamento.");
+                System.out.println("Vuoi rinnovare la tessera per 50 monete Fantabosco? (s/n)");
+                String rinnovo = scanner.nextLine();
+                if (rinnovo.equalsIgnoreCase("s")) {
+                    tesseraDAO.controllaERinnova(numeroTessera);
+                    System.out.println("Tessera rinnovata! Ora puoi acquistare un abbonamento.");
+                } else {
+                    System.out.println("Acquisto annullato.");
+                    inSessione = false;
+                }
+            }
+            else
+            {
+                abbonamentoDAO.creaAbbonamento(tessera, tipo, codice, LocalDate.now());
+                System.out.println("Abbonamento acquistato con successo!");
+
+            }
 
             // 7. chiedi se vuole fare altro
             System.out.println("Vuoi acquistare un altro abbonamento? (s/n)");
