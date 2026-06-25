@@ -36,6 +36,19 @@ public class TesseraDAO {
         return em.find(Tessera.class, id);
     }
 
+    public Tessera findByNumeroTessera(int numeroTessera) {
+        try {
+            return em.createQuery(
+                            "SELECT t FROM Tessera t WHERE t.numeroTessera = :numeroTessera",
+                            Tessera.class)
+                    .setParameter("numeroTessera", numeroTessera)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Tessera non trovata con numero: " + numeroTessera);
+            return null;
+        }
+    }
+
     public void controllaERinnova(int numeroTessera) {
         try {
             TypedQuery<Tessera> query = em.createQuery(
