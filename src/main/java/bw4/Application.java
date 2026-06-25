@@ -13,7 +13,7 @@ import bw4.entities.Mezzo;
 import bw4.entities.PuntoVendita;
 import bw4.entities.RivenditoreAutorizzato;
 import bw4.enums.StatoMezzo;
-//import bw4.DAO.AbbonamentoDAO;
+import bw4.DAO.AbbonamentoDAO;
 import bw4.entities.*;
 import bw4.enums.TipoMezzo;
 import bw4.scanner.MenuIniziale;
@@ -37,7 +37,7 @@ public class Application {
 
                 // CREAZIONE DAO
                 PuntoVenditaDAO pvd = new PuntoVenditaDAO(em);
-                MezzoDAO md = new MezzoDAO(em);
+
                 TrattaDAO td = new TrattaDAO(em);
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
                 UtenteDAO ud = new UtenteDAO(em);
@@ -46,6 +46,7 @@ public class Application {
                 BigliettoDAO bd = new BigliettoDAO(em);
                 ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
                 AbbonamentoDAO ad = new AbbonamentoDAO(em);
+               MezzoDAO md = new MezzoDAO(em);
 
                 // DATI
                 // MEZZI

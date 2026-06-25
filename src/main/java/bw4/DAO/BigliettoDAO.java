@@ -47,4 +47,6 @@ public class BigliettoDAO {
                 .setParameter("a", a)
                 .getSingleResult();
     }
+
+
 }

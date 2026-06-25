@@ -11,6 +11,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class MezzoDAO {
@@ -88,7 +89,7 @@ public class MezzoDAO {
                 mezzoTrovato.setStatoMezzo(statoMezzo);
                 transaction.commit();
                 if(statoMezzo == StatoMezzo.IN_MANUTENZIONE){
-                    System.out.println("MESSAGGIO IMPORTANTE PER TUTTO IL FANTABOSCO: il mezzo " +nomeMezzo + " è in manutenzione!");
+                    System.out.println("Per tutti i Fanti e i Re del mazzo! Il mezzo " + nomeMezzo + " è ora in manutenzione!");
                 } else if (statoMezzo == StatoMezzo.IN_SERVIZIO) {
                     System.out.println("MESSAGGIO IMPORTANTE PER TUTTO IL FANTABOSCO: il mezzo " +nomeMezzo + " è di nuovo in funzione!");
                 }
@@ -124,5 +125,22 @@ public class MezzoDAO {
             return null;
         }
     }
+
+//DATO NOME MEZZO CERCA I BIGLIETTI VIDIMATI
+public long countObliterazioniPerMezzo(String nomeMezzo, LocalDateTime da, LocalDateTime a) {
+        findMezzoByName(nomeMezzo);
+
+    return entityManager.createQuery(
+                    "SELECT COUNT(b) FROM Biglietto b " +
+                            "WHERE b.obliterato = true " +
+                            "AND b.mezzo.nome_mezzo = :nomeMezzo " +
+                            "AND b.dataEOra BETWEEN :da AND :a", Long.class)
+            .setParameter("nomeMezzo", nomeMezzo)
+            .setParameter("da", da)
+            .setParameter("a", a)
+            .getSingleResult();
+}
+
+
 
 }

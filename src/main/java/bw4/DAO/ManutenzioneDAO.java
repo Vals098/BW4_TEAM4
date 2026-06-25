@@ -12,6 +12,7 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public class ManutenzioneDAO {
         transaction.begin();
         this.entityManager.persist(nuovaManutenzione);
         transaction.commit();
-        System.out.println("Per tutti i Fanti e i Re del mazzo! Il mezzo " + nuovaManutenzione.getMezzo().getNomeMezzo() + " è stato aggiunto alla lista dei mezzi in manutenzione!");
+
     }
 
     //METODO FIND MANUTENZIONE IN CORSO BY NOME MEZZO
@@ -83,6 +84,20 @@ public void setDataFineManutenzione (String nomeMezzo, LocalDate dataFineManuten
         }
     }
 
+    //DATO IL NOME DI UN MEZZO, TRACCIA GIORNI MANUTENZIONE
+
+    public long periodoManutenzione(String nomeMezzo){
+     Manutenzione mezzoTrovato = findManutenzioneInCorsoByName(nomeMezzo);
+    LocalDate dataInizio = mezzoTrovato.getDataInizio();
+   LocalDate dataFine = mezzoTrovato.getDataFine();
+
+     long giorniFermo = ChronoUnit.DAYS.between(dataInizio, dataFine);
+
+        System.out.println("Acciderbolina! Il mezzo selezionato " +mezzoTrovato+ " è stato fermo " + giorniFermo + " giorni");
+return giorniFermo;
+
+
+    }
 
     }
 
