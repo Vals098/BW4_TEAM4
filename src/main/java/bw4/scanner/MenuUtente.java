@@ -18,8 +18,10 @@ public class MenuUtente {
     private final TitoloDiViaggioDAO tvd;
     private final BigliettoDAO bd;
     private final ManutenzioneDAO manutenzioneDAO;
+    private final AbbonamentoDAO ad;
 
-    public MenuUtente(PuntoVenditaDAO pvd,
+    public MenuUtente(AbbonamentoDAO ad,
+                      PuntoVenditaDAO pvd,
                               MezzoDAO md,
                               TrattaDAO td,
                               PercorrenzaDAO pd,
@@ -27,7 +29,8 @@ public class MenuUtente {
                               TesseraDAO tesseraDAO,
                               TitoloDiViaggioDAO tvd,
                               BigliettoDAO bd,
-                              ManutenzioneDAO manutenzioneDAO) {
+                              ManutenzioneDAO manutenzioneDAO
+    ) {
 
         this.pvd = pvd;
         this.md = md;
@@ -38,7 +41,7 @@ public class MenuUtente {
         this.tvd = tvd;
         this.bd = bd;
         this.manutenzioneDAO = manutenzioneDAO;
-
+        this.ad = ad;
     }
 
     public void start() {
