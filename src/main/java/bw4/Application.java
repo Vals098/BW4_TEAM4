@@ -12,7 +12,7 @@ import bw4.entities.Mezzo;
 import bw4.entities.PuntoVendita;
 import bw4.entities.RivenditoreAutorizzato;
 import bw4.enums.StatoMezzo;
-//import bw4.DAO.AbbonamentoDAO;
+import bw4.DAO.AbbonamentoDAO;
 import bw4.entities.*;
 import bw4.enums.TipoMezzo;
 import bw4.scanner.MenuIniziale;
