@@ -16,6 +16,7 @@ import bw4.enums.StatoMezzo;
 //import bw4.DAO.AbbonamentoDAO;
 import bw4.entities.*;
 import bw4.enums.TipoMezzo;
+import bw4.scanner.MenuIniziale;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -47,7 +48,6 @@ public class Application {
                 // AbbonamentoDAO ad = new AbbonamentoDAO(em);
 
                 // DATI
-
                 // MEZZI
 
                 Mezzo mezzoAntroChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Antrochiosco");
@@ -273,6 +273,24 @@ public class Application {
                 // td.save(tanaDelLupoToChiosco);
                 // td.save(tanaDelLupoToCittaLaggiu);
                 // td.save(tanaDelLupoToReggiaDiReQuercia);
+
+                //                MENU INIZIALE
+                MenuIniziale menuIniziale = new MenuIniziale(
+                        pvd,
+                        md,
+                        td,
+                        pd,
+                        ud,
+                        tesseraDAO,
+                        tvd,
+                        bd,
+                        manutenzioneDAO
+                );
+
+                menuIniziale.start();
+
+
+
 
                 // IN MANUTENZIONE
                 // manutenzioneDAO.save(manutenzioneReggiatana);
