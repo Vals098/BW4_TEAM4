@@ -74,7 +74,7 @@ public class MenuAmministratore {
                     break;
 
                 case "3":
-                    MenuPuntiVendita menuPuntiVendita = new MenuPuntiVendita();
+                    MenuPuntiVendita menuPuntiVendita = new MenuPuntiVendita(pvd);
                     menuPuntiVendita.start();
                     break;
 
