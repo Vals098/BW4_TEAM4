@@ -10,10 +10,10 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class TesseraDAO {
-    private final EntityManager em;
+    private static EntityManager em;
 
     public TesseraDAO(EntityManager em) {
-        this.em = em;
+        TesseraDAO.em = em;
     }
 
     public void save(Tessera tessera) {
@@ -36,7 +36,7 @@ public class TesseraDAO {
     }
 
     // METODO CONTROLLO SCADENZA TESSERA DATO NUMERO TESSERA
-    public boolean isValid(int numeroTessera) {
+    public static boolean isValid(int numeroTessera) {
         try {
             TypedQuery<Tessera> query = em.createQuery(
                     "SELECT t FROM Tessera t WHERE t.numeroTessera = :numeroTessera",

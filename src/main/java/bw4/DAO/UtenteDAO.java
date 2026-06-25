@@ -57,7 +57,7 @@ public class UtenteDAO {
             return query.getSingleResult();
         } catch (NoResultException e) {
             System.out.println("Nessun utente trovato con il numero tessera: " + numeroTessera);
-            return null; // O puoi lanciare un'eccezione personalizzata anche qui
+            return null;
         }
     }
 }

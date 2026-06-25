@@ -27,12 +27,13 @@ public class Tessera {
     public Tessera() {}
 
     // richiede l'utente obbligatorio per rispettare il nullable = false
-    public Tessera(int numeroTessera, LocalDate dataDiEmissione, Utente utente) {
+    public Tessera(int numeroTessera, LocalDate dataDiEmissione) {
         this.numeroTessera = numeroTessera;
         this.dataDiEmissione = dataDiEmissione;
         this.dataDiScadenza = dataDiEmissione.plusYears(1);
-        this.utente = utente;
+
     }
+
 
     public UUID getIdTessera() {
         return idTessera;

@@ -18,8 +18,8 @@ public class AbbonamentoDAO {
 
     // Crea abbonamento solo se tessera valida
     public void creaAbbonamento(Tessera tessera, TipoAbbonamento tipo, String codice, LocalDate dataInizio) {
-        if (!tessera.isValid(tessera.getNumeroTessera())){
-        //    System.out.println("Tessera scaduta! Impossibile creare abbonamento.");
+        if (!TesseraDAO.isValid(tessera.getNumeroTessera())){
+           System.out.println("Tessera scaduta! Impossibile creare abbonamento.");
             return;
         }
         LocalDate dataFine = tipo == TipoAbbonamento.SETTIMANALE
