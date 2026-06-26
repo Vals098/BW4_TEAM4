@@ -180,10 +180,40 @@ public class MenuPuntiVendita {
 
                 case "4":
                     System.out.println("SEGNALAZIONE DISTRIBUTORE GUASTO");
-                    System.out.println("Inserisci il codice del distributore:");
-                    String codice1 = scanner.nextLine();
+
+                    List<DistributoreAutomatico> distributori = pvd.findAllFunzionanti();
+
+                    if(distributori.isEmpty()){
+                        System.out.println("Accipigna!! Non ci sono distributori funzionanti nel Fantamondo!");
+                        break;
+                    }
+
+                    System.out.println("Strabiliante magia! Appaiono solo i distributori segnati come funzionanti!");
+
+                    for (int i = 0; i < distributori.size(); i++) {
+                        System.out.println((i + 1) + ". " + distributori.get(i).getNomePuntoVendita());
+                    }
+
+                    System.out.println("Scegli il distributore da mandare in manutenzione:");
+                    System.out.println("Premi 0 per tornare al MENU dello Gnomo Archivista.");
+
+                    int sceltaDistributore = leggiInteroSicuro();
+
+                    if (sceltaDistributore == 0) {
+                        running = false;
+                        continue;
+                    }
+
+                    if (sceltaDistributore < 1 || sceltaDistributore > distributori.size()) {
+                        System.out.println("Per la barba di Tomelilla! Inserisci un numero valido!");
+                        continue;
+                    }
+
+                    String disScelto = distributori.get(sceltaDistributore - 1).getCodicePuntoVendita();
+
+
                     try {
-                        pvd.mandaInManutenzione(codice1);
+                        pvd.mandaInManutenzione(disScelto);
                     } catch (PuntoVenditaNonTrovatoException e) {
                         System.out.println(e.getMessage());
                     }
@@ -191,10 +221,38 @@ public class MenuPuntiVendita {
 
                 case "5":
                     System.out.println("SEGNALAZIONE DISTRIBUTORE NUOVAMENTE IN SERVIZIO");
-                    System.out.println("Inserisci il codice del distributore:");
-                    String codice2 = scanner.nextLine();
+                    List<DistributoreAutomatico> distributoriGuasti = pvd.findAllGuasti();
+
+                    if(distributoriGuasti.isEmpty()){
+                        System.out.println("Meraviglia delle meraviglie!! Non ci sono distributori guasti nel Fantamondo!");
+                        break;
+                    }
+
+                    System.out.println("Strabiliante magia! Appaiono solo i distributori segnati come guasti!");
+
+                    for (int i = 0; i < distributoriGuasti.size(); i++) {
+                        System.out.println((i + 1) + ". " + distributoriGuasti.get(i).getNomePuntoVendita());
+                    }
+
+                    System.out.println("Scegli il distributore da rimettere in servizio:");
+                    System.out.println("Premi 0 per tornare al MENU dello Gnomo Archivista.");
+
+                    int sceltaDistributoreGuasto = leggiInteroSicuro();
+
+                    if (sceltaDistributoreGuasto == 0) {
+                        running = false;
+                        continue;
+                    }
+
+                    if (sceltaDistributoreGuasto < 1 || sceltaDistributoreGuasto > distributoriGuasti.size()) {
+                        System.out.println("Per la barba di Tomelilla! Inserisci un numero valido!");
+                        continue;
+                    }
+
+                    String disGuastoScelto = distributoriGuasti.get(sceltaDistributoreGuasto - 1).getCodicePuntoVendita();
+
                     try {
-                        pvd.rimettiInServizio(codice2);
+                        pvd.rimettiInServizio(disGuastoScelto);
                     } catch (PuntoVenditaNonTrovatoException e) {
                         System.out.println(e.getMessage());
                     }

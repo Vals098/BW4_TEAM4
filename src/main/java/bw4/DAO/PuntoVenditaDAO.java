@@ -130,14 +130,60 @@ public List<String> findAllLuoghi() {
 //        risultati.forEach(puntoVendita -> System.out.println(puntoVendita.getNomePuntoVendita()));
 
 
-//    GET DISTRIBUTORI GUASTI DATO LUOGO
+//    GET DISTRIBUTORI GUASTI BY LUOGO
     public List<DistributoreAutomatico> findGuastiByLuogo(String luogo){
 
         TypedQuery<DistributoreAutomatico> query = em.createQuery(
-                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = false",
+                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = true",
                 DistributoreAutomatico.class);
 
         query.setParameter("luogo", luogo);
+
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
+
+        return risultati;
+
+    }
+
+//    GET DISTRIBUTORI IN SERVIZIO DATO LUOGO
+    public List<DistributoreAutomatico> findFunzionantiByLuogo(String luogo){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = true",
+                DistributoreAutomatico.class);
+
+        query.setParameter("luogo", luogo);
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
+
+        return risultati;
+
+    }
+    //    GET ALL DISTRIBUTORI IN SERVIZIO
+    public List<DistributoreAutomatico> findAllFunzionanti(){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE d.funzionante = true",
+                DistributoreAutomatico.class);
+
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
+
+        return risultati;
+
+    }
+
+    //    GET ALL DISTRIBUTORI GUASTI
+    public List<DistributoreAutomatico> findAllGuasti(){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE d.funzionante = false",
+                DistributoreAutomatico.class);
+
 
         List<DistributoreAutomatico> risultati = query.getResultList();
 
@@ -231,7 +277,7 @@ public List<String> findAllLuoghi() {
                 System.out.println("Per tutte le pentole magiche! Il distributore è già in servizo!");
             }
 
-            d.mandaInManutenzione();
+            d.rimettiInServizio();
 
             transaction.commit();
 
