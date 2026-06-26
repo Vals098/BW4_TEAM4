@@ -33,14 +33,24 @@ public class PuntoVenditaDAO {
         System.out.println("Ultim'ora dal Fantabosco! Il nuovo punto vendita " + newPuntoVendita.getNomePuntoVendita() + " è apparso!");
     }
 
-//    FIND ALL
-public List<DistributoreAutomatico> findAll() {
+//    FIND ALL DISTRIBUTORI
+public List<DistributoreAutomatico> findAllDistributori() {
     try {
         return em.createQuery("FROM DistributoreAutomatico ", DistributoreAutomatico.class).getResultList();
     } catch (Exception e) {
         System.out.println("Errore durante il recupero di distributori: " + e.getMessage());
         return new ArrayList<>();
     }
+}
+
+//    FIND ALL LUOGHI IN CUI È PRESENTE UN PV
+public List<String> findAllLuoghi() {
+
+    TypedQuery<String> query = em.createQuery(
+            "SELECT DISTINCT p.luogo FROM PuntoVendita p ORDER BY p.luogo",
+            String.class);
+
+    return query.getResultList();
 }
 
     //    FINDBYID
@@ -110,7 +120,7 @@ public List<DistributoreAutomatico> findAll() {
 //        risultati.forEach(puntoVendita -> System.out.println(puntoVendita.getNomePuntoVendita()));
 
 
-//    GET PUNTI VENDITA GUASTI DATO LUOGO
+//    GET DISTRIBUTORI GUASTI DATO LUOGO
     public List<DistributoreAutomatico> findGuastiByLuogo(String luogo){
 
         TypedQuery<DistributoreAutomatico> query = em.createQuery(
