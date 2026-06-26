@@ -11,6 +11,7 @@ import jakarta.persistence.criteria.*;
 import jakarta.persistence.metamodel.Metamodel;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -55,17 +56,50 @@ public class MenuParcoMezzi {
                     String nomeMezzo = scanner.nextLine();
                     System.out.println("E perché ha bisogno di manutenzione?");
                     String causaManutenzione = scanner.nextLine();
-                    Mezzo mezzoInManutenzione = md.findMezzoByNameAndChangeStatus(nomeMezzo, StatoMezzo.IN_MANUTENZIONE );
-                    Manutenzione nuovaManutenzione = new Manutenzione(LocalDate.now(), mezzoInManutenzione, causaManutenzione);
-                    manutenzioneDAO.saveInManutenzione(nuovaManutenzione);
+                    System.out.println("In quale data si è rotto il mezzo? (YYYY-MM-DD)");
+                    String dataInizioManutenzione = scanner.nextLine();
+
+                    try{LocalDate dataIM = LocalDate.parse(dataInizioManutenzione);
+                        Mezzo mezzoInManutenzione = md.findMezzoByNameAndChangeStatus(nomeMezzo, StatoMezzo.IN_MANUTENZIONE);
+
+                        if (mezzoInManutenzione == null) {
+                            System.out.println("Accipigna! Nessun mezzo trovato con il nome: " + nomeMezzo);
+                            break;
+                        }
+
+                        Manutenzione nuovaManutenzione = new Manutenzione(dataIM, mezzoInManutenzione, causaManutenzione);
+
+                        manutenzioneDAO.saveInManutenzione(nuovaManutenzione);
+
+                        System.out.println("Ottimo! Il mezzo " + nomeMezzo + " è ora registrato IN_MANUTENZIONE.");
+
+                    } catch (java.time.format.DateTimeParseException e) {
+                        System.out.println("Per tutti i legnetti! Il formato della data non è valido. Usa YYYY-MM-DD.");
+                    } catch (Exception e) {
+                        System.out.println("Errore durante l'inserimento in manutenzione: " + e.getMessage());
+                    }
                     break;
+
 
                 case 3:
                     System.out.println("Di quale mezzo vuoi impostare la data di fine manutenzione?");
                     String nomeMezzoDataFineManutenzione = scanner.nextLine();
-                    System.out.println("inserisci la data di fine manutenzione");
-                    LocalDate dataFineManutenzione = LocalDate.parse(scanner.nextLine());
-                    manutenzioneDAO.setDataFineManutenzione(nomeMezzoDataFineManutenzione,dataFineManutenzione);
+                    System.out.println("inserisci la data di fine manutenzione (YYYY-MM-DD)");
+                    String dataFineManutenzione = scanner.nextLine();
+
+                    try {
+                        LocalDate data = LocalDate.parse(dataFineManutenzione);
+
+
+                        manutenzioneDAO.setDataFineManutenzione(nomeMezzoDataFineManutenzione, data);
+
+
+                    } catch (java.time.format.DateTimeParseException e) {
+                        System.out.println("Per tutti i legnetti! Il formato della data non è valido. Usa YYYY-MM-DD.");
+                    } catch (bw4.exceptions.MezzoNonInManutenzioneException e) {
+
+                        System.out.println("Attenzione: " + e.getMessage());
+                    }
                     break;
 
                 case 4:
@@ -73,6 +107,11 @@ public class MenuParcoMezzi {
                     String nomeMezzoTracciaGiorniManutenzione = scanner.nextLine();
                     manutenzioneDAO.periodoManutenzione(nomeMezzoTracciaGiorniManutenzione);
                     break;
+
+                case 5:
+                    System.out.println("Di quale mezzo vuoi sapere il numero dei biglietti vidimati?");
+                    String nomeMezzoCountObliteration = scanner.nextLine();
+                    md.findByNameAndCountObliteration(nomeMezzoCountObliteration);
 
                 default:
                     System.out.println("Per tutte le pigne spignolate!");

@@ -4,6 +4,7 @@ import bw4.entities.Mezzo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class BigliettoDAO {
@@ -47,6 +48,12 @@ public class BigliettoDAO {
                 .setParameter("a", a)
                 .getSingleResult();
     }
-
-
+    public long countBigliettiVenduti(LocalDate da, LocalDate a) {
+        return em.createQuery(
+                        "SELECT COUNT(b) FROM Biglietto b " +
+                                "WHERE b.dataEmissione BETWEEN :da AND :a", Long.class)
+                .setParameter("da", da)
+                .setParameter("a", a)
+                .getSingleResult();
+    }
 }

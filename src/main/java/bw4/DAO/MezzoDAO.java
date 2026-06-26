@@ -129,17 +129,14 @@ public class MezzoDAO {
     }
 
 //DATO NOME MEZZO CERCA I BIGLIETTI VIDIMATI
-public long countObliterazioniPerMezzo(String nomeMezzo, LocalDateTime da, LocalDateTime a) {
+public long findByNameAndCountObliteration(String nomeMezzo) {
         findMezzoByName(nomeMezzo);
 
     return entityManager.createQuery(
                     "SELECT COUNT(b) FROM Biglietto b " +
                             "WHERE b.obliterato = true " +
-                            "AND b.mezzo.nome_mezzo = :nomeMezzo " +
-                            "AND b.dataEOra BETWEEN :da AND :a", Long.class)
+                            "AND b.mezzo.nome_mezzo = :nomeMezzo ", Long.class)
             .setParameter("nomeMezzo", nomeMezzo)
-            .setParameter("da", da)
-            .setParameter("a", a)
             .getSingleResult();
 }
 
