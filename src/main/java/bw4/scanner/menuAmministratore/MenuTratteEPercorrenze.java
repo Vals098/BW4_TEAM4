@@ -42,9 +42,17 @@ public class MenuTratteEPercorrenze {
                     String partenza = scanner.nextLine();
                     System.out.print("Inserisci il capolinea: ");
                     String capolinea = scanner.nextLine();
-                    System.out.print("Inserisci il tempo previsto (ore): ");
+                    while(td.esisteTratta(partenza, capolinea)) {
+                        System.out.println("\nPer tutti gli stendardi del regno! Questa tratta già esiste");
+                        System.out.print("Inserisci la zona di partenza: ");
+                        partenza = scanner.nextLine();
+                        System.out.print("Inserisci il capolinea: ");
+                        capolinea = scanner.nextLine();
+                    }
+                    System.out.println("Ora inserisci il tempo previsto in ore e minuti");
+                    System.out.print("Inserisci prima le ore: ");
                     int orePreviste = leggiOreSicure();
-                    System.out.print("Inserisci il tempo previsto (minuti): ");
+                    System.out.print("Ora inserisci i minuti: ");
                     int minutiPrevisti = leggiMinutiSicuri();
                     Tratta nuovaTratta = new Tratta(partenza, capolinea, LocalTime.of(orePreviste, minutiPrevisti));
                     td.save(nuovaTratta);
@@ -132,9 +140,10 @@ public class MenuTratteEPercorrenze {
 
                     Percorrenza pSelezionata = attive.get(indicePercorrenza);
 
-                    System.out.print("Inserisci le ore effettive impiegate: ");
+                    System.out.println("Inserisci il tempo effettivo impiegato in ore e minuti:");
+                    System.out.print("Inserisci prima le ore: ");
                     int oreEff = leggiOreSicure();
-                    System.out.print("Inserisci i minuti effettivi impiegati: ");
+                    System.out.print("Ora inserisci i minuti: ");
                     int minEff = leggiMinutiSicuri();
 
                     LocalTime tempoEffettivo = LocalTime.of(oreEff, minEff);
@@ -224,7 +233,7 @@ public class MenuTratteEPercorrenze {
                     Tratta trattaContaScelta = tratteConta.get(idxTrattaConta);
 
 
-                    List<Mezzo> mezziConta = md.findAllInServizioENonAncoraAssegnati();
+                    List<Mezzo> mezziConta = md.findAllInServizio();
                     if (mezziConta.isEmpty()) {
                         System.out.println("Folletto, folletto, cervello di foglietto! Non ci sono mezzi registrati nell'archivio.");
                         break;
