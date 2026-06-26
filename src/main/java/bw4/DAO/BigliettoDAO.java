@@ -3,7 +3,10 @@ import bw4.entities.Biglietto;
 import bw4.entities.Mezzo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class BigliettoDAO {
@@ -49,4 +52,32 @@ public class BigliettoDAO {
     }
 
 
+
+    public long countObliterazioniPerNomeMezzo( String nomeMezzo) {
+        TypedQuery<Long> query = em.createQuery("SELECT COUNT(b) FROM Biglietto b WHERE b.obliterato = true AND b.mezzo.nomeMezzo = :nome", Long.class);
+query.setParameter("nome", nomeMezzo);
+Long numeroObliterazioni = query.getSingleResult();
+
+        System.out.println("il numero di obliterazioni sul mezzo " +nomeMezzo+ " è " + numeroObliterazioni);
+
+return numeroObliterazioni;
+
+
+
+    }
+
+
+
+
+
+
+
+    public long countBigliettiVenduti(LocalDate da, LocalDate a) {
+        return em.createQuery(
+                        "SELECT COUNT(b) FROM Biglietto b " +
+                                "WHERE b.dataEmissione BETWEEN :da AND :a", Long.class)
+                .setParameter("da", da)
+                .setParameter("a", a)
+                .getSingleResult();
+    }
 }

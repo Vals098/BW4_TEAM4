@@ -63,23 +63,23 @@ public class MenuAmministratore {
 
             switch (scelta) {
 
-                case "1":
-                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere(ud,tesseraDAO);
-                    menuUtentiETessere.start();
-                    break;
+//                case "1":
+//                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere( );
+//                    menuUtentiETessere.start();
+//                    break;
 
                 case "2":
-                    MenuBigliettiEAbbonamenti menuBigliettiEAbbonamenti = new MenuBigliettiEAbbonamenti();
+                    MenuBigliettiEAbbonamenti menuBigliettiEAbbonamenti = new MenuBigliettiEAbbonamenti(ad, bd, tvd, tesseraDAO);
                     menuBigliettiEAbbonamenti.start();
                     break;
 
                 case "3":
-                    MenuPuntiVendita menuPuntiVendita = new MenuPuntiVendita();
+                    MenuPuntiVendita menuPuntiVendita = new MenuPuntiVendita(pvd);
                     menuPuntiVendita.start();
                     break;
 
                 case "4":
-                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi(md, manutenzioneDAO);
+                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi(md, manutenzioneDAO, bd);
                     menuParcoMezzi.start();
                     break;
 

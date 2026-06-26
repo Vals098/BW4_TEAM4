@@ -1,5 +1,6 @@
 package bw4.scanner.menuAmministratore;
 
+import bw4.DAO.BigliettoDAO;
 import bw4.DAO.ManutenzioneDAO;
 import bw4.DAO.MezzoDAO;
 import bw4.entities.Manutenzione;
@@ -11,6 +12,8 @@ import jakarta.persistence.criteria.*;
 import jakarta.persistence.metamodel.Metamodel;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -22,12 +25,14 @@ public class MenuParcoMezzi {
     //ATTRIBUTO
     private final MezzoDAO md;
     private final ManutenzioneDAO manutenzioneDAO;
+    private final BigliettoDAO bd;
 
     //COSTRUTTORE
 
-    public MenuParcoMezzi(MezzoDAO mezzoDAO, ManutenzioneDAO manutenzioneDAO) {
+    public MenuParcoMezzi(MezzoDAO mezzoDAO, ManutenzioneDAO manutenzioneDAO, BigliettoDAO bd) {
         this.md = mezzoDAO;
         this.manutenzioneDAO = manutenzioneDAO;
+        this.bd = bd;
     }
 
     //METODI
@@ -55,23 +60,65 @@ public class MenuParcoMezzi {
                     String nomeMezzo = scanner.nextLine();
                     System.out.println("E perché ha bisogno di manutenzione?");
                     String causaManutenzione = scanner.nextLine();
-                    Mezzo mezzoInManutenzione = md.findMezzoByNameAndChangeStatus(nomeMezzo, StatoMezzo.IN_MANUTENZIONE );
-                    Manutenzione nuovaManutenzione = new Manutenzione(LocalDate.now(), mezzoInManutenzione, causaManutenzione);
-                    manutenzioneDAO.saveInManutenzione(nuovaManutenzione);
+                    System.out.println("In quale data si è rotto il mezzo? (YYYY-MM-DD)");
+                    String dataInizioManutenzione = scanner.nextLine();
+
+                    try{
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+                        LocalDate dataIM = LocalDate.parse(dataInizioManutenzione, formatter);
+                        Mezzo mezzoInManutenzione = md.findMezzoByNameAndChangeStatus(nomeMezzo, StatoMezzo.IN_MANUTENZIONE);
+
+                        if (mezzoInManutenzione == null) {
+                            System.out.println("Accipigna! Nessun mezzo trovato con il nome: " + nomeMezzo);
+                            break;
+                        }
+
+                        Manutenzione nuovaManutenzione = new Manutenzione(dataIM, mezzoInManutenzione, causaManutenzione);
+
+                        manutenzioneDAO.saveInManutenzione(nuovaManutenzione);
+
+                    } catch (java.time.format.DateTimeParseException e) {
+                        System.out.println("Per tutti i legnetti! Il formato della data non è valido. Usa YYYY-MM-DD.");
+                    } catch (Exception e) {
+                        System.out.println("Errore durante l'inserimento in manutenzione: " + e.getMessage());
+                    }
                     break;
+
 
                 case 3:
                     System.out.println("Di quale mezzo vuoi impostare la data di fine manutenzione?");
                     String nomeMezzoDataFineManutenzione = scanner.nextLine();
-                    System.out.println("inserisci la data di fine manutenzione");
-                    LocalDate dataFineManutenzione = LocalDate.parse(scanner.nextLine());
-                    manutenzioneDAO.setDataFineManutenzione(nomeMezzoDataFineManutenzione,dataFineManutenzione);
+                    System.out.println("inserisci la data di fine manutenzione (YYYY-MM-DD)");
+                    String dataFineManutenzione = scanner.nextLine();
+
+                    try {
+                        LocalDate data = LocalDate.parse(dataFineManutenzione);
+
+                        manutenzioneDAO.setDataFineManutenzione(nomeMezzoDataFineManutenzione, data);
+
+
+                    } catch (java.time.format.DateTimeParseException e) {
+                        System.out.println("Per tutti i legnetti! Il formato della data non è valido. Usa YYYY-MM-DD.");
+                    } catch (bw4.exceptions.MezzoNonInManutenzioneException e) {
+
+                        System.out.println("Attenzione: " + e.getMessage());
+                    }
                     break;
 
                 case 4:
                     System.out.println("Di quale mezzo vuoi tenere traccia dei giorni totali di manutenzione?");
                     String nomeMezzoTracciaGiorniManutenzione = scanner.nextLine();
                     manutenzioneDAO.periodoManutenzione(nomeMezzoTracciaGiorniManutenzione);
+                    break;
+
+                case 5:
+                    System.out.println("Di quale mezzo vuoi sapere il numero dei biglietti vidimati?");
+                    String nomeMezzoCountObliteration = scanner.nextLine();
+                    bd.countObliterazioniPerNomeMezzo(nomeMezzoCountObliteration);
+                    break;
+
+                case 0:
+                    inSessione = false;
                     break;
 
                 default:
