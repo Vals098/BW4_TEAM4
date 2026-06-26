@@ -15,9 +15,9 @@ public class DistributoreAutomatico extends PuntoVendita {
     protected DistributoreAutomatico(){
     }
 
-    public DistributoreAutomatico(String codicePuntoVendita, String nomePuntoVendita, String luogo, boolean funzionante){
+    public DistributoreAutomatico(String codicePuntoVendita, String nomePuntoVendita, String luogo){
         super(codicePuntoVendita,nomePuntoVendita, luogo);
-        this.funzionante = funzionante;
+        this.funzionante = true;
     }
 
     public boolean isFunzionante() {
@@ -27,6 +27,16 @@ public class DistributoreAutomatico extends PuntoVendita {
     public void setFunzionante(boolean funzionante) {
         this.funzionante = funzionante;
     }
+
+    public void mandaInManutenzione(){
+        this.funzionante = false;
+    }
+
+    public void rimettiInServizio(){
+        this.funzionante = true;
+    }
+
+
 
     @Override
     public String toString() {
