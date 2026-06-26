@@ -12,6 +12,7 @@ import jakarta.persistence.metamodel.Metamodel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -59,7 +60,9 @@ public class MenuParcoMezzi {
                     System.out.println("In quale data si è rotto il mezzo? (YYYY-MM-DD)");
                     String dataInizioManutenzione = scanner.nextLine();
 
-                    try{LocalDate dataIM = LocalDate.parse(dataInizioManutenzione);
+                    try{
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+                        LocalDate dataIM = LocalDate.parse(dataInizioManutenzione, formatter);
                         Mezzo mezzoInManutenzione = md.findMezzoByNameAndChangeStatus(nomeMezzo, StatoMezzo.IN_MANUTENZIONE);
 
                         if (mezzoInManutenzione == null) {
@@ -70,8 +73,6 @@ public class MenuParcoMezzi {
                         Manutenzione nuovaManutenzione = new Manutenzione(dataIM, mezzoInManutenzione, causaManutenzione);
 
                         manutenzioneDAO.saveInManutenzione(nuovaManutenzione);
-
-                        System.out.println("Ottimo! Il mezzo " + nomeMezzo + " è ora registrato IN_MANUTENZIONE.");
 
                     } catch (java.time.format.DateTimeParseException e) {
                         System.out.println("Per tutti i legnetti! Il formato della data non è valido. Usa YYYY-MM-DD.");
@@ -89,7 +90,6 @@ public class MenuParcoMezzi {
 
                     try {
                         LocalDate data = LocalDate.parse(dataFineManutenzione);
-
 
                         manutenzioneDAO.setDataFineManutenzione(nomeMezzoDataFineManutenzione, data);
 
