@@ -80,7 +80,7 @@ public class MenuUtente {
                     break;
 
                 case "4":
-                    ControllaValiditaTessera controllaValiditaTessera = new ControllaValiditaTessera();
+                    ControllaValiditaTessera controllaValiditaTessera = new ControllaValiditaTessera(ud, tesseraDAO);
                     controllaValiditaTessera.start();
                     break;
 

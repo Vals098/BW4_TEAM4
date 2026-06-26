@@ -181,7 +181,7 @@ public class Application {
 //                 ud.save(utente6);
 //                 ud.save(utente7);
 //                 ud.save(utente8);
-//
+////
 //                 Utente utente1FromDB = ud.findByCodiceUtente("MICOT");
 //                 Utente utente2FromDB = ud.findByCodiceUtente("LULU");
 //                 Utente utente3FromDB = ud.findByCodiceUtente("STRVAR");
@@ -190,7 +190,7 @@ public class Application {
 //                 Utente utente6FromDB = ud.findByCodiceUtente("ORORC");
 //                 Utente utente7FromDB = ud.findByCodiceUtente("REGGAR");
 //                 Utente utente8FromDB = ud.findByCodiceUtente("CUZIB");
-//
+
 //
 //                 tessera1.setUtente(utente1FromDB);
 //                 tessera2.setUtente(utente2FromDB);
@@ -200,7 +200,7 @@ public class Application {
 //                 tessera6.setUtente(utente6FromDB);
 //                 tessera7.setUtente(utente7FromDB);
 //                 tessera8.setUtente(utente8FromDB);
-//
+
 //
 //                 tesseraDAO.save(tessera1);
 //                 tesseraDAO.save(tessera2);
@@ -342,9 +342,6 @@ public class Application {
                 // }
 
 
-//                System.out.println("AVVIO TEST TESSERA");
-//                int tesseraDaTestare = 9346;
-//                tesseraDAO.controllaERinnova(tesseraDaTestare);
 //
 
         }
