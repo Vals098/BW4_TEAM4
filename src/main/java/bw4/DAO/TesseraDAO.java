@@ -5,13 +5,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-
 import java.time.LocalDate;
-import java.util.Scanner; // <-- IMPORTANTE: Aggiunto l'import per far funzionare la versione del menu!
+import java.util.Scanner;
 import java.util.UUID;
 
 public class TesseraDAO {
-
     private final EntityManager em;
     public TesseraDAO(EntityManager em) {
         this.em = em;
@@ -66,18 +64,31 @@ public class TesseraDAO {
                 String risposta = scanner.nextLine();
 
                 if ("1".equals(risposta)) {
-                    EntityTransaction transaction = em.getTransaction();
-                    try {
-                        transaction.begin();
-                        tessera.setDataDiEmissione(LocalDate.now());
-                        tessera.setDataDiScadenza(LocalDate.now().plusYears(1));
-                        em.merge(tessera);
-                        transaction.commit();
-                        System.out.println("Che strabiliante meraviglia! La tessera numero " + numeroTessera + " è stata rinnovata!");
-                        System.out.println("La nuovo data è aggiornata al: " + tessera.getDataDiScadenza() );
-                    } catch (Exception ex) {
-                        if (transaction.isActive()) transaction.rollback();
-                        System.err.println("Errore durante il rinnovo: " + ex.getMessage());
+                    System.out.println("[BORSINO dello GNOMO] Il costo del rinnovo è di 50 lilleri.");
+                    System.out.println("Vuoi procedere con il pagamento?");
+                    System.out.println("1. Sì, spendi 50 lilleri e rinnova");
+                    System.out.println("2. No, annulla tutto");
+                    System.out.print("Scegli: ");
+                    String confermaPagamento = scanner.nextLine();
+
+                    if ("1".equals(confermaPagamento)) {
+                        EntityTransaction transaction = em.getTransaction();
+                        try {
+                            transaction.begin();
+                            tessera.setDataDiEmissione(LocalDate.now());
+                            tessera.setDataDiScadenza(LocalDate.now().plusYears(1));
+                            em.merge(tessera);
+                            transaction.commit();
+
+                            System.out.println("Pagamento andato a buon fine! lilleri accettati.");
+                            System.out.println("Che strabiliante meraviglia! La tessera numero " + numeroTessera + " è stata rinnovata!");
+                            System.out.println("La nuova data è aggiornata al: " + tessera.getDataDiScadenza());
+                        } catch (Exception ex) {
+                            if (transaction.isActive()) transaction.rollback();
+                            System.err.println("Errore durante il rinnovo: " + ex.getMessage());
+                        }
+                    } else {
+                        System.out.println("Pagamento annullato. Nessun lillero è stato speso.");
                     }
                 } else {
                     System.out.println("Operazione terminata. Nessun rinnovo effettuato.");
@@ -90,6 +101,4 @@ public class TesseraDAO {
             System.out.println("Accipigna! Nessuna tessera trovata con numero: " + numeroTessera);
         }
     }
-
-
 }
