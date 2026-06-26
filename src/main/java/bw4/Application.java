@@ -342,7 +342,7 @@ public class Application {
                 // }
 
 
-//                System.out.println("AVVIO TEST LOGICA TESSERA");
+//                System.out.println("AVVIO TEST TESSERA");
 //                int tesseraDaTestare = 9346;
 //                tesseraDAO.controllaERinnova(tesseraDaTestare);
 //
