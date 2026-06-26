@@ -47,6 +47,7 @@ public class Application {
                MezzoDAO md = new MezzoDAO(em);
 
                 // DATI
+
                 // MEZZI
 
                 Mezzo mezzoAntroChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Antrochiosco");
@@ -69,6 +70,41 @@ public class Application {
                 Mezzo mezzoTanaChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Tanachiosco");
                 Mezzo mezzoTanaCittalaggiu = new Mezzo(TipoMezzo.TRAM, "Tanacitta");
                 Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "Tanareggia");
+
+
+         // TRATTE
+
+         Tratta antroDellaStregaToChiosco = new Tratta("Antro della Strega", "Chiosco", LocalTime.of(0, 20));
+         Tratta antroDellaStregaToCittaLaggiu = new Tratta("Antro della Strega", "Città Laggiù",
+                 LocalTime.of(1, 30));
+         Tratta antroDellaStregaToReggiaDiReQuercia = new Tratta("Antro della Strega", "Reggia di Re Quercia",
+                 LocalTime.of(0, 40));
+         Tratta antroDellaStregaToTanaDelLupo = new Tratta("Antro della Strega", "Tana del Lupo",
+                 LocalTime.of(0, 30));
+         Tratta chioscoToAntroDellaStrega = new Tratta("Chiosco", "Antro della Strega", LocalTime.of(0, 20));
+         Tratta chioscoToCittaLaggiu = new Tratta("Chiosco", "Città Laggiù", LocalTime.of(1, 50));
+         Tratta chioscoToReggiaDiReQuercia = new Tratta("Chiosco", "Reggia di Re Quercia", LocalTime.of(1, 0));
+         Tratta chioscoToTanaDelLupo = new Tratta("Chiosco", "Tana del Lupo", LocalTime.of(0, 50));
+         Tratta cittaLaggiuToAntroDellaStrega = new Tratta("Città Laggiù", "Antro della Strega",
+                 LocalTime.of(1, 30));
+         Tratta cittaLaggiuToChiosco = new Tratta("Città Laggiù", "Chiosco", LocalTime.of(1, 50));
+         Tratta cittaLaggiuToReggiaDiReQuercia = new Tratta("Città Laggiù", "Reggia di Re Quercia",
+                 LocalTime.of(2, 10));
+         Tratta cittaLaggiuToTanaDelLupo = new Tratta("Città Laggiù", "Tana del Lupo", LocalTime.of(2, 0));
+         Tratta reggiaDiReQuerciaToAntroDellaStrega = new Tratta("Reggia di Re Quercia", "Antro della Strega",
+                 LocalTime.of(0, 40));
+         Tratta reggiaDiReQuerciaToChiosco = new Tratta("Reggia di Re Quercia", "Chiosco", LocalTime.of(1, 0));
+         Tratta reggiaDiReQuerciaToCittaLaggiu = new Tratta("Reggia di Re Quercia", "Città Laggiù",
+                 LocalTime.of(2, 10));
+         Tratta reggiaDiReQuerciaToTanaDelLupo = new Tratta("Reggia di Re Quercia", "Tana del Lupo",
+                 LocalTime.of(0, 10));
+         Tratta tanaDelLupoToAntroDellaStrega = new Tratta("Tana del Lupo", "Antro della Strega",
+                 LocalTime.of(0, 30));
+         Tratta tanaDelLupoToChiosco = new Tratta("Tana del Lupo", "Chiosco", LocalTime.of(0, 50));
+         Tratta tanaDelLupoToCittaLaggiu = new Tratta("Tana del Lupo", "Città Laggiù", LocalTime.of(2, 0));
+         Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
+                 LocalTime.of(0, 10));
+
 
                 // PUNTI VENDITA
 
@@ -93,7 +129,9 @@ public class Application {
 
                 Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
 
-                // utenti e tessere
+
+                // UTENTI E TESSERE
+
                 Utente utente1 = new Utente("MICOT", "Milo", "Cotogno", LocalDate.of(1981, 1, 14),
                                 "Regno di Fiabiselva", "Bibitiere e Aggiusta guai");
                 Utente utente2 = new Utente("LULU", "Lupo", "Lucio", LocalDate.of(1956, 1, 16), "Fittaforesta",
@@ -119,7 +157,10 @@ public class Application {
                 Tessera tessera7 = new Tessera(4577, LocalDate.of(2024, 7, 30));
                 Tessera tessera8 = new Tessera(3573, LocalDate.of(2026, 2, 14));
 
+                
+
                 // METODO SAVE
+
 //                 pvd.save(puntoVendita1);
 //                 pvd.save(puntoVendita2);
 //                 pvd.save(puntoVendita3);
@@ -170,38 +211,7 @@ public class Application {
 //                 tesseraDAO.save(tessera7);
 //                 tesseraDAO.save(tessera8);
 
-                // TRATTE
 
-                Tratta antroDellaStregaToChiosco = new Tratta("Antro della Strega", "Chiosco", LocalTime.of(0, 20));
-                Tratta antroDellaStregaToCittaLaggiu = new Tratta("Antro della Strega", "Città Laggiù",
-                                LocalTime.of(1, 30));
-                Tratta antroDellaStregaToReggiaDiReQuercia = new Tratta("Antro della Strega", "Reggia di Re Quercia",
-                                LocalTime.of(0, 40));
-                Tratta antroDellaStregaToTanaDelLupo = new Tratta("Antro della Strega", "Tana del Lupo",
-                                LocalTime.of(0, 30));
-                Tratta chioscoToAntroDellaStrega = new Tratta("Chiosco", "Antro della Strega", LocalTime.of(0, 20));
-                Tratta chioscoToCittaLaggiu = new Tratta("Chiosco", "Città Laggiù", LocalTime.of(1, 50));
-                Tratta chioscoToReggiaDiReQuercia = new Tratta("Chiosco", "Reggia di Re Quercia", LocalTime.of(1, 0));
-                Tratta chioscoToTanaDelLupo = new Tratta("Chiosco", "Tana del Lupo", LocalTime.of(0, 50));
-                Tratta cittaLaggiuToAntroDellaStrega = new Tratta("Città Laggiù", "Antro della Strega",
-                                LocalTime.of(1, 30));
-                Tratta cittaLaggiuToChiosco = new Tratta("Città Laggiù", "Chiosco", LocalTime.of(1, 50));
-                Tratta cittaLaggiuToReggiaDiReQuercia = new Tratta("Città Laggiù", "Reggia di Re Quercia",
-                                LocalTime.of(2, 10));
-                Tratta cittaLaggiuToTanaDelLupo = new Tratta("Città Laggiù", "Tana del Lupo", LocalTime.of(2, 0));
-                Tratta reggiaDiReQuerciaToAntroDellaStrega = new Tratta("Reggia di Re Quercia", "Antro della Strega",
-                                LocalTime.of(0, 40));
-                Tratta reggiaDiReQuerciaToChiosco = new Tratta("Reggia di Re Quercia", "Chiosco", LocalTime.of(1, 0));
-                Tratta reggiaDiReQuerciaToCittaLaggiu = new Tratta("Reggia di Re Quercia", "Città Laggiù",
-                                LocalTime.of(2, 10));
-                Tratta reggiaDiReQuerciaToTanaDelLupo = new Tratta("Reggia di Re Quercia", "Tana del Lupo",
-                                LocalTime.of(0, 10));
-                Tratta tanaDelLupoToAntroDellaStrega = new Tratta("Tana del Lupo", "Antro della Strega",
-                                LocalTime.of(0, 30));
-                Tratta tanaDelLupoToChiosco = new Tratta("Tana del Lupo", "Chiosco", LocalTime.of(0, 50));
-                Tratta tanaDelLupoToCittaLaggiu = new Tratta("Tana del Lupo", "Città Laggiù", LocalTime.of(2, 0));
-                Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
-                                LocalTime.of(0, 10));
 
                 // IN MANUTENZIONE
                 // Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");

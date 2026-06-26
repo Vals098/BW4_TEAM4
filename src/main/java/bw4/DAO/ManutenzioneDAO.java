@@ -22,12 +22,12 @@ public class ManutenzioneDAO {
     private final EntityManager entityManager;
     //COSTRUTTORE
 
-    public ManutenzioneDAO(EntityManager em){
+    public ManutenzioneDAO(EntityManager em) {
         this.entityManager = em;
     }
 
     //METODO SAVE
-    public void saveInManutenzione(Manutenzione nuovaManutenzione){
+    public void saveInManutenzione(Manutenzione nuovaManutenzione) {
         EntityTransaction transaction = this.entityManager.getTransaction();
         transaction.begin();
         this.entityManager.persist(nuovaManutenzione);
@@ -37,7 +37,7 @@ public class ManutenzioneDAO {
 
     //METODO FIND MANUTENZIONE IN CORSO BY NOME MEZZO
 
-    public Manutenzione findManutenzioneInCorsoByName (String nomeMezzo){
+    public Manutenzione findManutenzioneInCorsoByName(String nomeMezzo) {
         TypedQuery<Manutenzione> query = this.entityManager.createQuery("SELECT m FROM Manutenzione m WHERE m.mezzo.nomeMezzo = :nome AND m.dataFine IS NULL", Manutenzione.class);
         query.setParameter("nome", nomeMezzo);
 
@@ -48,56 +48,75 @@ public class ManutenzioneDAO {
         } catch (NoResultException e) {
             throw new MezzoNonInManutenzioneException(nomeMezzo);
         }
-        }
+    }
 
     //METODO SET DATA FINE MANUTENZIONE
-public void setDataFineManutenzione (String nomeMezzo, LocalDate dataFineManutenzione){
-    try {
-        Manutenzione manutenzioneInCorso = findManutenzioneInCorsoByName(nomeMezzo);
-        EntityTransaction transaction = this.entityManager.getTransaction();
+    public void setDataFineManutenzione(String nomeMezzo, LocalDate dataFineManutenzione) {
         try {
-            transaction.begin();
+            Manutenzione manutenzioneInCorso = findManutenzioneInCorsoByName(nomeMezzo);
+            EntityTransaction transaction = this.entityManager.getTransaction();
+            try {
+                transaction.begin();
 
-            manutenzioneInCorso.setDataFine(dataFineManutenzione);
+                manutenzioneInCorso.setDataFine(dataFineManutenzione);
 
-            if (manutenzioneInCorso.getMezzo() != null) {
-                manutenzioneInCorso.getMezzo().setStatoMezzo(StatoMezzo.IN_SERVIZIO);
+                if (manutenzioneInCorso.getMezzo() != null) {
+                    manutenzioneInCorso.getMezzo().setStatoMezzo(StatoMezzo.IN_SERVIZIO);
+                }
+
+                transaction.commit();
+
+                nomeMezzo = (manutenzioneInCorso.getMezzo() != null)
+                        ? manutenzioneInCorso.getMezzo().getNomeMezzo()
+                        : "Uffa, superuffa e arciuffa! Questo mezzo non appare.";
+
+                System.out.println("MESSAGGIO IMPORTANTE PER TUTTO IL FANTABOSCO: il mezzo " + nomeMezzo + " È DI NUOVO IN FUNZIONE!");
+
+            } catch (Exception e) {
+
+                if (transaction.isActive()) transaction.rollback();
+
+                System.out.println("Errore durante la chiusura della manutenzione: ");
+
             }
-
-            transaction.commit();
-
-            nomeMezzo = (manutenzioneInCorso.getMezzo() != null)
-                    ? manutenzioneInCorso.getMezzo().getNomeMezzo()
-                    : "Uffa, superuffa e arciuffa! Questo mezzo non appare.";
-
-            System.out.println("MESSAGGIO IMPORTANTE PER TUTTO IL FANTABOSCO: il mezzo " + nomeMezzo + " È DI NUOVO IN FUNZIONE!");
-
-        } catch (Exception e) {
-
-            if (transaction.isActive()) transaction.rollback();
-
-            System.out.println("Errore durante la chiusura della manutenzione: ");
-
-        }
-    }    catch (NomeMezzoNonTrovatoException e) {
+        } catch (NomeMezzoNonTrovatoException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    //DATO IL NOME DI UN MEZZO, TRACCIA GIORNI MANUTENZIONE
 
-    public long periodoManutenzione(String nomeMezzo){
-     Manutenzione mezzoTrovato = findManutenzioneInCorsoByName(nomeMezzo);
-    LocalDate dataInizio = mezzoTrovato.getDataInizio();
-   LocalDate dataFine = mezzoTrovato.getDataFine();
+    //DATO IL NOME DI UN MEZZO CHE HA CONCLUSO LA MANUTENZIONE, TRACCIA GIORNI MANUTENZIONE
 
-     long giorniFermo = ChronoUnit.DAYS.between(dataInizio, dataFine);
+    public long periodoManutenzione(String nomeMezzo) {
+        TypedQuery<Manutenzione> query = this.entityManager.createQuery("SELECT m FROM Manutenzione m WHERE m.mezzo.nomeMezzo = :nome AND m.dataFine IS NOT NULL " +
+                "ORDER BY m.dataInizio DESC", Manutenzione.class);
+        query.setParameter("nome", nomeMezzo);
 
-        System.out.println("Acciderbolina! Il mezzo selezionato " +mezzoTrovato+ " è stato fermo " + giorniFermo + " giorni");
-return giorniFermo;
+        List<Manutenzione> manutenzioniConcluse = query.getResultList();
 
+        if (manutenzioniConcluse.isEmpty()) {
+            System.out.println("Accipigna! Nessuna manutenzione conclusa trovata per il mezzo: " + nomeMezzo);
+            return 0;
+        }
+
+        long giorniTotaliFermo = 0;
+
+        for (Manutenzione m : manutenzioniConcluse) {
+            LocalDate dataInizio = m.getDataInizio();
+            LocalDate dataFine = m.getDataFine();
+
+            long giorniSingoloFermo = ChronoUnit.DAYS.between(dataInizio, dataFine);
+            giorniTotaliFermo += giorniSingoloFermo;
+
+        }
+
+        String nomeRealeMezzo = manutenzioniConcluse.get(0).getMezzo().getNomeMezzo();
+        System.out.println("Acciderbolina! Il mezzo " + nomeRealeMezzo +
+                " in tutta la sua storia è stato fermo per un totale complessivo di " +
+                giorniTotaliFermo + " giorni (divisi in " + manutenzioniConcluse.size() + " interventi).");
+
+        return giorniTotaliFermo;
 
     }
-
-    }
+}
 

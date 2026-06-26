@@ -128,17 +128,20 @@ public class MezzoDAO {
         }
     }
 
-//DATO NOME MEZZO CERCA I BIGLIETTI VIDIMATI
-public long findByNameAndCountObliteration(String nomeMezzo) {
-        findMezzoByName(nomeMezzo);
-
-    return entityManager.createQuery(
-                    "SELECT COUNT(b) FROM Biglietto b " +
-                            "WHERE b.obliterato = true " +
-                            "AND b.mezzo.nome_mezzo = :nomeMezzo ", Long.class)
-            .setParameter("nomeMezzo", nomeMezzo)
-            .getSingleResult();
-}
+////DATO NOME MEZZO CERCA I BIGLIETTI VIDIMATI
+//public long findByNameAndCountObliteration(String nomeMezzo) {
+//        findMezzoByName(nomeMezzo);
+//
+//    return entityManager.createQuery(
+//            "SELECT COUNT(b) FROM Biglietto b WHERE b.ob ")
+////                    "SELECT COUNT(b) FROM Biglietto b
+////
+////                            "WHERE b.obliterato = true " +
+////                            "AND b.mezzo.i " +
+//                            "= :nomeMezzo ", Long.class)
+//            .setParameter("nomeMezzo", nomeMezzo)
+//            .getSingleResult();
+//}
 
 
     //RICERCA TUTTI I MEZZI IN SERVIZIO
