@@ -32,6 +32,7 @@ Percorrenza {
     //Costruttori
 
     public Percorrenza() {
+        this.idPercorrenza = UUID.randomUUID();
     }
 
     public Percorrenza(Tratta tratta, Mezzo mezzo) {
