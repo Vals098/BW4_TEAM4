@@ -24,7 +24,6 @@ public class PercorrenzaDAO {
         transaction.begin();
         em.persist(percorrenza);
         transaction.commit();
-        System.out.println("La percorrenza " + percorrenza + " è stata salvata!");
     }
 
     public Percorrenza findById(UUID idPercorrenza){
@@ -62,8 +61,7 @@ public class PercorrenzaDAO {
                 .getResultList();
 
         if(tempi.isEmpty()){
-            System.out.println("Nessuna percorrenza per questo mezzo su questa tratta");
-            return LocalTime.of(0,0);
+            return null;
         }
 
         double sommaSecondi = tempi.stream().mapToDouble(LocalTime::toSecondOfDay).sum();
@@ -118,7 +116,6 @@ public class PercorrenzaDAO {
             transaction.begin();
             percorrenza.setTempoEffettivo(tempoEffettivo);
             transaction.commit();
-            System.out.println("Tempo effettivo aggiornato con successo per la percorrenza: " + idPercorrenza);
         } else {
             System.out.println("Alla percorrenza con ID: " + idPercorrenza + " è già stato assegnato un tempo effettivo!");
         }
@@ -151,7 +148,7 @@ public class PercorrenzaDAO {
     }
 //METODO ASSEGNA TRATTA A MEZZO IN SERVIZIO
 
-    public void assegnaTrattaMezzo(Mezzo mezzo, Tratta tratta){
+    public void assegnaTrattaMezzo(Mezzo mezzo, Tratta tratta) {
 
         if (mezzo == null) {
             System.out.println("Uffa, superuffa! Non posso assegnare la tratta perché il mezzo non è in servizio o non esiste.");
@@ -180,7 +177,16 @@ public class PercorrenzaDAO {
             }
             System.err.println("Accipigna! Il database ha fatto i capricci. Impossibile salvare la percorrenza.");
         }
+    }
+        public Mezzo findMezzoByTratta(UUID idTratta) {
+            List<Mezzo> mezzi = em.createQuery(
+                            "SELECT p.mezzo FROM Percorrenza p WHERE p.tratta.idTratta = :idTratta",
+                            Mezzo.class)
+                    .setParameter("idTratta", idTratta)
+                    .getResultList();
+            return mezzi.isEmpty() ? null : mezzi.get(0);
         }
+
 }
 
 
