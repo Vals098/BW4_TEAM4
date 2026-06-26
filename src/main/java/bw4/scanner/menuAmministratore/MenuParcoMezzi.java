@@ -1,5 +1,6 @@
 package bw4.scanner.menuAmministratore;
 
+import bw4.DAO.BigliettoDAO;
 import bw4.DAO.ManutenzioneDAO;
 import bw4.DAO.MezzoDAO;
 import bw4.entities.Manutenzione;
@@ -24,12 +25,14 @@ public class MenuParcoMezzi {
     //ATTRIBUTO
     private final MezzoDAO md;
     private final ManutenzioneDAO manutenzioneDAO;
+    private final BigliettoDAO bd;
 
     //COSTRUTTORE
 
-    public MenuParcoMezzi(MezzoDAO mezzoDAO, ManutenzioneDAO manutenzioneDAO) {
+    public MenuParcoMezzi(MezzoDAO mezzoDAO, ManutenzioneDAO manutenzioneDAO, BigliettoDAO bd) {
         this.md = mezzoDAO;
         this.manutenzioneDAO = manutenzioneDAO;
+        this.bd = bd;
     }
 
     //METODI
@@ -111,7 +114,12 @@ public class MenuParcoMezzi {
                 case 5:
                     System.out.println("Di quale mezzo vuoi sapere il numero dei biglietti vidimati?");
                     String nomeMezzoCountObliteration = scanner.nextLine();
-                    md.findByNameAndCountObliteration(nomeMezzoCountObliteration);
+                    bd.countObliterazioniPerNomeMezzo(nomeMezzoCountObliteration);
+                    break;
+
+                case 0:
+                    inSessione = false;
+                    break;
 
                 default:
                     System.out.println("Per tutte le pigne spignolate!");
