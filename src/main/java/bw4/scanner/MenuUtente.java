@@ -65,7 +65,7 @@ public class MenuUtente {
             switch (scelta) {
 
                 case "1":
-                    CercaUnPuntoVendita cercaUnPuntoVendita = new CercaUnPuntoVendita();
+                    CercaUnPuntoVendita cercaUnPuntoVendita = new CercaUnPuntoVendita(pvd);
                     cercaUnPuntoVendita.start();
                     break;
 

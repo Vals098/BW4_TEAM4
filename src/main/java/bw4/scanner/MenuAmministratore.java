@@ -64,7 +64,7 @@ public class MenuAmministratore {
             switch (scelta) {
 
                 case "1":
-                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere( );
+                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere(ud, tesseraDAO);
                     menuUtentiETessere.start();
                     break;
 
