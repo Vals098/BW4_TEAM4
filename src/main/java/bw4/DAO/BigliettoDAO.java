@@ -62,13 +62,7 @@ Long numeroObliterazioni = query.getSingleResult();
 
 return numeroObliterazioni;
 
-
-
     }
-
-
-
-
 
 
 

@@ -44,7 +44,7 @@ public class Application {
                 BigliettoDAO bd = new BigliettoDAO(em);
                 ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
                 AbbonamentoDAO ad = new AbbonamentoDAO(em);
-               MezzoDAO md = new MezzoDAO(em);
+                MezzoDAO md = new MezzoDAO(em);
 
                 // DATI
 
@@ -71,40 +71,38 @@ public class Application {
                 Mezzo mezzoTanaCittalaggiu = new Mezzo(TipoMezzo.TRAM, "Tanacitta");
                 Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "Tanareggia");
 
+                // TRATTE
 
-         // TRATTE
-
-         Tratta antroDellaStregaToChiosco = new Tratta("Antro della Strega", "Chiosco", LocalTime.of(0, 20));
-         Tratta antroDellaStregaToCittaLaggiu = new Tratta("Antro della Strega", "Città Laggiù",
-                 LocalTime.of(1, 30));
-         Tratta antroDellaStregaToReggiaDiReQuercia = new Tratta("Antro della Strega", "Reggia di Re Quercia",
-                 LocalTime.of(0, 40));
-         Tratta antroDellaStregaToTanaDelLupo = new Tratta("Antro della Strega", "Tana del Lupo",
-                 LocalTime.of(0, 30));
-         Tratta chioscoToAntroDellaStrega = new Tratta("Chiosco", "Antro della Strega", LocalTime.of(0, 20));
-         Tratta chioscoToCittaLaggiu = new Tratta("Chiosco", "Città Laggiù", LocalTime.of(1, 50));
-         Tratta chioscoToReggiaDiReQuercia = new Tratta("Chiosco", "Reggia di Re Quercia", LocalTime.of(1, 0));
-         Tratta chioscoToTanaDelLupo = new Tratta("Chiosco", "Tana del Lupo", LocalTime.of(0, 50));
-         Tratta cittaLaggiuToAntroDellaStrega = new Tratta("Città Laggiù", "Antro della Strega",
-                 LocalTime.of(1, 30));
-         Tratta cittaLaggiuToChiosco = new Tratta("Città Laggiù", "Chiosco", LocalTime.of(1, 50));
-         Tratta cittaLaggiuToReggiaDiReQuercia = new Tratta("Città Laggiù", "Reggia di Re Quercia",
-                 LocalTime.of(2, 10));
-         Tratta cittaLaggiuToTanaDelLupo = new Tratta("Città Laggiù", "Tana del Lupo", LocalTime.of(2, 0));
-         Tratta reggiaDiReQuerciaToAntroDellaStrega = new Tratta("Reggia di Re Quercia", "Antro della Strega",
-                 LocalTime.of(0, 40));
-         Tratta reggiaDiReQuerciaToChiosco = new Tratta("Reggia di Re Quercia", "Chiosco", LocalTime.of(1, 0));
-         Tratta reggiaDiReQuerciaToCittaLaggiu = new Tratta("Reggia di Re Quercia", "Città Laggiù",
-                 LocalTime.of(2, 10));
-         Tratta reggiaDiReQuerciaToTanaDelLupo = new Tratta("Reggia di Re Quercia", "Tana del Lupo",
-                 LocalTime.of(0, 10));
-         Tratta tanaDelLupoToAntroDellaStrega = new Tratta("Tana del Lupo", "Antro della Strega",
-                 LocalTime.of(0, 30));
-         Tratta tanaDelLupoToChiosco = new Tratta("Tana del Lupo", "Chiosco", LocalTime.of(0, 50));
-         Tratta tanaDelLupoToCittaLaggiu = new Tratta("Tana del Lupo", "Città Laggiù", LocalTime.of(2, 0));
-         Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
-                 LocalTime.of(0, 10));
-
+                Tratta antroDellaStregaToChiosco = new Tratta("Antro della Strega", "Chiosco", LocalTime.of(0, 20));
+                Tratta antroDellaStregaToCittaLaggiu = new Tratta("Antro della Strega", "Città Laggiù",
+                                LocalTime.of(1, 30));
+                Tratta antroDellaStregaToReggiaDiReQuercia = new Tratta("Antro della Strega", "Reggia di Re Quercia",
+                                LocalTime.of(0, 40));
+                Tratta antroDellaStregaToTanaDelLupo = new Tratta("Antro della Strega", "Tana del Lupo",
+                                LocalTime.of(0, 30));
+                Tratta chioscoToAntroDellaStrega = new Tratta("Chiosco", "Antro della Strega", LocalTime.of(0, 20));
+                Tratta chioscoToCittaLaggiu = new Tratta("Chiosco", "Città Laggiù", LocalTime.of(1, 50));
+                Tratta chioscoToReggiaDiReQuercia = new Tratta("Chiosco", "Reggia di Re Quercia", LocalTime.of(1, 0));
+                Tratta chioscoToTanaDelLupo = new Tratta("Chiosco", "Tana del Lupo", LocalTime.of(0, 50));
+                Tratta cittaLaggiuToAntroDellaStrega = new Tratta("Città Laggiù", "Antro della Strega",
+                                LocalTime.of(1, 30));
+                Tratta cittaLaggiuToChiosco = new Tratta("Città Laggiù", "Chiosco", LocalTime.of(1, 50));
+                Tratta cittaLaggiuToReggiaDiReQuercia = new Tratta("Città Laggiù", "Reggia di Re Quercia",
+                                LocalTime.of(2, 10));
+                Tratta cittaLaggiuToTanaDelLupo = new Tratta("Città Laggiù", "Tana del Lupo", LocalTime.of(2, 0));
+                Tratta reggiaDiReQuerciaToAntroDellaStrega = new Tratta("Reggia di Re Quercia", "Antro della Strega",
+                                LocalTime.of(0, 40));
+                Tratta reggiaDiReQuerciaToChiosco = new Tratta("Reggia di Re Quercia", "Chiosco", LocalTime.of(1, 0));
+                Tratta reggiaDiReQuerciaToCittaLaggiu = new Tratta("Reggia di Re Quercia", "Città Laggiù",
+                                LocalTime.of(2, 10));
+                Tratta reggiaDiReQuerciaToTanaDelLupo = new Tratta("Reggia di Re Quercia", "Tana del Lupo",
+                                LocalTime.of(0, 10));
+                Tratta tanaDelLupoToAntroDellaStrega = new Tratta("Tana del Lupo", "Antro della Strega",
+                                LocalTime.of(0, 30));
+                Tratta tanaDelLupoToChiosco = new Tratta("Tana del Lupo", "Chiosco", LocalTime.of(0, 50));
+                Tratta tanaDelLupoToCittaLaggiu = new Tratta("Tana del Lupo", "Città Laggiù", LocalTime.of(2, 0));
+                Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
+                                LocalTime.of(0, 10));
 
                 // PUNTI VENDITA
 
@@ -128,7 +126,6 @@ public class Application {
                                 "Castello dei fiori");
 
                 Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
-
 
                 // UTENTI E TESSERE
 
@@ -157,61 +154,57 @@ public class Application {
                 Tessera tessera7 = new Tessera(4577, LocalDate.of(2024, 7, 30));
                 Tessera tessera8 = new Tessera(3573, LocalDate.of(2026, 2, 14));
 
-                
-
                 // METODO SAVE
 
-//                 pvd.save(puntoVendita1);
-//                 pvd.save(puntoVendita2);
-//                 pvd.save(puntoVendita3);
-//                 pvd.save(puntoVendita4);
-//                 pvd.save(puntoVendita5);
-//                 pvd.save(puntoVendita6);
-//                 pvd.save(puntoVendita7);
-//                 pvd.save(puntoVendita8);
-//                 pvd.save(puntoVendita9);
-//                 pvd.save(puntoVendita10);
-//                 md.saveMezzo(mezzo1);
+                // pvd.save(puntoVendita1);
+                // pvd.save(puntoVendita2);
+                // pvd.save(puntoVendita3);
+                // pvd.save(puntoVendita4);
+                // pvd.save(puntoVendita5);
+                // pvd.save(puntoVendita6);
+                // pvd.save(puntoVendita7);
+                // pvd.save(puntoVendita8);
+                // pvd.save(puntoVendita9);
+                // pvd.save(puntoVendita10);
+                // md.saveMezzo(mezzo1);
 
-//                 ud.save(utente1);
-//                 ud.save(utente2);
-//                 ud.save(utente3);
-//                 ud.save(utente4);
-//                 ud.save(utente5);
-//                 ud.save(utente6);
-//                 ud.save(utente7);
-//                 ud.save(utente8);
-////
-//                 Utente utente1FromDB = ud.findByCodiceUtente("MICOT");
-//                 Utente utente2FromDB = ud.findByCodiceUtente("LULU");
-//                 Utente utente3FromDB = ud.findByCodiceUtente("STRVAR");
-//                 Utente utente4FromDB = ud.findByCodiceUtente("FALU");
-//                 Utente utente5FromDB = ud.findByCodiceUtente("GNORO");
-//                 Utente utente6FromDB = ud.findByCodiceUtente("ORORC");
-//                 Utente utente7FromDB = ud.findByCodiceUtente("REGGAR");
-//                 Utente utente8FromDB = ud.findByCodiceUtente("CUZIB");
+                // ud.save(utente1);
+                // ud.save(utente2);
+                // ud.save(utente3);
+                // ud.save(utente4);
+                // ud.save(utente5);
+                // ud.save(utente6);
+                // ud.save(utente7);
+                // ud.save(utente8);
+                ///
+                // Utente utente1FromDB = ud.findByCodiceUtente("MICOT");
+                // Utente utente2FromDB = ud.findByCodiceUtente("LULU");
+                // Utente utente3FromDB = ud.findByCodiceUtente("STRVAR");
+                // Utente utente4FromDB = ud.findByCodiceUtente("FALU");
+                // Utente utente5FromDB = ud.findByCodiceUtente("GNORO");
+                // Utente utente6FromDB = ud.findByCodiceUtente("ORORC");
+                // Utente utente7FromDB = ud.findByCodiceUtente("REGGAR");
+                // Utente utente8FromDB = ud.findByCodiceUtente("CUZIB");
 
-//
-//                 tessera1.setUtente(utente1FromDB);
-//                 tessera2.setUtente(utente2FromDB);
-//                 tessera3.setUtente(utente3FromDB);
-//                 tessera4.setUtente(utente4FromDB);
-//                 tessera5.setUtente(utente5FromDB);
-//                 tessera6.setUtente(utente6FromDB);
-//                 tessera7.setUtente(utente7FromDB);
-//                 tessera8.setUtente(utente8FromDB);
+                //
+                // tessera1.setUtente(utente1FromDB);
+                // tessera2.setUtente(utente2FromDB);
+                // tessera3.setUtente(utente3FromDB);
+                // tessera4.setUtente(utente4FromDB);
+                // tessera5.setUtente(utente5FromDB);
+                // tessera6.setUtente(utente6FromDB);
+                // tessera7.setUtente(utente7FromDB);
+                // tessera8.setUtente(utente8FromDB);
 
-//
-//                 tesseraDAO.save(tessera1);
-//                 tesseraDAO.save(tessera2);
-//                 tesseraDAO.save(tessera3);
-//                 tesseraDAO.save(tessera4);
-//                 tesseraDAO.save(tessera5);
-//                 tesseraDAO.save(tessera6);
-//                 tesseraDAO.save(tessera7);
-//                 tesseraDAO.save(tessera8);
-
-
+                //
+                // tesseraDAO.save(tessera1);
+                // tesseraDAO.save(tessera2);
+                // tesseraDAO.save(tessera3);
+                // tesseraDAO.save(tessera4);
+                // tesseraDAO.save(tessera5);
+                // tesseraDAO.save(tessera6);
+                // tesseraDAO.save(tessera7);
+                // tesseraDAO.save(tessera8);
 
                 // IN MANUTENZIONE
                 // Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
@@ -227,74 +220,73 @@ public class Application {
                 // METODO SAVE
 
                 // PUNTO VENDITA
-//                 pvd.save(puntoVendita1);
-//                 pvd.save(puntoVendita2);
-//                 pvd.save(puntoVendita3);
-//                 pvd.save(puntoVendita4);
-//                 pvd.save(puntoVendita5);
-//                 pvd.save(puntoVendita6);
-//                 pvd.save(puntoVendita7);
-//                 pvd.save(puntoVendita8);
-//                 pvd.save(puntoVendita9);
-//                 pvd.save(puntoVendita10);
+                // pvd.save(puntoVendita1);
+                // pvd.save(puntoVendita2);
+                // pvd.save(puntoVendita3);
+                // pvd.save(puntoVendita4);
+                // pvd.save(puntoVendita5);
+                // pvd.save(puntoVendita6);
+                // pvd.save(puntoVendita7);
+                // pvd.save(puntoVendita8);
+                // pvd.save(puntoVendita9);
+                // pvd.save(puntoVendita10);
 
                 // MEZZO
-//                 md.saveMezzo(mezzoAntroChiosco);
-//                 md.saveMezzo(mezzoAntroCittaLaggiu);
-//                 md.saveMezzo(mezzoAntroReggia);
-//                 md.saveMezzo(mezzoAntroTana);
-//                 md.saveMezzo(mezzoChioscoAntro);
-//                 md.saveMezzo(mezzoChioscoCittaLaggiu);
-//                 md.saveMezzo(mezzoChioscoReggia);
-//                 md.saveMezzo(mezzoChioscoTana );
-//                 md.saveMezzo(mezzoCittaLaggiuAntro);
-//                 md.saveMezzo(mezzoCittaLaggiuChiosco);
-//                 md.saveMezzo(mezzoCittaLaggiuReggia);
-//                 md.saveMezzo(mezzocittaLaggiuTana);
-//                 md.saveMezzo(mezzoReggiaAntro);
-//                 md.saveMezzo(mezzoReggiaChiosco );
-//                 md.saveMezzo(mezzoReggiaCittaLaggiu);
-//                 md.saveMezzo(mezzoReggiaTana);
-//                 md.saveMezzo(mezzoTanaAntro);
-//                 md.saveMezzo(mezzoTanaChiosco );
-//                 md.saveMezzo(mezzoTanaCittalaggiu);
-//                 md.saveMezzo(mezzoTanaReggia);
+                // md.saveMezzo(mezzoAntroChiosco);
+                // md.saveMezzo(mezzoAntroCittaLaggiu);
+                // md.saveMezzo(mezzoAntroReggia);
+                // md.saveMezzo(mezzoAntroTana);
+                // md.saveMezzo(mezzoChioscoAntro);
+                // md.saveMezzo(mezzoChioscoCittaLaggiu);
+                // md.saveMezzo(mezzoChioscoReggia);
+                // md.saveMezzo(mezzoChioscoTana );
+                // md.saveMezzo(mezzoCittaLaggiuAntro);
+                // md.saveMezzo(mezzoCittaLaggiuChiosco);
+                // md.saveMezzo(mezzoCittaLaggiuReggia);
+                // md.saveMezzo(mezzocittaLaggiuTana);
+                // md.saveMezzo(mezzoReggiaAntro);
+                // md.saveMezzo(mezzoReggiaChiosco );
+                // md.saveMezzo(mezzoReggiaCittaLaggiu);
+                // md.saveMezzo(mezzoReggiaTana);
+                // md.saveMezzo(mezzoTanaAntro);
+                // md.saveMezzo(mezzoTanaChiosco );
+                // md.saveMezzo(mezzoTanaCittalaggiu);
+                // md.saveMezzo(mezzoTanaReggia);
 
                 // TRATTA
-//                 td.save(antroDellaStregaToChiosco);
-//                 td.save(antroDellaStregaToCittaLaggiu);
-//                 td.save(antroDellaStregaToReggiaDiReQuercia);
-//                 td.save(antroDellaStregaToTanaDelLupo);
-//                 td.save(chioscoToAntroDellaStrega);
-//                 td.save(chioscoToCittaLaggiu);
-//                 td.save(chioscoToReggiaDiReQuercia);
-//                 td.save(chioscoToTanaDelLupo);
-//                 td.save(cittaLaggiuToAntroDellaStrega);
-//                 td.save(cittaLaggiuToChiosco);
-//                 td.save(cittaLaggiuToReggiaDiReQuercia);
-//                 td.save(cittaLaggiuToTanaDelLupo);
-//                 td.save(reggiaDiReQuerciaToAntroDellaStrega);
-//                 td.save(reggiaDiReQuerciaToChiosco);
-//                 td.save(reggiaDiReQuerciaToCittaLaggiu);
-//                 td.save(reggiaDiReQuerciaToTanaDelLupo);
-//                 td.save(tanaDelLupoToAntroDellaStrega);
-//                 td.save(tanaDelLupoToChiosco);
-//                 td.save(tanaDelLupoToCittaLaggiu);
-//                 td.save(tanaDelLupoToReggiaDiReQuercia);
+                // td.save(antroDellaStregaToChiosco);
+                // td.save(antroDellaStregaToCittaLaggiu);
+                // td.save(antroDellaStregaToReggiaDiReQuercia);
+                // td.save(antroDellaStregaToTanaDelLupo);
+                // td.save(chioscoToAntroDellaStrega);
+                // td.save(chioscoToCittaLaggiu);
+                // td.save(chioscoToReggiaDiReQuercia);
+                // td.save(chioscoToTanaDelLupo);
+                // td.save(cittaLaggiuToAntroDellaStrega);
+                // td.save(cittaLaggiuToChiosco);
+                // td.save(cittaLaggiuToReggiaDiReQuercia);
+                // td.save(cittaLaggiuToTanaDelLupo);
+                // td.save(reggiaDiReQuerciaToAntroDellaStrega);
+                // td.save(reggiaDiReQuerciaToChiosco);
+                // td.save(reggiaDiReQuerciaToCittaLaggiu);
+                // td.save(reggiaDiReQuerciaToTanaDelLupo);
+                // td.save(tanaDelLupoToAntroDellaStrega);
+                // td.save(tanaDelLupoToChiosco);
+                // td.save(tanaDelLupoToCittaLaggiu);
+                // td.save(tanaDelLupoToReggiaDiReQuercia);
 
-                //                MENU INIZIALE
+                // MENU INIZIALE
                 MenuIniziale menuIniziale = new MenuIniziale(
-                        ad,
-                        pvd,
-                        md,
-                        td,
-                        pd,
-                        ud,
-                        tesseraDAO,
-                        tvd,
-                        bd,
-                        manutenzioneDAO
-                );
+                                ad,
+                                pvd,
+                                md,
+                                td,
+                                pd,
+                                ud,
+                                tesseraDAO,
+                                tvd,
+                                bd,
+                                manutenzioneDAO);
 
                 menuIniziale.start();
 
@@ -335,14 +327,90 @@ public class Application {
 
                 // ASSEGNAZIONE TRATTA TRAMITE MEZZO IN SERVIZIO
 
+//                Mezzo antrocittaDB = md.findMezzoByName("Antrocitta");
+//                Tratta trattaAntroCitta = td.findByZonaPertenzaECapolinea("Antro della Strega", "Città Laggiù");
+//                pd.assegnaTrattaMezzo(antrocittaDB, trattaAntroCitta);
+//
+//                Mezzo cittaChioscoDb = md.findMezzoByName("Cittachiosco");
+//                Tratta trattaCittaChiosco = td.findByZonaPertenzaECapolinea("Città Laggiù", "Chiosco");
+//                pd.assegnaTrattaMezzo(cittaChioscoDb, trattaCittaChiosco);
+//
+//
+//                Mezzo antroReggiaDB = md.findMezzoByName("Antroreggia");
+//                Tratta trattaAntroReggia = td.findByZonaPertenzaECapolinea("Antro della Strega", "Reggia di Re Quercia");
+//                pd.assegnaTrattaMezzo(antroReggiaDB, trattaAntroReggia);
+//
+//                Mezzo antroTanaDB = md.findMezzoByName("Antrotana");
+//                Tratta trattaAntroTana = td.findByZonaPertenzaECapolinea("Antro della Strega", "Tana del Lupo");
+//                pd.assegnaTrattaMezzo(antroTanaDB, trattaAntroTana);
+//
+//                Mezzo chioscAntroDb = md.findMezzoByName("Chioscantro");
+//                Tratta trattaChioscoAntro = td.findByZonaPertenzaECapolinea("Chiosco", "Antro della Strega");
+//                pd.assegnaTrattaMezzo(chioscAntroDb, trattaChioscoAntro);
+//
+//                Mezzo chioscoCittaDB = md.findMezzoByName("Chioscocitta");
+//                Tratta trattaChioscoCitta = td.findByZonaPertenzaECapolinea("Chiosco", "Città Laggiù");
+//                pd.assegnaTrattaMezzo(chioscoCittaDB, trattaChioscoCitta);
+//
+//                Mezzo chioscoReggiaDB = md.findMezzoByName("Chioscoreggia");
+//                Tratta trattaChioscoReggia = td.findByZonaPertenzaECapolinea("Chiosco", "Reggia di Re Quercia");
+//                pd.assegnaTrattaMezzo(chioscoReggiaDB, trattaChioscoReggia);
+//
+//                Mezzo chioscoTanaDB = md.findMezzoByName("Chioscotana");
+//                Tratta trattaChioscoTana = td.findByZonaPertenzaECapolinea("Chiosco", "Tana del Lupo");
+//                pd.assegnaTrattaMezzo(chioscoTanaDB, trattaChioscoTana);
+//
+//                Mezzo cittaAntroDb = md.findMezzoByName("Cittantro");
+//                Tratta trattaCittaAntro = td.findByZonaPertenzaECapolinea("Città Laggiù", "Antro della Strega");
+//                pd.assegnaTrattaMezzo(cittaAntroDb, trattaCittaAntro);
+//
+//                Mezzo cittaReggiaDb = md.findMezzoByName("Cittareggia");
+//                Tratta trattaCittaReggia = td.findByZonaPertenzaECapolinea("Città Laggiù", "Reggia di Re Quercia");
+//                pd.assegnaTrattaMezzo(cittaReggiaDb, trattaCittaReggia);
+//
+//                Mezzo cittaTanaDb = md.findMezzoByName("Cittatana");
+//                Tratta trattaCittaTana = td.findByZonaPertenzaECapolinea("Città Laggiù", "Tana del Lupo");
+//                pd.assegnaTrattaMezzo(cittaTanaDb, trattaCittaTana);
+//
+//                Mezzo reggiaAntroDb = md.findMezzoByName("Reggiantro");
+//                Tratta trattaReggiaAntro = td.findByZonaPertenzaECapolinea("Reggia di Re Quercia", "Antro della Strega");
+//                pd.assegnaTrattaMezzo(reggiaAntroDb, trattaReggiaAntro);
+//
+//                Mezzo reggiaChioscoDb = md.findMezzoByName("Reggiachiosco");
+//                Tratta trattaReggiaChiosco = td.findByZonaPertenzaECapolinea("Reggia di Re Quercia", "Chiosco");
+//                pd.assegnaTrattaMezzo(reggiaChioscoDb, trattaReggiaChiosco);
+//
+//                Mezzo reggiaCittaDb = md.findMezzoByName("Reggiacitta");
+//                Tratta trattaReggiaCitta = td.findByZonaPertenzaECapolinea("Reggia di Re Quercia", "Città Laggiù");
+//                pd.assegnaTrattaMezzo(reggiaCittaDb, trattaReggiaCitta);
+//
+//                Mezzo reggiaTanaDb = md.findMezzoByName("Reggiatana");
+//                Tratta trattaReggiaTana = td.findByZonaPertenzaECapolinea("Reggia di Re Quercia", "Tana del Lupo");
+//                pd.assegnaTrattaMezzo(reggiaTanaDb, trattaReggiaTana);
+//
+//                Mezzo tanaAntroDb = md.findMezzoByName("Tanantro");
+//                Tratta trattaTanaAntro = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Antro della Strega");
+//                pd.assegnaTrattaMezzo(tanaAntroDb, trattaTanaAntro);
+//
+//                Mezzo tanaChioscoDb = md.findMezzoByName("Tanachiosco");
+//                Tratta trattaTanaChiosco = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Chiosco");
+//                pd.assegnaTrattaMezzo(tanaChioscoDb, trattaTanaChiosco);
+//
+//                Mezzo tanaCittaDb = md.findMezzoByName("Tanacitta");
+//                Tratta trattaTanaCitta = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Città Laggiù");
+//                pd.assegnaTrattaMezzo(tanaCittaDb, trattaTanaCitta);
+//
+//                Mezzo tanaReggiaDb = md.findMezzoByName("Tanareggia");
+//                Tratta trattaTanaReggia = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Reggia di Re Quercia");
+//                pd.assegnaTrattaMezzo(tanaReggiaDb, trattaTanaReggia);
+
                 // Test
                 // List<TitoloDiViaggio> risultati = tvd.findAll();
                 // for (TitoloDiViaggio t : risultati) {
                 // System.out.println(t);
                 // }
 
-
-//
+                //
 
         }
 }
