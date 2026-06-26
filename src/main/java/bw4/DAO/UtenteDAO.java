@@ -1,12 +1,9 @@
 package bw4.DAO;
 
 import bw4.entities.Utente;
-import bw4.exceptions.UtenteNonTrovatoException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
-
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class UtenteDAO {
@@ -14,13 +11,46 @@ public class UtenteDAO {
     public UtenteDAO(EntityManager em) {
         this.em = em;
     }
+    // Salva un nuovo utente nel database
     public void save(Utente utente) {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
             em.persist(utente);
             transaction.commit();
-            System.out.println("Utente salvato: " + utente.getNome() + " " + utente.getCognome());
+            System.out.println("Utente salvato con successo: " + utente.getIdUtente());
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.err.println("Errore durante il salvataggio: " + e.getMessage());
+        }
+    }
+//    CERCO UTENTE
+    public Utente findById(UUID id) {
+        return em.find(Utente.class, id);
+    }
+    public void avviaCancellazioneUtente(UUID idUtente) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+
+            Utente utente = em.find(Utente.class, idUtente);
+            if (utente != null) {
+                // Facciamo partire il timer
+                utente.setDataCancellazione(LocalDate.now());
+                // Svuotiamo i reali dati personali presenti nella nuova entità Utente
+                utente.setNome(null);
+                utente.setCognome(null);
+                utente.setResidenza(null);
+                utente.setProfessione(null);
+                utente.setDataNascita(null);
+                em.merge(utente);
+                System.out.println("La riga vuota verrà rimossa tra 1 mese.");
+            } else {
+                System.out.println("Accipigna! Nessun utente trovato con ID: " + idUtente);
+            }
+            transaction.commit();
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -28,36 +58,29 @@ public class UtenteDAO {
             System.err.println("Errore: " + e.getMessage());
         }
     }
-
-
-    public Utente findById(UUID id) {
-        return em.find(Utente.class, id);
-    }
-
-    // FIND BY CODICE UTENTE
-    public Utente findByCodiceUtente(String codiceUtente) {
+    public void pulisciUtentiEliminatiDefinitivamente() {
+        EntityTransaction transaction = em.getTransaction();
         try {
-            TypedQuery<Utente> query = em.createQuery(
-                    "SELECT u FROM Utente u WHERE u.codiceUtente = :codiceUtente",
-                    Utente.class);
-            query.setParameter("codiceUtente", codiceUtente);
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            throw new UtenteNonTrovatoException("Accipigna!! L'utente con codice: " + codiceUtente + " non fa parte del Fantabosco!");
-        }
-    }
+            transaction.begin();
 
-    // Dato il numero tessera trova l'utente
-    public Utente findByNumeroTessera(int numeroTessera) {
-        try {
-            TypedQuery<Utente> query = em.createQuery(
-                    "SELECT u FROM Utente u WHERE u.tessera.numeroTessera = :numTessera",
-                    Utente.class);
-            query.setParameter("numTessera", numeroTessera);
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            System.out.println("Nessun utente trovato con il numero tessera: " + numeroTessera);
-            return null;
+            // Calcoliamo la data (esattamente un mese fa da oggi)
+            LocalDate limiteUnMeseFa = LocalDate.now().minusMonths(1);
+
+            // Eseguiamo il DELETE per fare pulizia sul DB
+            int righeCancellate = em.createQuery(
+                            "DELETE FROM Utente u WHERE u.dataCancellazione IS NOT NULL AND u.dataCancellazione <= :dataLimite")
+                    .setParameter("dataLimite", limiteUnMeseFa)
+                    .executeUpdate();
+            transaction.commit();
+
+            if (righeCancellate > 0) {
+                System.out.println("PULIZIA DATABASE: " + righeCancellate + " utenti eliminati da più di un mese.");
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.err.println("Errore: " + e.getMessage());
         }
     }
 }

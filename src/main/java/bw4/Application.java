@@ -25,9 +25,7 @@ import java.util.List;
 import java.time.LocalTime;
 
 public class Application {
-
         private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("BW4_TEAM4");
-
         public static void main(String[] args) {
 
                 // CREAZIONE ENTITY MANAGER
@@ -35,7 +33,6 @@ public class Application {
 
                 // CREAZIONE DAO
                 PuntoVenditaDAO pvd = new PuntoVenditaDAO(em);
-
                 TrattaDAO td = new TrattaDAO(em);
                 PercorrenzaDAO pd = new PercorrenzaDAO(em);
                 UtenteDAO ud = new UtenteDAO(em);
@@ -44,7 +41,7 @@ public class Application {
                 BigliettoDAO bd = new BigliettoDAO(em);
                 ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
                 AbbonamentoDAO ad = new AbbonamentoDAO(em);
-               MezzoDAO md = new MezzoDAO(em);
+                MezzoDAO md = new MezzoDAO(em);
 
                 // DATI
 
@@ -157,7 +154,7 @@ public class Application {
                 Tessera tessera7 = new Tessera(4577, LocalDate.of(2024, 7, 30));
                 Tessera tessera8 = new Tessera(3573, LocalDate.of(2026, 2, 14));
 
-                
+
 
                 // METODO SAVE
 
@@ -341,8 +338,6 @@ public class Application {
                 // System.out.println(t);
                 // }
 
-
-//
 
         }
 }
