@@ -66,7 +66,7 @@ public class MenuIniziale {
                 eseguiApp = false;
                 break;
             } else if (!sceltaMenuAccesso.equals("1")) {
-                System.out.println("\nFolletto, folletto, cervello di foglietto!... portato via dal vento, vuoi stare un po' più attento?! Inserisci 1 o 0.\n");
+                System.out.println("Folletto, folletto, cervello di foglietto!... portato via dal vento, vuoi stare un po' più attento?! Inserisci 1 o 0.\n");
                 continue;
             }
 

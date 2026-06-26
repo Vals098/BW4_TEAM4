@@ -79,7 +79,6 @@ public class TesseraDAO {
                             tessera.setDataDiScadenza(LocalDate.now().plusYears(1));
                             em.merge(tessera);
                             transaction.commit();
-
                             System.out.println("Pagamento andato a buon fine! lilleri accettati.");
                             System.out.println("Che strabiliante meraviglia! La tessera numero " + numeroTessera + " è stata rinnovata!");
                             System.out.println("La nuova data è aggiornata al: " + tessera.getDataDiScadenza());

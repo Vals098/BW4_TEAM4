@@ -2,13 +2,13 @@ package bw4.scanner;
 
 import bw4.DAO.*;
 import bw4.scanner.menuAmministratore.*;
+import bw4.scanner.menuAmministratore.MenuUtentiETessere;
 
 import java.util.Scanner;
 
 public class MenuAmministratore {
 
     private final Scanner scanner = new Scanner(System.in);
-
     private final PuntoVenditaDAO pvd;
     private final MezzoDAO md;
     private final TrattaDAO td;
@@ -51,7 +51,7 @@ public class MenuAmministratore {
 
         while (inSessione) {
 
-            System.out.println("\n=== MENU dello Gnomo Archivista ===");
+            System.out.println("=== MENU dello Gnomo Archivista ===");
             System.out.println("1. Gestione UTENTI E TESSERE");
             System.out.println("2. Gestione BIGLIETTI E ABBONAMENTI");
             System.out.println("3. Gestione PUNTI VENDITA");
@@ -64,10 +64,9 @@ public class MenuAmministratore {
             switch (scelta) {
 
                 case "1":
-                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere(ud, tesseraDAO);
-                    menuUtentiETessere.start();
+                    MenuUtentiETessere menuUtenti = new MenuUtentiETessere(ud, tesseraDAO);
+                    menuUtenti.start();
                     break;
-
                 case "2":
                     MenuBigliettiEAbbonamenti menuBigliettiEAbbonamenti = new MenuBigliettiEAbbonamenti(ad, bd, tvd, tesseraDAO);
                     menuBigliettiEAbbonamenti.start();
@@ -120,9 +119,5 @@ public class MenuAmministratore {
     private void menuTratte() {
         System.out.println("\nRinnovo Tessera...");
     }
-
-
-
-
 
 }
