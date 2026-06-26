@@ -65,15 +65,6 @@ public class Application {
         Mezzo mezzoTanaCittalaggiu = new Mezzo(TipoMezzo.TRAM, "Tanacitta");
         Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "Tanareggia");
 
-                TrattaDAO td = new TrattaDAO(em);
-                PercorrenzaDAO pd = new PercorrenzaDAO(em);
-                UtenteDAO ud = new UtenteDAO(em);
-                TesseraDAO tesseraDAO = new TesseraDAO(em);
-                TitoloDiViaggioDAO tvd = new TitoloDiViaggioDAO(em);
-                BigliettoDAO bd = new BigliettoDAO(em);
-                ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
-                AbbonamentoDAO ad = new AbbonamentoDAO(em);
-                MezzoDAO md = new MezzoDAO(em);
 
         // PUNTI VENDITA
         PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate", "Castello dei fiori");
@@ -89,15 +80,7 @@ public class Application {
 
         Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
 
-        // UTENTI
-        Utente utente1 = new Utente("MICOT", "Milo", "Cotogno", LocalDate.of(1981, 1, 14), "Regno di Fiabiselva", "Bibitiere e Aggiusta guai");
-        Utente utente2 = new Utente("LULU", "Lupo", "Lucio", LocalDate.of(1956, 1, 16), "Fittaforesta", "Lupo di Fiaba");
-        Utente utente3 = new Utente("STRVAR", "Strega", "Varana", LocalDate.of(1976, 10, 9), "Stregovia", "Strega Viola");
-        Utente utente4 = new Utente("FALU", "Fata", "Lina", LocalDate.of(2010, 5, 30), "Regno d'Oltracque", "Fata Assistente");
-        Utente utente5 = new Utente("GNORO", "Gnomo", "Ronfo", LocalDate.of(2018, 12, 24), "Villaggio degli Gnomi", "Produrre tappi di sughero");
-        Utente utente6 = new Utente("ORORC", "Orchessa", "Orchidea", LocalDate.of(1945, 3, 31), "Orchiburghia", "Contadina di cocomeronzoli");
-        Utente utente7 = new Utente("REGGAR", "Reginotta", "Gardenia", LocalDate.of(2000, 3, 31), "Isola Giardinia", "Regina");
-        Utente utente8 = new Utente("CUZIB", "Cuoco", "Zibibbo", LocalDate.of(1998, 4, 27), "Stregovia", "Cuoco");
+
 
                 // TRATTE
 
@@ -154,19 +137,7 @@ public class Application {
 //        pvd.save(puntoVendita9);
 //        pvd.save(puntoVendita10);
 
-        // MENU INIZIALE
-        MenuIniziale menuIniziale = new MenuIniziale(
-                ad,
-                pvd,
-                md,
-                td,
-                pd,
-                ud,
-                tesseraDAO,
-                tvd,
-                bd,
-                manutenzioneDAO
-        );
+
 
                 // UTENTI E TESSERE
 
@@ -186,6 +157,7 @@ public class Application {
                                 "Isola Giardinia", "Regina");
                 Utente utente8 = new Utente("CUZIB", "Cuoco", "Zibibbo", LocalDate.of(1998, 4, 27), "Stregovia",
                                 "Cuoco");
+
                 Tessera tessera1 = new Tessera(1234, LocalDate.of(2025, 4, 19));
                 Tessera tessera2 = new Tessera(5678, LocalDate.of(2026, 5, 10));
                 Tessera tessera3 = new Tessera(9542, LocalDate.of(2025, 11, 3));
@@ -217,7 +189,7 @@ public class Application {
 //                 ud.save(utente6);
 //                 ud.save(utente7);
 //                 ud.save(utente8);
-                ///
+
 //                 Utente utente1FromDB = ud.findByCodiceUtente("MICOT");
 //                 Utente utente2FromDB = ud.findByCodiceUtente("LULU");
 //                 Utente utente3FromDB = ud.findByCodiceUtente("STRVAR");
@@ -258,7 +230,6 @@ public class Application {
                 // 5, 10), antrochioscoDalDB,
                 // "Perdita olio");
 
-                // METODO SAVE
 
                 // PUNTO VENDITA
 //                 pvd.save(puntoVendita1);
@@ -445,13 +416,11 @@ public class Application {
 //                Tratta trattaTanaReggia = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Reggia di Re Quercia");
 //                pd.assegnaTrattaMezzo(tanaReggiaDb, trattaTanaReggia);
 
-                // Test
-                // List<TitoloDiViaggio> risultati = tvd.findAll();
-                // for (TitoloDiViaggio t : risultati) {
-                // System.out.println(t);
-                // }
-
-                //
-
+//                 Test
+//                 List<TitoloDiViaggio> risultati = tvd.findAll();
+//                 for (TitoloDiViaggio t : risultati) {
+//                 System.out.println(t);
+//                 }
+        
         }
 }
