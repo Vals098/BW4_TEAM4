@@ -130,7 +130,7 @@ public class MezzoDAO {
 
 
 
-    //RICERCA TUTTI I MEZZI IN SERVIZIO
+    //RICERCA TUTTI I MEZZI IN SERVIZIO E NON ASSEGNATI
 
     public List<Mezzo> findAllInServizioENonAncoraAssegnati() {
         try {
@@ -144,4 +144,16 @@ public class MezzoDAO {
         }
     }
 
+    //RICERCA TUTTI I MEZZI IN SERVIZIO
+    public List<Mezzo> findAllInServizio() {
+        try {
+            return this.entityManager.createQuery(
+                    "SELECT m FROM Mezzo m WHERE m.statoMezzo = bw4.enums.StatoMezzo.IN_SERVIZIO",
+                    Mezzo.class
+            ).getResultList();
+        } catch (Exception e) {
+            System.out.println("Errore durante il recupero dei mezzi: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
 }

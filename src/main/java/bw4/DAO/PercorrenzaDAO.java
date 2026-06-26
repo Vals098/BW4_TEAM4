@@ -148,7 +148,7 @@ public class PercorrenzaDAO {
     }
 //METODO ASSEGNA TRATTA A MEZZO IN SERVIZIO
 
-    public void assegnaTrattaMezzo(Mezzo mezzo, Tratta tratta){
+    public void assegnaTrattaMezzo(Mezzo mezzo, Tratta tratta) {
 
         if (mezzo == null) {
             System.out.println("Uffa, superuffa! Non posso assegnare la tratta perché il mezzo non è in servizio o non esiste.");
@@ -177,6 +177,7 @@ public class PercorrenzaDAO {
             }
             System.err.println("Accipigna! Il database ha fatto i capricci. Impossibile salvare la percorrenza.");
         }
+    }
         public Mezzo findMezzoByTratta(UUID idTratta) {
             List<Mezzo> mezzi = em.createQuery(
                             "SELECT p.mezzo FROM Percorrenza p WHERE p.tratta.idTratta = :idTratta",

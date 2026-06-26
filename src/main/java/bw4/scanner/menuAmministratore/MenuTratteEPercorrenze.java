@@ -168,7 +168,7 @@ public class MenuTratteEPercorrenze {
                     Tratta trattaScelta = tratteMedia.get(idxTratta);
 
 
-                    List<Mezzo> mezziMedia = md.findAllInServizioENonAncoraAssegnati();
+                    List<Mezzo> mezziMedia = md.findAllInServizio();
                     if (mezziMedia.isEmpty()) {
                         System.out.println("Per tutti i sorci verdi! Non ci sono mezzi disponibili nel sistema.");
                         break;

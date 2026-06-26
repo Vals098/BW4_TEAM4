@@ -52,11 +52,10 @@ public class MenuUtente {
 
             System.out.println("\n=== MENU del Cittadino di Città Laggiù ===");
             System.out.println("1. Cerca un Punto Vendita");
-            System.out.println("2. Acquista un Biglietto");
-            System.out.println("3. Acquista un Abbonamento");
-            System.out.println("4. Controlla validità Tessera");
-            System.out.println("5. Rinnova Tessera");
-            System.out.println("6. Inizia un viaggio (Oblitera Biglietto)");
+            System.out.println("2. Controlla validità Tessera");
+            System.out.println("3. Acquista un Biglietto");
+            System.out.println("4. Acquista un Abbonamento");
+            System.out.println("5. Inizia un viaggio (Oblitera Biglietto)");
             System.out.println("0. Torna alla schermata iniziale - Log-out");
             System.out.print("Seleziona un'opzione: ");
 
@@ -70,26 +69,21 @@ public class MenuUtente {
                     break;
 
                 case "2":
-                    AcquistaUnBiglietto acquistaUnBiglietto = new AcquistaUnBiglietto(tvd, pvd);
-                    acquistaUnBiglietto.start();
-                    break;
-
-                case "3":
-                    AcquistaUnAbbonameto acquistaUnAbbonameto = new AcquistaUnAbbonameto(ad, tesseraDAO);
-                    acquistaUnAbbonameto.start();
-                    break;
-
-                case "4":
                     ControllaValiditaTessera controllaValiditaTessera = new ControllaValiditaTessera(ud, tesseraDAO);
                     controllaValiditaTessera.start();
                     break;
 
-                case "5":
-                    RinnovaTessera  rinnovaTessera = new RinnovaTessera();
-                    rinnovaTessera.start();
+                case "3":
+                    AcquistaUnBiglietto acquistaUnBiglietto = new AcquistaUnBiglietto(tvd, pvd);
+                    acquistaUnBiglietto.start();
                     break;
 
-                case "6":
+                case "4":
+                    AcquistaUnAbbonameto acquistaUnAbbonameto = new AcquistaUnAbbonameto(ad, tesseraDAO);
+                    acquistaUnAbbonameto.start();
+                    break;
+
+                case "5":
                     IniziaUnViaggio iniziaUnViaggio = new IniziaUnViaggio(bd, md, tvd, pd, td);
                     iniziaUnViaggio.start();
                     break;

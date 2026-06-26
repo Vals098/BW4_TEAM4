@@ -52,7 +52,8 @@ public class MenuParcoMezzi {
             System.out.println("4. Per tenere traccia dei giorni totali di manutenzione di un mezzo");
             System.out.println("5. Per sapere il numero di biglietti vidimati su un mezzo");
             System.out.println("6. Per avere una lista di tutti i mezzi in servizio");
-            System.out.println("7. Per avere una lista di tutti i mezzi in manutenzione");
+            System.out.println("7. Per avere lo storico di tutte le manutenzioni");
+            System.out.println("0. Torna al menu dello Gnomo Archivista");
 
             int scelta = Integer.parseInt(scanner.nextLine());
 

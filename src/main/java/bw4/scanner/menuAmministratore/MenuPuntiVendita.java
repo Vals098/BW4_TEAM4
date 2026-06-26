@@ -123,9 +123,9 @@ public class MenuPuntiVendita {
                         long numeroBiglietti = pvd.countBigliettiPerPuntoVendita(codice);
                         long numeroAbbonamenti = pvd.countAbbonamentiPerPuntoVendita(codice);
 
-                        System.out.println("Biglietti venduti: " + numeroBiglietti);
-                        System.out.println("Abbonamenti venduti: " + numeroAbbonamenti);
-                        System.out.println("Totale titoli venduti: " + (numeroBiglietti + numeroAbbonamenti));
+//                        System.out.println("Biglietti venduti: " + numeroBiglietti);
+//                        System.out.println("Abbonamenti venduti: " + numeroAbbonamenti);
+//                        System.out.println("Totale titoli venduti: " + (numeroBiglietti + numeroAbbonamenti));
                     }catch(PuntoVenditaNonTrovatoException e){
                     System.out.println(e.getMessage());}
 

@@ -76,7 +76,6 @@ public class Mezzo {
     @Override
     public String toString() {
         return "Mezzo{" +
-                "idMezzo=" + getIdMezzo() +
                 ", capienza=" + getCapienza() +
                 ", statoMezzo=" + getStatoMezzo() +
                 ", tipoMezzo=" + getTipoMezzo() +
