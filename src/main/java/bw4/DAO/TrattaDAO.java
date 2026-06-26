@@ -67,4 +67,16 @@ public class TrattaDAO {
             return new ArrayList<>();
         }
     }
+
+    public boolean esisteTratta(String zonaPartenza, String capolinea) {
+        Long conteggio = em.createQuery(
+                        "SELECT COUNT(t) FROM Tratta t WHERE LOWER(t.zonaPartenza) = LOWER(:zonaPartenza) AND LOWER(t.capolinea) = LOWER(:capolinea)",
+                        Long.class
+                )
+                .setParameter("zonaPartenza", zonaPartenza.trim()) // Sistemata la parentesi tonda chiusa male
+                .setParameter("capolinea", capolinea.trim())
+                .getSingleResult();
+
+        return conteggio > 0;
+    }
 }
