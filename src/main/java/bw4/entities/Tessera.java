@@ -26,7 +26,7 @@ public class Tessera {
 
     public Tessera() {}
 
-    // richiede l'utente obbligatorio per rispettare il nullable = false
+
     public Tessera(int numeroTessera, LocalDate dataDiEmissione) {
         this.numeroTessera = numeroTessera;
         this.dataDiEmissione = dataDiEmissione;
