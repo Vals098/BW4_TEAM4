@@ -327,6 +327,83 @@ public class Application {
 
                 // ASSEGNAZIONE TRATTA TRAMITE MEZZO IN SERVIZIO
 
+//                Mezzo antrocittaDB = md.findMezzoByName("Antrocitta");
+//                Tratta trattaAntroCitta = td.findByZonaPertenzaECapolinea("Antro della Strega", "Città Laggiù");
+//                pd.assegnaTrattaMezzo(antrocittaDB, trattaAntroCitta);
+//
+//                Mezzo cittaChioscoDb = md.findMezzoByName("Cittachiosco");
+//                Tratta trattaCittaChiosco = td.findByZonaPertenzaECapolinea("Città Laggiù", "Chiosco");
+//                pd.assegnaTrattaMezzo(cittaChioscoDb, trattaCittaChiosco);
+//
+//
+//                Mezzo antroReggiaDB = md.findMezzoByName("Antroreggia");
+//                Tratta trattaAntroReggia = td.findByZonaPertenzaECapolinea("Antro della Strega", "Reggia di Re Quercia");
+//                pd.assegnaTrattaMezzo(antroReggiaDB, trattaAntroReggia);
+//
+//                Mezzo antroTanaDB = md.findMezzoByName("Antrotana");
+//                Tratta trattaAntroTana = td.findByZonaPertenzaECapolinea("Antro della Strega", "Tana del Lupo");
+//                pd.assegnaTrattaMezzo(antroTanaDB, trattaAntroTana);
+//
+//                Mezzo chioscAntroDb = md.findMezzoByName("Chioscantro");
+//                Tratta trattaChioscoAntro = td.findByZonaPertenzaECapolinea("Chiosco", "Antro della Strega");
+//                pd.assegnaTrattaMezzo(chioscAntroDb, trattaChioscoAntro);
+//
+//                Mezzo chioscoCittaDB = md.findMezzoByName("Chioscocitta");
+//                Tratta trattaChioscoCitta = td.findByZonaPertenzaECapolinea("Chiosco", "Città Laggiù");
+//                pd.assegnaTrattaMezzo(chioscoCittaDB, trattaChioscoCitta);
+//
+//                Mezzo chioscoReggiaDB = md.findMezzoByName("Chioscoreggia");
+//                Tratta trattaChioscoReggia = td.findByZonaPertenzaECapolinea("Chiosco", "Reggia di Re Quercia");
+//                pd.assegnaTrattaMezzo(chioscoReggiaDB, trattaChioscoReggia);
+//
+//                Mezzo chioscoTanaDB = md.findMezzoByName("Chioscotana");
+//                Tratta trattaChioscoTana = td.findByZonaPertenzaECapolinea("Chiosco", "Tana del Lupo");
+//                pd.assegnaTrattaMezzo(chioscoTanaDB, trattaChioscoTana);
+//
+//                Mezzo cittaAntroDb = md.findMezzoByName("Cittantro");
+//                Tratta trattaCittaAntro = td.findByZonaPertenzaECapolinea("Città Laggiù", "Antro della Strega");
+//                pd.assegnaTrattaMezzo(cittaAntroDb, trattaCittaAntro);
+//
+//                Mezzo cittaReggiaDb = md.findMezzoByName("Cittareggia");
+//                Tratta trattaCittaReggia = td.findByZonaPertenzaECapolinea("Città Laggiù", "Reggia di Re Quercia");
+//                pd.assegnaTrattaMezzo(cittaReggiaDb, trattaCittaReggia);
+//
+//                Mezzo cittaTanaDb = md.findMezzoByName("Cittatana");
+//                Tratta trattaCittaTana = td.findByZonaPertenzaECapolinea("Città Laggiù", "Tana del Lupo");
+//                pd.assegnaTrattaMezzo(cittaTanaDb, trattaCittaTana);
+//
+//                Mezzo reggiaAntroDb = md.findMezzoByName("Reggiantro");
+//                Tratta trattaReggiaAntro = td.findByZonaPertenzaECapolinea("Reggia di Re Quercia", "Antro della Strega");
+//                pd.assegnaTrattaMezzo(reggiaAntroDb, trattaReggiaAntro);
+//
+//                Mezzo reggiaChioscoDb = md.findMezzoByName("Reggiachiosco");
+//                Tratta trattaReggiaChiosco = td.findByZonaPertenzaECapolinea("Reggia di Re Quercia", "Chiosco");
+//                pd.assegnaTrattaMezzo(reggiaChioscoDb, trattaReggiaChiosco);
+//
+//                Mezzo reggiaCittaDb = md.findMezzoByName("Reggiacitta");
+//                Tratta trattaReggiaCitta = td.findByZonaPertenzaECapolinea("Reggia di Re Quercia", "Città Laggiù");
+//                pd.assegnaTrattaMezzo(reggiaCittaDb, trattaReggiaCitta);
+//
+//                Mezzo reggiaTanaDb = md.findMezzoByName("Reggiatana");
+//                Tratta trattaReggiaTana = td.findByZonaPertenzaECapolinea("Reggia di Re Quercia", "Tana del Lupo");
+//                pd.assegnaTrattaMezzo(reggiaTanaDb, trattaReggiaTana);
+//
+//                Mezzo tanaAntroDb = md.findMezzoByName("Tanantro");
+//                Tratta trattaTanaAntro = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Antro della Strega");
+//                pd.assegnaTrattaMezzo(tanaAntroDb, trattaTanaAntro);
+//
+//                Mezzo tanaChioscoDb = md.findMezzoByName("Tanachiosco");
+//                Tratta trattaTanaChiosco = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Chiosco");
+//                pd.assegnaTrattaMezzo(tanaChioscoDb, trattaTanaChiosco);
+//
+//                Mezzo tanaCittaDb = md.findMezzoByName("Tanacitta");
+//                Tratta trattaTanaCitta = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Città Laggiù");
+//                pd.assegnaTrattaMezzo(tanaCittaDb, trattaTanaCitta);
+//
+//                Mezzo tanaReggiaDb = md.findMezzoByName("Tanareggia");
+//                Tratta trattaTanaReggia = td.findByZonaPertenzaECapolinea("Tana del Lupo", "Reggia di Re Quercia");
+//                pd.assegnaTrattaMezzo(tanaReggiaDb, trattaTanaReggia);
+
                 // Test
                 // List<TitoloDiViaggio> risultati = tvd.findAll();
                 // for (TitoloDiViaggio t : risultati) {

@@ -177,7 +177,15 @@ public class PercorrenzaDAO {
             }
             System.err.println("Accipigna! Il database ha fatto i capricci. Impossibile salvare la percorrenza.");
         }
+        public Mezzo findMezzoByTratta(UUID idTratta) {
+            List<Mezzo> mezzi = em.createQuery(
+                            "SELECT p.mezzo FROM Percorrenza p WHERE p.tratta.idTratta = :idTratta",
+                            Mezzo.class)
+                    .setParameter("idTratta", idTratta)
+                    .getResultList();
+            return mezzi.isEmpty() ? null : mezzi.get(0);
         }
+
 }
 
 

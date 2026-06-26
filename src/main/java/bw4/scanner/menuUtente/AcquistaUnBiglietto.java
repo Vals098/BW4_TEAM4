@@ -55,7 +55,7 @@ public class AcquistaUnBiglietto {
             PuntoVendita puntoVendita = puntiVendita.get(sceltaPV);
 
             // mostra prezzo
-            System.out.println("Il prezzo del biglietto è: 2 Monete Fantabosco");
+            System.out.println("Il prezzo del biglietto è: 2 Monete Lillero");
 
             //conferma acquisto
             System.out.println("Vuoi confermare l'acquisto? (s/n)");

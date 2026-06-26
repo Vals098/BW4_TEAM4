@@ -39,8 +39,8 @@ public class AcquistaUnAbbonameto {
 
             //chiedi il tipo di abbonamento
             System.out.println("Inserisci il tipo di abbonamento:");
-            System.out.println("1 - Settimanale (10 Monete Fantabosco)");
-            System.out.println("2 - Mensile (35 Monete Fantabosco)");
+            System.out.println("1 - Settimanale (10 Monete Lillero)");
+            System.out.println("2 - Mensile (35 Monete Lillero)");
             int scelta = scanner.nextInt();
             scanner.nextLine();
 
@@ -50,9 +50,9 @@ public class AcquistaUnAbbonameto {
 
             //Mostra prezzo
             if (tipo == TipoAbbonamento.SETTIMANALE) {
-                System.out.println("Prezzo: 10 Monete Fantabosco");
+                System.out.println("Prezzo: 10 Monete Lillero");
             } else {
-                System.out.println("Prezzo: 35 Monete Fantabosco");
+                System.out.println("Prezzo: 35 Monete Lillero");
             }
 
             // conferma acquisto
@@ -70,7 +70,7 @@ public class AcquistaUnAbbonameto {
             //controlla se tessera valida prima di creare abbonamento
             if (!tessera.isValid(tessera.getNumeroTessera())) {
                 System.out.println("Tessera scaduta! Non puoi acquistare un abbonamento.");
-                System.out.println("Vuoi rinnovare la tessera per 50 monete Fantabosco? (s/n)");
+                System.out.println("Vuoi rinnovare la tessera per 50 monete Lillero? (s/n)");
                 String rinnovo = scanner.nextLine();
                 if (rinnovo.equalsIgnoreCase("s")) {
                     tesseraDAO.controllaERinnova(numeroTessera, scanner);
