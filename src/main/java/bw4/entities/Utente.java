@@ -45,7 +45,7 @@ public class Utente {
         this.dataNascita = dataNascita;
         this.residenza = residenza;
         this.professione = professione;
-        this.dataCancellazione = null; // Di base l'utente nasce attivo
+        this.dataCancellazione = null;
     }
 
     // GETTER E SETTER

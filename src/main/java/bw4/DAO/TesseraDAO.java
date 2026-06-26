@@ -70,7 +70,6 @@ public class TesseraDAO {
                     System.out.println("2. No, annulla tutto");
                     System.out.print("Scegli: ");
                     String confermaPagamento = scanner.nextLine();
-
                     if ("1".equals(confermaPagamento)) {
                         EntityTransaction transaction = em.getTransaction();
                         try {

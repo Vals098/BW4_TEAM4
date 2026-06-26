@@ -61,12 +61,18 @@ public class UtenteDAO {
         }
     }
 
+    // METODO CANCELLAZIONE !
     public void avviaCancellazioneUtente(UUID idUtente) {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
             Utente utente = em.find(Utente.class, idUtente);
             if (utente != null) {
+                if (utente.getDataCancellazione() != null) {
+                    System.out.println("Per tutte le pigne spignolate! L'utente: " + utente.getCodiceUtente() + " è già in fase di eliminazione!");
+                    transaction.commit();
+                    return;
+                }
                 // Facciamo partire il timer
                 utente.setDataCancellazione(LocalDate.now());
                 // Svuotiamo i reali dati personali presenti nella nuova entità Utente
@@ -76,7 +82,7 @@ public class UtenteDAO {
                 utente.setProfessione(null);
                 utente.setDataNascita(null);
                 em.merge(utente);
-                System.out.println("La riga vuota verrà rimossa tra 1 mese.");
+                System.out.println("***!Eliminazione definitiva tra 1 mese!***.");
             } else {
                 System.out.println("Accipigna! Nessun utente trovato con ID: " + idUtente);
             }
@@ -102,7 +108,6 @@ public class UtenteDAO {
                     .setParameter("dataLimite", limiteUnMeseFa)
                     .executeUpdate();
             transaction.commit();
-
             if (righeCancellate > 0) {
                 System.out.println("PULIZIA DATABASE: " + righeCancellate + " utenti eliminati da più di un mese.");
             }

@@ -14,7 +14,6 @@ public class MenuUtentiETessere {
         this.ud = ud;
         this.tesseraDAO = tesseraDAO;
     }
-
     public void start() {
         while (true) {
             System.out.println("--- Sottomenu Gestione Utenti e Tessere ---");
@@ -37,7 +36,7 @@ public class MenuUtentiETessere {
                     }
                     break;
                 case "2":
-                    System.out.println("Inserisci il CODICE UTENTE da eliminare: ");
+                    System.out.println("Inserisci il CODICE UTENTE da eliminare ES.(MICOT,LULU,GNORO,ecc..) : ");
                     String codiceInput = scanner.nextLine().toUpperCase().trim();
 
                     Utente utente = ud.findByCodiceUtente(codiceInput);
