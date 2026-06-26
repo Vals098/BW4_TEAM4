@@ -55,6 +55,11 @@ public class TesseraDAO {
             query.setParameter("numeroTessera", numeroTessera);
             Tessera tessera = query.getSingleResult();
 
+            if (tessera.getUtente() != null && tessera.getUtente().getDataCancellazione() != null) {
+                System.out.println("Per tutte le pigne spignolate! Questa tessera appartiene a un utente in fase di eliminazione!");
+                System.out.println("La tessera è in fase di eliminazione e tra 1 mese potrà essere riassociata a un nuovo utente.");
+                return; // Interrompe il metodo immediatamente
+            }
             if (tessera.getDataDiScadenza().isBefore(LocalDate.now())) {
                 System.out.println("Per le verruche della mia bisnonna! Tessera scaduta!");
                 System.out.println("La tessera " + numeroTessera + " è scaduta.");

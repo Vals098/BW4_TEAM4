@@ -36,7 +36,7 @@ public class ControllaValiditaTessera {
         }
     }
     private void gestisciVerificaTessera() {
-        System.out.print("Inserisci il numero della tessera da controllare: ");
+        System.out.print("Inserisci il numero della tua tessera da controllare: ");
         String input = scanner.nextLine();
         try {
             int numeroTessera = Integer.parseInt(input);
