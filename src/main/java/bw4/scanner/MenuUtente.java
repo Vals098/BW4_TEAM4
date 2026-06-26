@@ -90,7 +90,7 @@ public class MenuUtente {
                     break;
 
                 case "6":
-                    IniziaUnViaggio iniziaUnViaggio = new IniziaUnViaggio();
+                    IniziaUnViaggio iniziaUnViaggio = new IniziaUnViaggio(bd, md, tvd, pd, td);
                     iniziaUnViaggio.start();
                     break;
 
