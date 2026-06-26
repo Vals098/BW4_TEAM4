@@ -43,6 +43,16 @@ public List<DistributoreAutomatico> findAllDistributori() {
     }
 }
 
+//FIND ALL PUNTI VENDITA DEL FANTABOSCO
+public List<PuntoVendita> findAllPuntiVendita(){
+    try{
+        return em.createQuery("SELECT p FROM PuntoVendita p", PuntoVendita.class).getResultList();
+    } catch (Exception e){
+        System.out.println("Errore durante il recupero dei Punti Vendita: " + e.getMessage());
+        return new ArrayList<>();
+    }
+    }
+
 //    FIND ALL LUOGHI IN CUI È PRESENTE UN PV
 public List<String> findAllLuoghi() {
 

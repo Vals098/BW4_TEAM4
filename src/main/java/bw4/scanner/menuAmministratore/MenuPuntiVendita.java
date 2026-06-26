@@ -2,6 +2,7 @@ package bw4.scanner.menuAmministratore;
 
 import bw4.DAO.PuntoVenditaDAO;
 import bw4.entities.DistributoreAutomatico;
+import bw4.entities.PuntoVendita;
 import bw4.entities.RivenditoreAutorizzato;
 import bw4.exceptions.PuntoVenditaNonTrovatoException;
 
@@ -19,16 +20,14 @@ public class MenuPuntiVendita {
     }
 
     public void start() {
-        boolean inSessione = true;
+        boolean running = true;
 
-        while (inSessione) {
+        while (running) {
             System.out.println("\n=== MENU Punti Vendita ===\n");
             System.out.println("1. Crea nuovo Punto Vendita");
 //            implementare lista luoghi
             System.out.println("2. Numero biglietti/abbonamenti dato Punto Vendita");
-//            implementare lista punti vendita
             System.out.println("3. Controllo distributori guasti nella zona");
-//            implementare lista luoghi
             System.out.println("4. Segnalazione distributore guasto");
 //            implementare errore se è già segnato come guasto
             System.out.println("5. Segnalazione distributore nuovamente in servizio");
@@ -74,8 +73,50 @@ public class MenuPuntiVendita {
                     break;
 
                 case "2":
-                        System.out.println("Inserisci il codice del Punto Vendita:");
-                        String codice = scanner.nextLine();
+                        System.out.println("Inserisci il magico Punto Vendita:");
+
+                        List<PuntoVendita> puntiVendita = pvd.findAllPuntiVendita();
+
+                    for (int i = 0; i < puntiVendita.size(); i++) {
+                        System.out.println((i + 1) + ". " + puntiVendita.get(i).getNomePuntoVendita());
+                    }
+
+                    System.out.println("Premi 0 per tornare al MENU dello Gnomo Archivista.");
+
+                    int sceltaPV = leggiInteroSicuro();
+
+                    if (sceltaPV == 0) {
+                        running = false;
+                        continue;
+                    }
+
+                    if (sceltaPV < 1 || sceltaPV > puntiVendita.size()) {
+                        System.out.println("Per la barba di Tomelilla! Inserisci un numero valido!");
+                        continue;
+                    }
+
+                    PuntoVendita luogoScelto = puntiVendita.get(sceltaPV - 1);
+
+                    List<PuntoVendita> listaPuntiVendita = pvd.findByLuogo(luogoScelto.getLuogo());
+
+                    for (PuntoVendita pv : listaPuntiVendita) {
+
+                        String tipo;
+
+                        if (pv instanceof DistributoreAutomatico) {
+                            tipo = "Distributore Automatico";
+                        } else {
+                            tipo = "Rivenditore Autorizzato";
+                        }
+
+                        System.out.println(
+                                " | Codice: " + pv.getCodicePuntoVendita() +
+                                        " | Nome: " + pv.getNomePuntoVendita() + " Tipo: " + tipo);
+                        System.out.println();
+                    }
+
+                        String codice = luogoScelto.getCodicePuntoVendita();
+
                     try {
                         pvd.findByCodice(codice);
 
@@ -90,14 +131,43 @@ public class MenuPuntiVendita {
 
                     break;
                 case "3":
-                    System.out.println("Inserisci il magico luogo dove si trova il Punto Vendita:");
-                    String luogo = scanner.nextLine();
+
+                    List<String> luoghi2 = pvd.findAllLuoghi();
+
+                    if(luoghi2.isEmpty()){
+                        System.out.println("Per il Gran Libro della Fantasia! Non esistono ancora luoghi con punti vendita!");
+                        break;
+                    }
+
+                    System.out.println("Scegli il magico luogo dove si trova il Punto Vendita:");
+
+                    for (int i = 0; i < luoghi2.size(); i++) {
+                        System.out.println((i + 1) + ". " + luoghi2.get(i));
+                    }
+
+                    System.out.println("Premi 0 per tornare al MENU dello Gnomo Archivista.");
+
+                    int sceltaLuogo1 = leggiInteroSicuro();
+
+                    if (sceltaLuogo1 == 0) {
+                        running = false;
+                        continue;
+                    }
+
+                    if (sceltaLuogo1 < 1 || sceltaLuogo1 > luoghi2.size()) {
+                        System.out.println("Per la barba di Tomelilla! Inserisci un numero valido!");
+                        continue;
+                    }
+
+                    String luogoScelto1 = luoghi2.get(sceltaLuogo1 - 1);
+
+
                     try {
-                        pvd.findByLuogo(luogo);
-                        List<DistributoreAutomatico> guasti = pvd.findGuastiByLuogo(luogo);
+                        pvd.findByLuogo(luogoScelto1);
+                        List<DistributoreAutomatico> guasti = pvd.findGuastiByLuogo(luogoScelto1);
 
                         if (guasti.isEmpty()) {
-                            System.out.println("Per la mia corona di ghiande! Nessun distributore guasto nel luogo " + luogo + "!");
+                            System.out.println("Per la mia corona di ghiande! Nessun distributore guasto nel luogo " + luogoScelto1 + "!");
                         } else {
                             guasti.forEach(d ->
                                     System.out.println("Distributori Guasti Trovati: " + d.getNomePuntoVendita()));
@@ -130,7 +200,7 @@ public class MenuPuntiVendita {
                     }
                     break;
                 case "0":
-                    inSessione = false;
+                    running = false;
                     break;
 
 
@@ -140,6 +210,16 @@ public class MenuPuntiVendita {
 
 
 
+        }
+    }
+
+    private int leggiInteroSicuro() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.print("Per il Gran Libro della Fantasia! inserisci un numero!");
+            }
         }
     }
 }
