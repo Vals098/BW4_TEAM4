@@ -1,6 +1,7 @@
 package bw4.DAO;
 
 import bw4.entities.Mezzo;
+import bw4.entities.Percorrenza;
 import bw4.entities.Tratta;
 import bw4.enums.StatoMezzo;
 import bw4.enums.TipoMezzo;
@@ -32,7 +33,6 @@ public class MezzoDAO {
         transaction.begin();
         this.entityManager.persist(nuovoMezzo);
         transaction.commit();
-        System.out.println("Per tutte le pigne spignolate! Il mezzo " + nuovoMezzo.getNomeMezzo() + " è appena stato costruito!");
     }
 
     //METODO FIND MEZZO BY ID
@@ -128,25 +128,14 @@ public class MezzoDAO {
         }
     }
 
-//DATO NOME MEZZO CERCA I BIGLIETTI VIDIMATI
-public long findByNameAndCountObliteration(String nomeMezzo) {
-        findMezzoByName(nomeMezzo);
-
-    return entityManager.createQuery(
-                    "SELECT COUNT(b) FROM Biglietto b " +
-                            "WHERE b.obliterato = true " +
-                            "AND b.mezzo.nome_mezzo = :nomeMezzo ", Long.class)
-            .setParameter("nomeMezzo", nomeMezzo)
-            .getSingleResult();
-}
 
 
     //RICERCA TUTTI I MEZZI IN SERVIZIO
 
-    public List<Mezzo> findAllInServizio() {
+    public List<Mezzo> findAllInServizioENonAncoraAssegnati() {
         try {
             return this.entityManager.createQuery(
-                    "SELECT m FROM Mezzo m WHERE m.statoMezzo = bw4.enums.StatoMezzo.IN_SERVIZIO",
+                    "SELECT m FROM Mezzo m WHERE m.statoMezzo = bw4.enums.StatoMezzo.IN_SERVIZIO AND m.idMezzo NOT IN (SELECT p.mezzo.idMezzo FROM Percorrenza p WHERE p.tempoEffettivo IS NULL)",
                     Mezzo.class
             ).getResultList();
         } catch (Exception e) {

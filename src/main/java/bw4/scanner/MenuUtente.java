@@ -65,7 +65,7 @@ public class MenuUtente {
             switch (scelta) {
 
                 case "1":
-                    CercaUnPuntoVendita cercaUnPuntoVendita = new CercaUnPuntoVendita();
+                    CercaUnPuntoVendita cercaUnPuntoVendita = new CercaUnPuntoVendita(pvd);
                     cercaUnPuntoVendita.start();
                     break;
 
@@ -80,7 +80,7 @@ public class MenuUtente {
                     break;
 
                 case "4":
-                    ControllaValiditaTessera controllaValiditaTessera = new ControllaValiditaTessera();
+                    ControllaValiditaTessera controllaValiditaTessera = new ControllaValiditaTessera(ud, tesseraDAO);
                     controllaValiditaTessera.start();
                     break;
 

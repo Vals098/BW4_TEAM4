@@ -44,9 +44,10 @@ public class Application {
                 BigliettoDAO bd = new BigliettoDAO(em);
                 ManutenzioneDAO manutenzioneDAO = new ManutenzioneDAO(em);
                 AbbonamentoDAO ad = new AbbonamentoDAO(em);
-               MezzoDAO md = new MezzoDAO(em);
+                MezzoDAO md = new MezzoDAO(em);
 
                 // DATI
+
                 // MEZZI
 
                 Mezzo mezzoAntroChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Antrochiosco");
@@ -69,106 +70,6 @@ public class Application {
                 Mezzo mezzoTanaChiosco = new Mezzo(TipoMezzo.AUTOBUS, "Tanachiosco");
                 Mezzo mezzoTanaCittalaggiu = new Mezzo(TipoMezzo.TRAM, "Tanacitta");
                 Mezzo mezzoTanaReggia = new Mezzo(TipoMezzo.AUTOBUS, "Tanareggia");
-
-                // PUNTI VENDITA
-
-                PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate",
-                                "Castello dei fiori");
-                PuntoVendita puntoVendita2 = new RivenditoreAutorizzato("KUDFG", "Arriverai cantando", "Città Laggiù");
-                PuntoVendita puntoVendita3 = new RivenditoreAutorizzato("HF98S", "Strabiliante magia", "Chiosco");
-                PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("36ITI", "Ghiande in giro",
-                                "Reggia di Re Quercia");
-                PuntoVendita puntoVendita5 = new DistributoreAutomatico("249OI", "Viaggi Stregoneschi",
-                                "Antro della Strega");
-                PuntoVendita puntoVendita6 = new DistributoreAutomatico("9DF6K", "Qui e La",
-                                "Città Laggiù");
-                PuntoVendita puntoVendita7 = new DistributoreAutomatico("09S89", "Fantavigliosa avventura",
-                                "Chiosco");
-                PuntoVendita puntoVendita8 = new DistributoreAutomatico("9LDW0", "La tana di Lucio",
-                                "Tana del Lupo");
-                PuntoVendita puntoVendita9 = new DistributoreAutomatico("SPN45", "Tabacchi Sua Maesta",
-                                "Reggia di Re Quercia");
-                PuntoVendita puntoVendita10 = new DistributoreAutomatico("09WDD", "Viaggi Fatati",
-                                "Castello dei fiori");
-
-                Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
-
-                // utenti e tessere
-                Utente utente1 = new Utente("MICOT", "Milo", "Cotogno", LocalDate.of(1981, 1, 14),
-                                "Regno di Fiabiselva", "Bibitiere e Aggiusta guai");
-                Utente utente2 = new Utente("LULU", "Lupo", "Lucio", LocalDate.of(1956, 1, 16), "Fittaforesta",
-                                "Lupo di Fiaba");
-                Utente utente3 = new Utente("STRVAR", "Strega", "Varana", LocalDate.of(1976, 10, 9), "Stregovia",
-                                "Strega Viola");
-                Utente utente4 = new Utente("FALU", "Fata", "Lina", LocalDate.of(2010, 5, 30), "Regno d'Oltracque",
-                                "Fata Assistente");
-                Utente utente5 = new Utente("GNORO", "Gnomo", "Ronfo", LocalDate.of(2018, 12, 24),
-                                "Villaggio degli Gnomi", "Produrre tappi di sughero");
-                Utente utente6 = new Utente("ORORC", "Orchessa", "Orchidea", LocalDate.of(1945, 3, 31), "Orchiburghia",
-                                "Contadina di cocomeronzoli");
-                Utente utente7 = new Utente("REGGAR", "Reginotta", "Gardenia", LocalDate.of(2000, 3, 31),
-                                "Isola Giardinia", "Regina");
-                Utente utente8 = new Utente("CUZIB", "Cuoco", "Zibibbo", LocalDate.of(1998, 4, 27), "Stregovia",
-                                "Cuoco");
-                Tessera tessera1 = new Tessera(1234, LocalDate.of(2025, 4, 19));
-                Tessera tessera2 = new Tessera(5678, LocalDate.of(2026, 5, 10));
-                Tessera tessera3 = new Tessera(9542, LocalDate.of(2025, 11, 3));
-                Tessera tessera4 = new Tessera(9346, LocalDate.of(2023, 1, 11));
-                Tessera tessera5 = new Tessera(0653, LocalDate.of(2026, 6, 24));
-                Tessera tessera6 = new Tessera(1398, LocalDate.of(2025, 12, 6));
-                Tessera tessera7 = new Tessera(4577, LocalDate.of(2024, 7, 30));
-                Tessera tessera8 = new Tessera(3573, LocalDate.of(2026, 2, 14));
-
-                // METODO SAVE
-//                 pvd.save(puntoVendita1);
-//                 pvd.save(puntoVendita2);
-//                 pvd.save(puntoVendita3);
-//                 pvd.save(puntoVendita4);
-//                 pvd.save(puntoVendita5);
-//                 pvd.save(puntoVendita6);
-//                 pvd.save(puntoVendita7);
-//                 pvd.save(puntoVendita8);
-//                 pvd.save(puntoVendita9);
-//                 pvd.save(puntoVendita10);
-//                 md.saveMezzo(mezzo1);
-
-//                 ud.save(utente1);
-//                 ud.save(utente2);
-//                 ud.save(utente3);
-//                 ud.save(utente4);
-//                 ud.save(utente5);
-//                 ud.save(utente6);
-//                 ud.save(utente7);
-//                 ud.save(utente8);
-//
-//                 Utente utente1FromDB = ud.findByCodiceUtente("MICOT");
-//                 Utente utente2FromDB = ud.findByCodiceUtente("LULU");
-//                 Utente utente3FromDB = ud.findByCodiceUtente("STRVAR");
-//                 Utente utente4FromDB = ud.findByCodiceUtente("FALU");
-//                 Utente utente5FromDB = ud.findByCodiceUtente("GNORO");
-//                 Utente utente6FromDB = ud.findByCodiceUtente("ORORC");
-//                 Utente utente7FromDB = ud.findByCodiceUtente("REGGAR");
-//                 Utente utente8FromDB = ud.findByCodiceUtente("CUZIB");
-//
-//
-//                 tessera1.setUtente(utente1FromDB);
-//                 tessera2.setUtente(utente2FromDB);
-//                 tessera3.setUtente(utente3FromDB);
-//                 tessera4.setUtente(utente4FromDB);
-//                 tessera5.setUtente(utente5FromDB);
-//                 tessera6.setUtente(utente6FromDB);
-//                 tessera7.setUtente(utente7FromDB);
-//                 tessera8.setUtente(utente8FromDB);
-//
-//
-//                 tesseraDAO.save(tessera1);
-//                 tesseraDAO.save(tessera2);
-//                 tesseraDAO.save(tessera3);
-//                 tesseraDAO.save(tessera4);
-//                 tesseraDAO.save(tessera5);
-//                 tesseraDAO.save(tessera6);
-//                 tesseraDAO.save(tessera7);
-//                 tesseraDAO.save(tessera8);
 
                 // TRATTE
 
@@ -203,6 +104,108 @@ public class Application {
                 Tratta tanaDelLupoToReggiaDiReQuercia = new Tratta("Tana del Lupo", "Reggia di Re Quercia",
                                 LocalTime.of(0, 10));
 
+                // PUNTI VENDITA
+
+                PuntoVendita puntoVendita1 = new RivenditoreAutorizzato("LKI23", "Tabacchi delle fate",
+                                "Castello dei fiori");
+                PuntoVendita puntoVendita2 = new RivenditoreAutorizzato("KUDFG", "Arriverai cantando", "Città Laggiù");
+                PuntoVendita puntoVendita3 = new RivenditoreAutorizzato("HF98S", "Strabiliante magia", "Chiosco");
+                PuntoVendita puntoVendita4 = new RivenditoreAutorizzato("36ITI", "Ghiande in giro",
+                                "Reggia di Re Quercia");
+                PuntoVendita puntoVendita5 = new DistributoreAutomatico("249OI", "Viaggi Stregoneschi",
+                                "Antro della Strega");
+                PuntoVendita puntoVendita6 = new DistributoreAutomatico("9DF6K", "Qui e La",
+                                "Città Laggiù");
+                PuntoVendita puntoVendita7 = new DistributoreAutomatico("09S89", "Fantavigliosa avventura",
+                                "Chiosco");
+                PuntoVendita puntoVendita8 = new DistributoreAutomatico("9LDW0", "La tana di Lucio",
+                                "Tana del Lupo");
+                PuntoVendita puntoVendita9 = new DistributoreAutomatico("SPN45", "Tabacchi Sua Maesta",
+                                "Reggia di Re Quercia");
+                PuntoVendita puntoVendita10 = new DistributoreAutomatico("09WDD", "Viaggi Fatati",
+                                "Castello dei fiori");
+
+                Mezzo mezzo1 = new Mezzo(TipoMezzo.AUTOBUS, "AntroChiosco");
+
+                // UTENTI E TESSERE
+
+                Utente utente1 = new Utente("MICOT", "Milo", "Cotogno", LocalDate.of(1981, 1, 14),
+                                "Regno di Fiabiselva", "Bibitiere e Aggiusta guai");
+                Utente utente2 = new Utente("LULU", "Lupo", "Lucio", LocalDate.of(1956, 1, 16), "Fittaforesta",
+                                "Lupo di Fiaba");
+                Utente utente3 = new Utente("STRVAR", "Strega", "Varana", LocalDate.of(1976, 10, 9), "Stregovia",
+                                "Strega Viola");
+                Utente utente4 = new Utente("FALU", "Fata", "Lina", LocalDate.of(2010, 5, 30), "Regno d'Oltracque",
+                                "Fata Assistente");
+                Utente utente5 = new Utente("GNORO", "Gnomo", "Ronfo", LocalDate.of(2018, 12, 24),
+                                "Villaggio degli Gnomi", "Produrre tappi di sughero");
+                Utente utente6 = new Utente("ORORC", "Orchessa", "Orchidea", LocalDate.of(1945, 3, 31), "Orchiburghia",
+                                "Contadina di cocomeronzoli");
+                Utente utente7 = new Utente("REGGAR", "Reginotta", "Gardenia", LocalDate.of(2000, 3, 31),
+                                "Isola Giardinia", "Regina");
+                Utente utente8 = new Utente("CUZIB", "Cuoco", "Zibibbo", LocalDate.of(1998, 4, 27), "Stregovia",
+                                "Cuoco");
+                Tessera tessera1 = new Tessera(1234, LocalDate.of(2025, 4, 19));
+                Tessera tessera2 = new Tessera(5678, LocalDate.of(2026, 5, 10));
+                Tessera tessera3 = new Tessera(9542, LocalDate.of(2025, 11, 3));
+                Tessera tessera4 = new Tessera(9346, LocalDate.of(2023, 1, 11));
+                Tessera tessera5 = new Tessera(0653, LocalDate.of(2026, 6, 24));
+                Tessera tessera6 = new Tessera(1398, LocalDate.of(2025, 12, 6));
+                Tessera tessera7 = new Tessera(4577, LocalDate.of(2024, 7, 30));
+                Tessera tessera8 = new Tessera(3573, LocalDate.of(2026, 2, 14));
+
+                // METODO SAVE
+
+                // pvd.save(puntoVendita1);
+                // pvd.save(puntoVendita2);
+                // pvd.save(puntoVendita3);
+                // pvd.save(puntoVendita4);
+                // pvd.save(puntoVendita5);
+                // pvd.save(puntoVendita6);
+                // pvd.save(puntoVendita7);
+                // pvd.save(puntoVendita8);
+                // pvd.save(puntoVendita9);
+                // pvd.save(puntoVendita10);
+                // md.saveMezzo(mezzo1);
+
+                // ud.save(utente1);
+                // ud.save(utente2);
+                // ud.save(utente3);
+                // ud.save(utente4);
+                // ud.save(utente5);
+                // ud.save(utente6);
+                // ud.save(utente7);
+                // ud.save(utente8);
+                ///
+                // Utente utente1FromDB = ud.findByCodiceUtente("MICOT");
+                // Utente utente2FromDB = ud.findByCodiceUtente("LULU");
+                // Utente utente3FromDB = ud.findByCodiceUtente("STRVAR");
+                // Utente utente4FromDB = ud.findByCodiceUtente("FALU");
+                // Utente utente5FromDB = ud.findByCodiceUtente("GNORO");
+                // Utente utente6FromDB = ud.findByCodiceUtente("ORORC");
+                // Utente utente7FromDB = ud.findByCodiceUtente("REGGAR");
+                // Utente utente8FromDB = ud.findByCodiceUtente("CUZIB");
+
+                //
+                // tessera1.setUtente(utente1FromDB);
+                // tessera2.setUtente(utente2FromDB);
+                // tessera3.setUtente(utente3FromDB);
+                // tessera4.setUtente(utente4FromDB);
+                // tessera5.setUtente(utente5FromDB);
+                // tessera6.setUtente(utente6FromDB);
+                // tessera7.setUtente(utente7FromDB);
+                // tessera8.setUtente(utente8FromDB);
+
+                //
+                // tesseraDAO.save(tessera1);
+                // tesseraDAO.save(tessera2);
+                // tesseraDAO.save(tessera3);
+                // tesseraDAO.save(tessera4);
+                // tesseraDAO.save(tessera5);
+                // tesseraDAO.save(tessera6);
+                // tesseraDAO.save(tessera7);
+                // tesseraDAO.save(tessera8);
+
                 // IN MANUTENZIONE
                 // Mezzo reggiatanaDalDB = md.findMezzoByName("Reggiatana");
                 // Mezzo antrochioscoDalDB = md.findMezzoByName("Antrochiosco");
@@ -217,74 +220,73 @@ public class Application {
                 // METODO SAVE
 
                 // PUNTO VENDITA
-//                 pvd.save(puntoVendita1);
-//                 pvd.save(puntoVendita2);
-//                 pvd.save(puntoVendita3);
-//                 pvd.save(puntoVendita4);
-//                 pvd.save(puntoVendita5);
-//                 pvd.save(puntoVendita6);
-//                 pvd.save(puntoVendita7);
-//                 pvd.save(puntoVendita8);
-//                 pvd.save(puntoVendita9);
-//                 pvd.save(puntoVendita10);
+                // pvd.save(puntoVendita1);
+                // pvd.save(puntoVendita2);
+                // pvd.save(puntoVendita3);
+                // pvd.save(puntoVendita4);
+                // pvd.save(puntoVendita5);
+                // pvd.save(puntoVendita6);
+                // pvd.save(puntoVendita7);
+                // pvd.save(puntoVendita8);
+                // pvd.save(puntoVendita9);
+                // pvd.save(puntoVendita10);
 
-//                // MEZZO
-//                 md.saveMezzo(mezzoAntroChiosco);
-//                 md.saveMezzo(mezzoAntroCittaLaggiu);
-//                 md.saveMezzo(mezzoAntroReggia);
-//                 md.saveMezzo(mezzoAntroTana);
-//                 md.saveMezzo(mezzoChioscoAntro);
-//                 md.saveMezzo(mezzoChioscoCittaLaggiu);
-//                 md.saveMezzo(mezzoChioscoReggia);
-//                 md.saveMezzo(mezzoChioscoTana );
-//                 md.saveMezzo(mezzoCittaLaggiuAntro);
-//                 md.saveMezzo(mezzoCittaLaggiuChiosco);
-//                 md.saveMezzo(mezzoCittaLaggiuReggia);
-//                 md.saveMezzo(mezzocittaLaggiuTana);
-//                 md.saveMezzo(mezzoReggiaAntro);
-//                 md.saveMezzo(mezzoReggiaChiosco );
-//                 md.saveMezzo(mezzoReggiaCittaLaggiu);
-//                 md.saveMezzo(mezzoReggiaTana);
-//                 md.saveMezzo(mezzoTanaAntro);
-//                 md.saveMezzo(mezzoTanaChiosco );
-//                 md.saveMezzo(mezzoTanaCittalaggiu);
-//                 md.saveMezzo(mezzoTanaReggia);
-//
-//                // TRATTA
-//                 td.save(antroDellaStregaToChiosco);
-//                 td.save(antroDellaStregaToCittaLaggiu);
-//                 td.save(antroDellaStregaToReggiaDiReQuercia);
-//                 td.save(antroDellaStregaToTanaDelLupo);
-//                 td.save(chioscoToAntroDellaStrega);
-//                 td.save(chioscoToCittaLaggiu);
-//                 td.save(chioscoToReggiaDiReQuercia);
-//                 td.save(chioscoToTanaDelLupo);
-//                 td.save(cittaLaggiuToAntroDellaStrega);
-//                 td.save(cittaLaggiuToChiosco);
-//                 td.save(cittaLaggiuToReggiaDiReQuercia);
-//                 td.save(cittaLaggiuToTanaDelLupo);
-//                 td.save(reggiaDiReQuerciaToAntroDellaStrega);
-//                 td.save(reggiaDiReQuerciaToChiosco);
-//                 td.save(reggiaDiReQuerciaToCittaLaggiu);
-//                 td.save(reggiaDiReQuerciaToTanaDelLupo);
-//                 td.save(tanaDelLupoToAntroDellaStrega);
-//                 td.save(tanaDelLupoToChiosco);
-//                 td.save(tanaDelLupoToCittaLaggiu);
-//                 td.save(tanaDelLupoToReggiaDiReQuercia);
+                // MEZZO
+                // md.saveMezzo(mezzoAntroChiosco);
+                // md.saveMezzo(mezzoAntroCittaLaggiu);
+                // md.saveMezzo(mezzoAntroReggia);
+                // md.saveMezzo(mezzoAntroTana);
+                // md.saveMezzo(mezzoChioscoAntro);
+                // md.saveMezzo(mezzoChioscoCittaLaggiu);
+                // md.saveMezzo(mezzoChioscoReggia);
+                // md.saveMezzo(mezzoChioscoTana );
+                // md.saveMezzo(mezzoCittaLaggiuAntro);
+                // md.saveMezzo(mezzoCittaLaggiuChiosco);
+                // md.saveMezzo(mezzoCittaLaggiuReggia);
+                // md.saveMezzo(mezzocittaLaggiuTana);
+                // md.saveMezzo(mezzoReggiaAntro);
+                // md.saveMezzo(mezzoReggiaChiosco );
+                // md.saveMezzo(mezzoReggiaCittaLaggiu);
+                // md.saveMezzo(mezzoReggiaTana);
+                // md.saveMezzo(mezzoTanaAntro);
+                // md.saveMezzo(mezzoTanaChiosco );
+                // md.saveMezzo(mezzoTanaCittalaggiu);
+                // md.saveMezzo(mezzoTanaReggia);
 
-                //                MENU INIZIALE
+                // TRATTA
+                // td.save(antroDellaStregaToChiosco);
+                // td.save(antroDellaStregaToCittaLaggiu);
+                // td.save(antroDellaStregaToReggiaDiReQuercia);
+                // td.save(antroDellaStregaToTanaDelLupo);
+                // td.save(chioscoToAntroDellaStrega);
+                // td.save(chioscoToCittaLaggiu);
+                // td.save(chioscoToReggiaDiReQuercia);
+                // td.save(chioscoToTanaDelLupo);
+                // td.save(cittaLaggiuToAntroDellaStrega);
+                // td.save(cittaLaggiuToChiosco);
+                // td.save(cittaLaggiuToReggiaDiReQuercia);
+                // td.save(cittaLaggiuToTanaDelLupo);
+                // td.save(reggiaDiReQuerciaToAntroDellaStrega);
+                // td.save(reggiaDiReQuerciaToChiosco);
+                // td.save(reggiaDiReQuerciaToCittaLaggiu);
+                // td.save(reggiaDiReQuerciaToTanaDelLupo);
+                // td.save(tanaDelLupoToAntroDellaStrega);
+                // td.save(tanaDelLupoToChiosco);
+                // td.save(tanaDelLupoToCittaLaggiu);
+                // td.save(tanaDelLupoToReggiaDiReQuercia);
+
+                // MENU INIZIALE
                 MenuIniziale menuIniziale = new MenuIniziale(
-                        ad,
-                        pvd,
-                        md,
-                        td,
-                        pd,
-                        ud,
-                        tesseraDAO,
-                        tvd,
-                        bd,
-                        manutenzioneDAO
-                );
+                                ad,
+                                pvd,
+                                md,
+                                td,
+                                pd,
+                                ud,
+                                tesseraDAO,
+                                tvd,
+                                bd,
+                                manutenzioneDAO);
 
                 menuIniziale.start();
 
@@ -408,11 +410,7 @@ public class Application {
                 // System.out.println(t);
                 // }
 
-
-//                System.out.println("AVVIO TEST LOGICA TESSERA");
-//                int tesseraDaTestare = 9346;
-//                tesseraDAO.controllaERinnova(tesseraDaTestare);
-//
+                //
 
         }
 }

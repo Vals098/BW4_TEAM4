@@ -64,7 +64,7 @@ public class MenuAmministratore {
             switch (scelta) {
 
                 case "1":
-                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere( );
+                    MenuUtentiETessere menuUtentiETessere = new MenuUtentiETessere(ud, tesseraDAO);
                     menuUtentiETessere.start();
                     break;
 
@@ -79,7 +79,7 @@ public class MenuAmministratore {
                     break;
 
                 case "4":
-                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi(md, manutenzioneDAO);
+                    MenuParcoMezzi menuParcoMezzi = new MenuParcoMezzi(md, manutenzioneDAO, bd);
                     menuParcoMezzi.start();
                     break;
 

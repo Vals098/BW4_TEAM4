@@ -2,11 +2,13 @@ package bw4.DAO;
 
 import bw4.entities.DistributoreAutomatico;
 import bw4.entities.PuntoVendita;
+import bw4.entities.Tratta;
 import bw4.exceptions.PuntoVenditaNonTrovatoException;
 import bw4.exceptions.TitoloDiViaggioNonTrovatoException;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.SimpleTimeZone;
 import java.util.UUID;
@@ -30,6 +32,36 @@ public class PuntoVenditaDAO {
 
         System.out.println("Ultim'ora dal Fantabosco! Il nuovo punto vendita " + newPuntoVendita.getNomePuntoVendita() + " è apparso!");
     }
+
+//    FIND ALL DISTRIBUTORI
+public List<DistributoreAutomatico> findAllDistributori() {
+    try {
+        return em.createQuery("FROM DistributoreAutomatico ", DistributoreAutomatico.class).getResultList();
+    } catch (Exception e) {
+        System.out.println("Errore durante il recupero di distributori: " + e.getMessage());
+        return new ArrayList<>();
+    }
+}
+
+//FIND ALL PUNTI VENDITA DEL FANTABOSCO
+public List<PuntoVendita> findAllPuntiVendita(){
+    try{
+        return em.createQuery("SELECT p FROM PuntoVendita p", PuntoVendita.class).getResultList();
+    } catch (Exception e){
+        System.out.println("Errore durante il recupero dei Punti Vendita: " + e.getMessage());
+        return new ArrayList<>();
+    }
+    }
+
+//    FIND ALL LUOGHI IN CUI È PRESENTE UN PV
+public List<String> findAllLuoghi() {
+
+    TypedQuery<String> query = em.createQuery(
+            "SELECT DISTINCT p.luogo FROM PuntoVendita p ORDER BY p.luogo",
+            String.class);
+
+    return query.getResultList();
+}
 
     //    FINDBYID
     public PuntoVendita findById(UUID idPuntoVendita){
@@ -98,20 +130,63 @@ public class PuntoVenditaDAO {
 //        risultati.forEach(puntoVendita -> System.out.println(puntoVendita.getNomePuntoVendita()));
 
 
-//    GET PUNTI VENDITA GUASTI DATO LUOGO
+//    GET DISTRIBUTORI GUASTI BY LUOGO
     public List<DistributoreAutomatico> findGuastiByLuogo(String luogo){
 
         TypedQuery<DistributoreAutomatico> query = em.createQuery(
-                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = false",
+                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = true",
+                DistributoreAutomatico.class);
+
+        query.setParameter("luogo", luogo);
+
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
+
+        return risultati;
+
+    }
+
+//    GET DISTRIBUTORI IN SERVIZIO DATO LUOGO
+    public List<DistributoreAutomatico> findFunzionantiByLuogo(String luogo){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = true",
                 DistributoreAutomatico.class);
 
         query.setParameter("luogo", luogo);
 
         List<DistributoreAutomatico> risultati = query.getResultList();
 
-        if(risultati.isEmpty()){
-            throw new PuntoVenditaNonTrovatoException("Per la mia corona di ghiande! Nessun distributore guasto nel luogo " + luogo + "!!");
-        }
+
+        return risultati;
+
+    }
+    //    GET ALL DISTRIBUTORI IN SERVIZIO
+    public List<DistributoreAutomatico> findAllFunzionanti(){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE d.funzionante = true",
+                DistributoreAutomatico.class);
+
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
+
+        return risultati;
+
+    }
+
+    //    GET ALL DISTRIBUTORI GUASTI
+    public List<DistributoreAutomatico> findAllGuasti(){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE d.funzionante = false",
+                DistributoreAutomatico.class);
+
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
 
         return risultati;
 
@@ -145,7 +220,7 @@ public class PuntoVenditaDAO {
     }
 
 
-//    MANDA IL MEZZO IN MANUTENZIONE
+//    MANDA IL DISTRIBUTORE IN MANUTENZIONE
     public void mandaInManutenzione(String codicePuntoVendita){
 
         EntityTransaction transaction = em.getTransaction();
@@ -161,6 +236,11 @@ public class PuntoVenditaDAO {
 
             DistributoreAutomatico d = query.getSingleResult();
 
+            if(!d.isFunzionante()){
+                transaction.rollback();
+                System.out.println("Per tutte le pigne! Il distributore è già in manutenzione.");
+            }
+
             d.mandaInManutenzione();
 
             transaction.commit();
@@ -170,6 +250,42 @@ public class PuntoVenditaDAO {
         } catch (NoResultException e) {
             throw new PuntoVenditaNonTrovatoException(
                     "Nessun distributore associato al codice " + codicePuntoVendita
+            );
+        }
+
+
+        }
+
+//    RIMETTI IL DISTRIBUTORE IN SERVIZIO
+    public void rimettiInServizio(String codicePuntoVendita){
+
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+
+            TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                    "SELECT d FROM DistributoreAutomatico d WHERE d.codicePuntoVendita = :codicePuntoVendita",
+            DistributoreAutomatico.class);
+
+            query.setParameter("codicePuntoVendita", codicePuntoVendita);
+
+            DistributoreAutomatico d = query.getSingleResult();
+
+            if(d.isFunzionante()){
+                transaction.rollback();
+                System.out.println("Per tutte le pentole magiche! Il distributore è già in servizo!");
+            }
+
+            d.rimettiInServizio();
+
+            transaction.commit();
+
+            System.out.println("Fantaviglioso! Il distributore automatico è tornato in servizio!");
+
+        } catch (NoResultException e) {
+            throw new PuntoVenditaNonTrovatoException(
+                    "Per mille bisce secche! Fai attenzione! Nessun distributore associato al codice " + codicePuntoVendita
             );
         }
 
@@ -189,7 +305,7 @@ public class PuntoVenditaDAO {
                     .getSingleResult();
         } catch (NoResultException e) {
             throw new PuntoVenditaNonTrovatoException(
-                    "Nessun distributore associato al codice " + codicePuntoVendita
+                    "Per mille bisce secche! Fai attenzione! Nessun distributore associato al codice " + codicePuntoVendita
             );
         }
 
@@ -207,7 +323,7 @@ public class PuntoVenditaDAO {
                     .getSingleResult();
         } catch (NoResultException e) {
             throw new PuntoVenditaNonTrovatoException(
-                    "Nessun distributore associato al codice " + codicePuntoVendita
+                    "Per mille bisce secche! Fai attenzione! Nessun distributore associato al codice " + codicePuntoVendita
             );
         }
 

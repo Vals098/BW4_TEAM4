@@ -24,7 +24,6 @@ public class PercorrenzaDAO {
         transaction.begin();
         em.persist(percorrenza);
         transaction.commit();
-        System.out.println("La percorrenza " + percorrenza + " è stata salvata!");
     }
 
     public Percorrenza findById(UUID idPercorrenza){
@@ -62,8 +61,7 @@ public class PercorrenzaDAO {
                 .getResultList();
 
         if(tempi.isEmpty()){
-            System.out.println("Nessuna percorrenza per questo mezzo su questa tratta");
-            return LocalTime.of(0,0);
+            return null;
         }
 
         double sommaSecondi = tempi.stream().mapToDouble(LocalTime::toSecondOfDay).sum();
@@ -118,7 +116,6 @@ public class PercorrenzaDAO {
             transaction.begin();
             percorrenza.setTempoEffettivo(tempoEffettivo);
             transaction.commit();
-            System.out.println("Tempo effettivo aggiornato con successo per la percorrenza: " + idPercorrenza);
         } else {
             System.out.println("Alla percorrenza con ID: " + idPercorrenza + " è già stato assegnato un tempo effettivo!");
         }

@@ -55,7 +55,7 @@ public class AcquistaUnAbbonameto {
                 System.out.println("Prezzo: 35 Monete Lillero");
             }
 
-            // corferma acquisto
+            // conferma acquisto
             System.out.println(" Confermi l'acquisto? (s/n)");
             String conferma = scanner.nextLine();
             if (!conferma.equalsIgnoreCase("s")) {
@@ -73,7 +73,7 @@ public class AcquistaUnAbbonameto {
                 System.out.println("Vuoi rinnovare la tessera per 50 monete Lillero? (s/n)");
                 String rinnovo = scanner.nextLine();
                 if (rinnovo.equalsIgnoreCase("s")) {
-                    tesseraDAO.controllaERinnova(numeroTessera);
+                    tesseraDAO.controllaERinnova(numeroTessera, scanner);
                     System.out.println("Tessera rinnovata! Ora puoi acquistare un abbonamento.");
                 } else {
                     System.out.println("Acquisto annullato.");
