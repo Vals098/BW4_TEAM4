@@ -1,6 +1,7 @@
 package bw4.DAO;
 
 import bw4.entities.Mezzo;
+import bw4.entities.Percorrenza;
 import bw4.entities.Tratta;
 import bw4.enums.StatoMezzo;
 import bw4.enums.TipoMezzo;
@@ -131,10 +132,10 @@ public class MezzoDAO {
 
     //RICERCA TUTTI I MEZZI IN SERVIZIO
 
-    public List<Mezzo> findAllInServizio() {
+    public List<Mezzo> findAllInServizioENonAncoraAssegnati() {
         try {
             return this.entityManager.createQuery(
-                    "SELECT m FROM Mezzo m WHERE m.statoMezzo = bw4.enums.StatoMezzo.IN_SERVIZIO",
+                    "SELECT m FROM Mezzo m WHERE m.statoMezzo = bw4.enums.StatoMezzo.IN_SERVIZIO AND m.idMezzo NOT IN (SELECT p.mezzo.idMezzo FROM Percorrenza p WHERE p.tempoEffettivo IS NULL)",
                     Mezzo.class
             ).getResultList();
         } catch (Exception e) {

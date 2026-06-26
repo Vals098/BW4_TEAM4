@@ -21,7 +21,6 @@ public class TrattaDAO {
         transaction.begin();
         em.persist(tratta);
         transaction.commit();
-        System.out.println("La tratta "+ tratta +" è stata salvata!");
     }
 
     public Tratta findById(UUID idTratta) {

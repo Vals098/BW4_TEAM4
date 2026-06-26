@@ -33,14 +33,34 @@ public class PuntoVenditaDAO {
         System.out.println("Ultim'ora dal Fantabosco! Il nuovo punto vendita " + newPuntoVendita.getNomePuntoVendita() + " è apparso!");
     }
 
-//    FIND ALL
-public List<DistributoreAutomatico> findAll() {
+//    FIND ALL DISTRIBUTORI
+public List<DistributoreAutomatico> findAllDistributori() {
     try {
         return em.createQuery("FROM DistributoreAutomatico ", DistributoreAutomatico.class).getResultList();
     } catch (Exception e) {
         System.out.println("Errore durante il recupero di distributori: " + e.getMessage());
         return new ArrayList<>();
     }
+}
+
+//FIND ALL PUNTI VENDITA DEL FANTABOSCO
+public List<PuntoVendita> findAllPuntiVendita(){
+    try{
+        return em.createQuery("SELECT p FROM PuntoVendita p", PuntoVendita.class).getResultList();
+    } catch (Exception e){
+        System.out.println("Errore durante il recupero dei Punti Vendita: " + e.getMessage());
+        return new ArrayList<>();
+    }
+    }
+
+//    FIND ALL LUOGHI IN CUI È PRESENTE UN PV
+public List<String> findAllLuoghi() {
+
+    TypedQuery<String> query = em.createQuery(
+            "SELECT DISTINCT p.luogo FROM PuntoVendita p ORDER BY p.luogo",
+            String.class);
+
+    return query.getResultList();
 }
 
     //    FINDBYID
@@ -110,14 +130,60 @@ public List<DistributoreAutomatico> findAll() {
 //        risultati.forEach(puntoVendita -> System.out.println(puntoVendita.getNomePuntoVendita()));
 
 
-//    GET PUNTI VENDITA GUASTI DATO LUOGO
+//    GET DISTRIBUTORI GUASTI BY LUOGO
     public List<DistributoreAutomatico> findGuastiByLuogo(String luogo){
 
         TypedQuery<DistributoreAutomatico> query = em.createQuery(
-                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = false",
+                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = true",
                 DistributoreAutomatico.class);
 
         query.setParameter("luogo", luogo);
+
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
+
+        return risultati;
+
+    }
+
+//    GET DISTRIBUTORI IN SERVIZIO DATO LUOGO
+    public List<DistributoreAutomatico> findFunzionantiByLuogo(String luogo){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE LOWER(d.luogo) = LOWER(:luogo) AND d.funzionante = true",
+                DistributoreAutomatico.class);
+
+        query.setParameter("luogo", luogo);
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
+
+        return risultati;
+
+    }
+    //    GET ALL DISTRIBUTORI IN SERVIZIO
+    public List<DistributoreAutomatico> findAllFunzionanti(){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE d.funzionante = true",
+                DistributoreAutomatico.class);
+
+
+        List<DistributoreAutomatico> risultati = query.getResultList();
+
+
+        return risultati;
+
+    }
+
+    //    GET ALL DISTRIBUTORI GUASTI
+    public List<DistributoreAutomatico> findAllGuasti(){
+
+        TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                "SELECT d FROM DistributoreAutomatico d WHERE d.funzionante = false",
+                DistributoreAutomatico.class);
+
 
         List<DistributoreAutomatico> risultati = query.getResultList();
 
@@ -211,7 +277,7 @@ public List<DistributoreAutomatico> findAll() {
                 System.out.println("Per tutte le pentole magiche! Il distributore è già in servizo!");
             }
 
-            d.mandaInManutenzione();
+            d.rimettiInServizio();
 
             transaction.commit();
 
