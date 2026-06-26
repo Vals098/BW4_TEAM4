@@ -32,7 +32,7 @@ public class MenuPuntiVendita {
             System.out.println("4. Segnalazione distributore guasto");
 //            implementare errore se è già segnato come guasto
             System.out.println("5. Segnalazione distributore nuovamente in servizio");
-            System.out.println("0. Torna al menu amministratore");
+            System.out.println("0. Torna al menu dello Gnomo Archivista");
 
             String scelta = scanner.nextLine();
 
@@ -40,13 +40,14 @@ public class MenuPuntiVendita {
             switch (scelta) {
                 case "1":
                     System.out.println("CREAZIONE NUOVO PUNTO VENDITA");
-                    System.out.println("Inserisci il codice del nuovo Punto Vendita:");
+                    System.out.println("Inserisci il codice del nuovo magico Punto Vendita:");
+                    System.out.println("Consiglio folletto: TB6Y8");
                     String newCodice = scanner.nextLine();
 
                     System.out.println("Inserisci il magico luogo in cui si trova il punto vendita:");
                     String newLuogo = scanner.nextLine();
 
-                    System.out.println("Inserisci il nome del punto vendita:");
+                    System.out.println("Inserisci il nome del fantastico punto vendita:");
                     String newNome = scanner.nextLine();
 
                     System.out.println("Scegli tipologia punto vendita:");
@@ -116,6 +117,20 @@ public class MenuPuntiVendita {
                     } catch (PuntoVenditaNonTrovatoException e) {
                         System.out.println(e.getMessage());
                     }
+                    break;
+
+                case "5":
+                    System.out.println("SEGNALAZIONE DISTRIBUTORE NUOVAMENTE IN SERVIZIO");
+                    System.out.println("Inserisci il codice del distributore:");
+                    String codice2 = scanner.nextLine();
+                    try {
+                        pvd.rimettiInServizio(codice2);
+                    } catch (PuntoVenditaNonTrovatoException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case "0":
+                    inSessione = false;
                     break;
 
 

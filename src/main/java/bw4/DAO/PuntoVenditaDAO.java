@@ -154,7 +154,7 @@ public List<DistributoreAutomatico> findAll() {
     }
 
 
-//    MANDA IL MEZZO IN MANUTENZIONE
+//    MANDA IL DISTRIBUTORE IN MANUTENZIONE
     public void mandaInManutenzione(String codicePuntoVendita){
 
         EntityTransaction transaction = em.getTransaction();
@@ -170,6 +170,11 @@ public List<DistributoreAutomatico> findAll() {
 
             DistributoreAutomatico d = query.getSingleResult();
 
+            if(!d.isFunzionante()){
+                transaction.rollback();
+                System.out.println("Per tutte le pigne! Il distributore è già in manutenzione.");
+            }
+
             d.mandaInManutenzione();
 
             transaction.commit();
@@ -179,6 +184,42 @@ public List<DistributoreAutomatico> findAll() {
         } catch (NoResultException e) {
             throw new PuntoVenditaNonTrovatoException(
                     "Nessun distributore associato al codice " + codicePuntoVendita
+            );
+        }
+
+
+        }
+
+//    RIMETTI IL DISTRIBUTORE IN SERVIZIO
+    public void rimettiInServizio(String codicePuntoVendita){
+
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+
+            TypedQuery<DistributoreAutomatico> query = em.createQuery(
+                    "SELECT d FROM DistributoreAutomatico d WHERE d.codicePuntoVendita = :codicePuntoVendita",
+            DistributoreAutomatico.class);
+
+            query.setParameter("codicePuntoVendita", codicePuntoVendita);
+
+            DistributoreAutomatico d = query.getSingleResult();
+
+            if(d.isFunzionante()){
+                transaction.rollback();
+                System.out.println("Per tutte le pentole magiche! Il distributore è già in servizo!");
+            }
+
+            d.mandaInManutenzione();
+
+            transaction.commit();
+
+            System.out.println("Fantaviglioso! Il distributore automatico è tornato in servizio!");
+
+        } catch (NoResultException e) {
+            throw new PuntoVenditaNonTrovatoException(
+                    "Per mille bisce secche! Fai attenzione! Nessun distributore associato al codice " + codicePuntoVendita
             );
         }
 
@@ -198,7 +239,7 @@ public List<DistributoreAutomatico> findAll() {
                     .getSingleResult();
         } catch (NoResultException e) {
             throw new PuntoVenditaNonTrovatoException(
-                    "Nessun distributore associato al codice " + codicePuntoVendita
+                    "Per mille bisce secche! Fai attenzione! Nessun distributore associato al codice " + codicePuntoVendita
             );
         }
 
@@ -216,7 +257,7 @@ public List<DistributoreAutomatico> findAll() {
                     .getSingleResult();
         } catch (NoResultException e) {
             throw new PuntoVenditaNonTrovatoException(
-                    "Nessun distributore associato al codice " + codicePuntoVendita
+                    "Per mille bisce secche! Fai attenzione! Nessun distributore associato al codice " + codicePuntoVendita
             );
         }
 
